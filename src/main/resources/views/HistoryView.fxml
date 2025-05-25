@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<VBox id="AnchorPane" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="controlers.HistoryController" alignment="CENTER">
+   <stylesheets>
+       <URL value="@historyview.css" />
+   </stylesheets>
+    <Label text="Historique" />
+</VBox>

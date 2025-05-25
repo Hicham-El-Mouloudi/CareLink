@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<HBox fx:id="rootHBox" spacing="10.0" xmlns:fx="http://javafx.com/fxml" fx:controller="controlers.PatientController" alignment="CENTER" style="-fx-padding: 30 0 0 0;">
+    <stylesheets>
+        <URL value="@patientview.css" />
+    </stylesheets>
+    
+    <!-- Left Side: Patient List -->
+    <VBox fx:id="leftVBox" spacing="10" HBox.hgrow="ALWAYS">
+        <!-- Search Bar -->
+        <HBox fx:id="searchBarHBox" spacing="5">
+            <TextField fx:id="searchField" promptText="Search patients..." HBox.hgrow="ALWAYS"/>
+            <Button fx:id="Search" text="Search" onAction="#Search"/>
+            <Button fx:id="clearSearchButton" text="Clear" onAction="#clearSearch"/>
+        </HBox>
+
+        <!-- TableView -->
+        <TableView fx:id="patientsTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="nameColumn" text="Nom" prefWidth="150"/>
+                <TableColumn fx:id="treatmentColumn" text="Traitements" prefWidth="150"/>
+                <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="100">
+                </TableColumn>
+            </columns>
+        </TableView>
+    </VBox>
+</HBox>

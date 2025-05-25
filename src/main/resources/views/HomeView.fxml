@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" spacing="20" alignment="CENTER" fx:controller="controlers.HomeController">
+    <stylesheets>
+        <URL value="@homeview.css" />
+    </stylesheets>
+
+    <!-- Welcome Section -->
+    <VBox alignment="CENTER" spacing="5">
+        <Label text="Bienvenue !" style="-fx-font-size: 24px;" />
+        <Label text="Connecté en tant que: Médecin" />
+    </VBox>
+
+    <!-- Stats Section -->
+    <HBox spacing="20" alignment="CENTER">
+
+        <!-- Card 1 -->
+        <VBox alignment="CENTER" spacing="5">
+            <Label text="Nombre de Patients" />
+            <Label fx:id="numberOfPatients" text="120" style="-fx-font-weight: bold;" />
+        </VBox>
+
+        <!-- Card 2 -->
+        <VBox alignment="CENTER" spacing="5">
+            <Label text="Traitements en cours" />
+            <Label fx:id="numberOfTraitementsEnCours" text="85" style="-fx-font-weight: bold;" />
+        </VBox>
+
+        <!-- Card 3 -->
+        <VBox alignment="CENTER" spacing="5">
+            <Label text="Rendez-vous aujourd'hui" />
+            <Label fx:id="numberOfAppointementsForToday" text="12" style="-fx-font-weight: bold;" />
+        </VBox>
+
+    </HBox>
+
+    <!-- Footer -->
+    <Label text="© 2025 – Projet ENSA" alignment="CENTER" />
+
+</VBox>
