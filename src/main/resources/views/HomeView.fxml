@@ -6,11 +6,19 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
 
 <VBox xmlns:fx="http://javafx.com/fxml" spacing="20" alignment="CENTER" fx:controller="controlers.HomeController">
     <stylesheets>
         <URL value="@homeview.css" />
     </stylesheets>
+
+    <!-- Logo Section -->
+    <ImageView fitHeight="300" fitWidth="300" pickOnBounds="true" preserveRatio="true">
+        <image>
+            <Image url="@Logo.png" />
+        </image>
+    </ImageView>
 
     <!-- Welcome Section -->
     <VBox alignment="CENTER" spacing="5">

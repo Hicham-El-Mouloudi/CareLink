@@ -15,6 +15,9 @@ import javafx.fxml.*;
 import java.io.IOException;
 import javafx.scene.layout.BorderPane;
 
+
+import models.*;
+
 /**
  * FXML Controller class
  *
@@ -120,5 +123,24 @@ public class TheAppMainViewController implements Initializable {
             System.err.println("Error loading aide view: " + e.getMessage() + "\n");
             e.printStackTrace();
         }
+    }
+    // navigate to edit patient view
+    public void navigateToEditPatientView(Patient patient) {
+        try {
+            FXMLLoader editLoader = new FXMLLoader(getClass().getResource("/views/EditPatientView.fxml"));
+            Parent editRoot = editLoader.load();
+            controlers.EditPatientController editController = editLoader.getController();
+            editController.setPatient(patient);
+            // Optionally set parent controller if needed:
+            // editController.setParentController(this);
+            setBodyContent((Pane) editRoot);
+        } catch (IOException e) {
+            System.err.println("Error loading edit patient view: " + e.getMessage() + "\n");
+            e.printStackTrace();
+        }
+    }
+
+    public void setBodyContent(Pane bodyContent) {
+        this.bodyContent = bodyContent;
     }
 }

@@ -73,4 +73,28 @@ public class PersonDAO {
         }
         return null;
     }
+    public boolean deletePerson(int id) throws SQLException {
+        String query = "DELETE FROM Person WHERE Id=?";
+        PreparedStatement ps = connectionToDB.prepareStatement(query);
+        ps.setInt(1, id);
+        int rows = ps.executeUpdate();
+        return rows > 0;
+    }
+    public boolean updatePerson(Person person) throws SQLException {
+        String query = "UPDATE Person SET FullName=?, Gender=?, Email=?, DateOfBirth=?, InsuranceDetails=? WHERE Id=?";
+        PreparedStatement ps = connectionToDB.prepareStatement(query);
+        ps.setString(1, person.getFullName());
+        ps.setString(2, person.getGender());
+        ps.setString(3, person.getEmail());
+        // If you have a date picker or date field, set it here. For now, set as null if not used:
+        if (person.getDateOfBirth() != null) {
+            ps.setDate(4, new java.sql.Date(person.getDateOfBirth().getTime()));
+        } else {
+            ps.setNull(4, java.sql.Types.DATE);
+        }
+        ps.setString(5, person.getInsuranceDetails());
+        ps.setInt(6, person.getId());
+        int rows = ps.executeUpdate();
+        return rows > 0;
+    }
 }
