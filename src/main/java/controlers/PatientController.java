@@ -74,6 +74,8 @@ public class PatientController implements Initializable {
     private ScrollPane tableScrollPane;
     @FXML
     private Button addPatientButton;
+    @FXML
+    private Button deleteAllPatientsButton;
 
     /**
      * Initializes the controller class.
@@ -103,9 +105,16 @@ public class PatientController implements Initializable {
         // Set up search button action
         searchButton.setOnAction(this::Search);
 
+        // Launch search on every text change in the search field
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> Search(null));
+
         // Set up add patient button action
         if (addPatientButton != null) {
             addPatientButton.setOnAction(e -> addPatient());
+        }
+        // Set up delete all patients button action
+        if (deleteAllPatientsButton != null) {
+            deleteAllPatientsButton.setOnAction(e -> deleteAllPatients());
         }
     }
 
@@ -243,6 +252,20 @@ public class PatientController implements Initializable {
             addStage.initOwner(patientsTable.getScene().getWindow());
             addStage.showAndWait();
             loadPatients(); // Refresh table after adding
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void deleteAllPatients() {
+        try {
+            PatientPersonDAO dao = new PatientPersonDAO();
+            boolean success = dao.deleteAllPatientPersons();
+            if (success) {
+                loadPatients();
+            } else {
+                System.out.println("Failed to delete all patients.");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

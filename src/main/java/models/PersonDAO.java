@@ -97,4 +97,20 @@ public class PersonDAO {
         int rows = ps.executeUpdate();
         return rows > 0;
     }
+
+    /**
+     * Deletes all persons from the Person table.
+     * @return true if successful, false otherwise
+     */
+    public boolean deleteAllPersons() {
+        try {
+            String query = "DELETE FROM Person";
+            Statement stmt = connectionToDB.createStatement();
+            stmt.executeUpdate(query);
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

@@ -22,6 +22,7 @@
             <ChoiceBox fx:id="filterChoiceBox" />
         </HBox>
         <Button fx:id="addPatientButton" text="Ajouter Patient" id="addPatientButton" />
+        <Button fx:id="deleteAllPatientsButton" text="Supprimer Tous" id="deleteAllPatientsButton" />
     </HBox>
     <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
         <ScrollPane fx:id="tableScrollPane" fitToWidth="true">
