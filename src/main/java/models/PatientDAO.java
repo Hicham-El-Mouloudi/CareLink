@@ -101,4 +101,20 @@ public class PatientDAO {
         }
         return null;
     }
+
+    /**
+     * Deletes all patients from the Patient table.
+     * @return true if successful, false otherwise
+     */
+    public boolean deleteAllPatients() {
+        try {
+            String query = "DELETE FROM Patient";
+            Statement stmt = connectionToDB.createStatement();
+            stmt.executeUpdate(query);
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

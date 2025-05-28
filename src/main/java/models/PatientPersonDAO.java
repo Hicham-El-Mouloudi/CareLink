@@ -52,4 +52,21 @@ public class PatientPersonDAO {
         boolean personDeleted = personDAO.deletePerson(patientPerson.getId());
         return patientDeleted && personDeleted;
     }
+
+    /**
+     * Deletes all patients and their associated persons from the database.
+     * @return true if successful, false otherwise
+     */
+    public boolean deleteAllPatientPersons() {
+        try {
+            // Delete all patients first (to avoid FK constraint issues)
+            boolean patientsDeleted = patientDAO.deleteAllPatients();
+            // Then delete all persons
+            boolean personsDeleted = personDAO.deleteAllPersons();
+            return patientsDeleted && personsDeleted;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
