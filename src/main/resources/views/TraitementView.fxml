@@ -10,5 +10,5 @@
    <stylesheets>
        <URL value="@traitementview.css" />
    </stylesheets>
-   <Label text="Traitements" />
+   <Label text="Traitements v1.0" />
    </VBox>
