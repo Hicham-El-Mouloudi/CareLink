@@ -5,3 +5,87 @@
 .mainFxmlClass {
 
 }
+
+/* Main container for TraitementView */
+#traitementBodyVBox {
+    -fx-background-color: #f1f9ff;
+    -fx-padding: 24 32 24 32;
+}
+
+#titleLabel {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1b7895;
+    -fx-padding: 12 0 0 0;
+}
+
+#detailsLabel {
+    -fx-text-fill: #1b7895;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 12 0;
+}
+
+#traitementGrid {
+    -fx-hgap: 10;
+    -fx-vgap: 7;
+}
+
+#traitementGrid Label {
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+#traitementGrid TextField,
+#traitementGrid DatePicker {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: #1b7895;
+    -fx-padding: 4 8 4 8;
+    -fx-font-size: 13px;
+}
+
+#traitementGrid TextField:focused,
+#traitementGrid DatePicker:focused {
+    -fx-border-color: #15677d;
+}
+
+#statusCheckBox {
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-text-fill: #1b7895;
+}
+
+#enregistrerButton {
+    -fx-background-color: #1b7895;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 10 32 10 32;
+    -fx-cursor: hand;
+    -fx-font-size: 16px;
+    -fx-effect: dropshadow(gaussian, #b3e0ff, 4, 0.2, 0, 2);
+    -fx-border-color: #1b7895;
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
+    -fx-margin-top: 18;
+    -fx-margin-bottom: 8;
+}
+#enregistrerButton:hover {
+    -fx-background-color: #15677d;
+}
+
+#statusChoiceBox {
+    -fx-background-color: white;
+    -fx-border-color: #1b7895;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-font-size: 14px;
+    -fx-text-fill: #1b7895;
+    -fx-padding: 4 8 4 8;
+    -fx-cursor: hand;
+}
+#statusChoiceBox:focused {
+    -fx-border-color: #15677d;
+}

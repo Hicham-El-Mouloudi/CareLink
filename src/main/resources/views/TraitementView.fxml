@@ -1,14 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<VBox styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="controlers.TraitementController" alignment="CENTER">
-   <stylesheets>
-       <URL value="@traitementview.css" />
-   </stylesheets>
-   <Label text="Traitements" />
-   </VBox>
+<BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.TraitementController">
+    <center>
+        <VBox alignment="CENTER" fillWidth="true" spacing="20" styleClass="mainFxmlClass" stylesheets="@traitementview.css">
+            <ScrollPane fx:id="traitementScrollPane" fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">
+                <content>
+                    <VBox alignment="CENTER" fillWidth="true">
+                        <VBox fx:id="traitementBodyVBox" alignment="TOP_CENTER" fillWidth="false" maxWidth="900" minWidth="400" spacing="20" VBox.vgrow="ALWAYS">
+                            <Label fx:id="detailsLabel" text="Ajout de traitements" />
+                            <GridPane fx:id="traitementGrid" alignment="CENTER" hgap="10" maxWidth="800" minWidth="300" vgap="7" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                                <columnConstraints>
+                                    <ColumnConstraints hgrow="ALWAYS" maxWidth="400" minWidth="100" />
+                                    <ColumnConstraints hgrow="ALWAYS" maxWidth="400" minWidth="100" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                    <RowConstraints maxHeight="60" minHeight="30" vgrow="ALWAYS" />
+                                    <RowConstraints maxHeight="60" minHeight="30" vgrow="ALWAYS" />
+                                    <RowConstraints maxHeight="60" minHeight="30" vgrow="ALWAYS" />
+                                    <RowConstraints maxHeight="60" minHeight="30" vgrow="ALWAYS" />
+                                    <RowConstraints maxHeight="60" minHeight="30" vgrow="ALWAYS" />
+                                    <RowConstraints maxHeight="60" minHeight="30" vgrow="ALWAYS" />
+                                    <RowConstraints maxHeight="60" minHeight="30" vgrow="ALWAYS" />
+                                    <RowConstraints maxHeight="60" minHeight="30" vgrow="ALWAYS" />
+                                    <RowConstraints maxHeight="60" minHeight="30" vgrow="ALWAYS" />
+                                    <RowConstraints maxHeight="60" minHeight="30" vgrow="ALWAYS" />
+                                    <RowConstraints maxHeight="60" minHeight="30" vgrow="ALWAYS" />
+                                    <RowConstraints maxHeight="60" minHeight="30" vgrow="ALWAYS" />
+                                    <RowConstraints maxHeight="60" minHeight="30" vgrow="ALWAYS" />
+                                </rowConstraints>
+                                <children>
+                                    <Label text="ID" GridPane.rowIndex="0" />
+                                    <TextField fx:id="idField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                    <Label text="Date" GridPane.rowIndex="1" />
+                                    <DatePicker fx:id="datePicker" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label text="Type" GridPane.rowIndex="2" />
+                                    <TextField fx:id="typeField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label text="Status" GridPane.rowIndex="3" />
+                                    <ChoiceBox fx:id="statusChoiceBox" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Label text="Description" GridPane.rowIndex="4" />
+                                    <TextField fx:id="descriptionField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Label text="Notes" GridPane.rowIndex="5" />
+                                    <TextField fx:id="notesField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <Label text="Raison For Traitment" GridPane.rowIndex="6" />
+                                    <TextField fx:id="raisonField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                    <Label text="Follow Up Required" GridPane.rowIndex="7" />
+                                    <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                        <RadioButton fx:id="followUpYesRadio" text="Oui" toggleGroup="$followUpGroup" />
+                                        <RadioButton fx:id="followUpNoRadio" text="Non" toggleGroup="$followUpGroup" />
+                                    </HBox>
+                                    <Label text="Next Appointement ID" GridPane.rowIndex="8" />
+                                    <TextField fx:id="nextAppointmentField" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                    <Label text="Patient ID" GridPane.rowIndex="9" />
+                                    <TextField fx:id="patientIdField" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                                    <Label text="Doctor ID" GridPane.rowIndex="10" />
+                                    <TextField fx:id="doctorIdField" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                                    <Label text="Prescription ID" GridPane.rowIndex="11" />
+                                    <TextField fx:id="prescriptionIdField" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                                    <Label text="Medical Record ID" GridPane.rowIndex="12" />
+                                    <TextField fx:id="medicalRecordIdField" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                                </children>
+                            </GridPane>
+                            <HBox alignment="BOTTOM_RIGHT" HBox.hgrow="ALWAYS">
+                                <Region HBox.hgrow="ALWAYS" />
+                                <Button fx:id="enregistrerButton" text="Enregistrer" textAlignment="RIGHT" />
+                            </HBox>
+                        </VBox>
+                    </VBox>
+                </content>
+            </ScrollPane>
+        </VBox>
+    </center>
+    <right>
+        <VBox fx:id="choosePatientPane"/>
+    </right>
+</BorderPane>
