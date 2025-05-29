@@ -140,7 +140,7 @@ public class TheAppMainViewController implements Initializable {
         }
     }
 
-    public void setBodyContent(Pane bodyContent) {
+    public void setBodyContent(@SuppressWarnings("exports") Pane bodyContent) {
         this.bodyContent = bodyContent;
     }
 }
