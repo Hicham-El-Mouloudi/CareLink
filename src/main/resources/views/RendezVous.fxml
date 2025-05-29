@@ -12,68 +12,30 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:controller="controlers.RendezVous" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="615.0" style="-fx-background-color: #f1f9ff;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox prefHeight="375.0" prefWidth="615.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.RendezVousController">
    <children>
-      <HBox prefHeight="25.0" prefWidth="549.0" style="-fx-background-color: #1b7895;">
+      <VBox  prefHeight="375.0" prefWidth="301.0" style="-fx-padding: 10; -fx-spacing: 10;">
          <children>
-            <BorderPane prefHeight="19.0" prefWidth="600.0">
-               <left>
-                  <HBox prefHeight="25.0" prefWidth="560.0" BorderPane.alignment="CENTER">
-                     <children>
-                        <Button mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-background-radius: 0;" text="Home" textAlignment="CENTER" />
-                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-background-radius: 0;" text="Patients" textAlignment="CENTER" />
-                        <Button layoutX="57.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: #f1f9ff; -fx-text-fill: #1b7895; -fx-background-radius: 0;" text="Rendez-vous" textAlignment="CENTER" />
-                        <Button layoutX="103.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Traitements" textAlignment="CENTER">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <effect>
-                              <ColorAdjust />
-                           </effect>
-                        </Button>
-                        <Button layoutX="150.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Aide" textAlignment="CENTER" />
-                     </children>
-                  </HBox>
-               </left>
-               <right>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="56.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="User" textAlignment="CENTER" BorderPane.alignment="CENTER">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-               </right>
-            </BorderPane>
-         </children>
-      </HBox>
-      <HBox prefHeight="375.0" prefWidth="615.0">
-         <children>
-            <VBox prefHeight="375.0" prefWidth="301.0" style="-fx-padding: 10; -fx-spacing: 10;">
+            <HBox prefHeight="25.0" prefWidth="301.0" style="-fx-alignment: center; -fx-spacing: 20; -fx-background-color: white; -fx-border-color: #1b7895;">
                <children>
-                  <HBox prefHeight="25.0" prefWidth="301.0" style="-fx-alignment: center; -fx-spacing: 20; -fx-background-color: white; -fx-border-color: #1b7895;">
-                     <children>
-                        <ComboBox fx:id="monthComboBox" prefWidth="120.0" promptText="MONTH" style="-fx-text-fill: #1b7895; -fx-font-size: 14; -fx-background-color: transparent;" />
-                        <ComboBox fx:id="yearComboBox" prefWidth="100.0" promptText="YEAR" style="-fx-text-fill: #1b7895; -fx-font-size: 14; -fx-background-color: transparent;" />
-                     </children>
-                  </HBox>
-                  <VBox fx:id="calendarContainer" prefHeight="343.0" prefWidth="275.0" style="-fx-border-color: #1b7895;" />
+                  <ComboBox fx:id="monthComboBox" prefWidth="120.0" promptText="MONTH" style="-fx-text-fill: #1b7895; -fx-font-size: 14; -fx-background-color: transparent;" />
+                  <ComboBox fx:id="yearComboBox" prefWidth="100.0" promptText="YEAR" style="-fx-text-fill: #1b7895; -fx-font-size: 14; -fx-background-color: transparent;" />
                </children>
-            </VBox>
-            <ScrollPane prefHeight="375.0" prefWidth="326.0">
-               <content>
-                  <TableView prefHeight="361.0" prefWidth="319.0">
-                    <columns>
-                      <TableColumn prefWidth="75.0" text="ID" />
-                      <TableColumn prefWidth="75.0" text="Personne" />
-                        <TableColumn prefWidth="102.66664123535156" text="Date" />
-                        <TableColumn prefWidth="48.00004577636719" text="Statut" />
-                    </columns>
-                  </TableView>
-               </content>
-            </ScrollPane>
+            </HBox>
+            <VBox fx:id="calendarContainer" prefHeight="343.0" prefWidth="275.0" style="-fx-border-color: #1b7895;" />
          </children>
-      </HBox>
+      </VBox>
+      <ScrollPane prefHeight="375.0" prefWidth="326.0">
+         <content>
+            <TableView prefHeight="361.0" prefWidth="319.0">
+               <columns>
+                  <TableColumn prefWidth="75.0" text="ID" />
+                  <TableColumn prefWidth="75.0" text="Personne" />
+                  <TableColumn prefWidth="102.66664123535156" text="Date" />
+                  <TableColumn prefWidth="48.00004577636719" text="Statut" />
+               </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
    </children>
-</VBox>
+</HBox>
