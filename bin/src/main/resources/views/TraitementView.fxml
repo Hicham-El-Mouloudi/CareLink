@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.*?>
+
+
+<VBox styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="controlers.TraitementController" alignment="CENTER">
+   <stylesheets>
+       <URL value="@traitementview.css" />
+   </stylesheets>
+   <Label text="Traitements" />
+   </VBox>

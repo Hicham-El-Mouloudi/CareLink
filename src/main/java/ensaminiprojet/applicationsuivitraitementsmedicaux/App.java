@@ -17,7 +17,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("/views/TheAppMainView"), 640, 480);
+        scene = new Scene(loadFXML("/views/SignUpView"), 640, 480);
+        ///views/TheAppMainView
         stage.setTitle("CareLink");
         stage.setScene(scene);
         stage.setMinWidth(900);
