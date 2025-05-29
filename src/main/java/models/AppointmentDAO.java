@@ -67,4 +67,37 @@ public class AppointmentDAO {
         }
         return 0;
     }
+    /**
+     * @author amine
+     * @param year 
+     * @param month
+     * @param day
+     * @return a list of appointments of a given date
+     * @throws SQLException
+     */
+    public List<Appointment> getAppointmentsByDate(String year, String month, String day) throws SQLException {
+        List<Appointment> appointments = new ArrayList<>();
+
+        // Format 
+        String dateStr = String.format("%s-%02d-%02d", year, Integer.parseInt(month), Integer.parseInt(day));
+
+        String query = "SELECT * FROM Appointment WHERE DATE(DateTime) = ?";
+        PreparedStatement ps = connectionToDB.prepareStatement(query);
+        ps.setString(1, dateStr);
+
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            appointments.add(new Appointment(
+                rs.getInt("Id"),
+                rs.getTimestamp("DateTime"),
+                rs.getString("ReasonToVisit"),
+                rs.getString("Status"),
+                rs.getInt("PatientID"),
+                rs.getInt("DoctorID")
+            ));
+        }
+
+        return appointments;
+    }
+
 }
