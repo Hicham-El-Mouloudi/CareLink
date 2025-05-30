@@ -113,6 +113,17 @@ public class AppointmentDAO {
             ps.executeUpdate();
         }
     }
+    /**
+     * delete an appointment based on the id 
+     * @param id of the appointment
+     * @throws SQLException
+     */
+    public void deleteAppointment(int id) throws SQLException {
+        String query = "DELETE FROM Appointment WHERE ID = ?";
+        PreparedStatement ps = connectionToDB.prepareStatement(query);
+        ps.setInt(1, id);
+        ps.executeUpdate();
+    }
 
 
 }

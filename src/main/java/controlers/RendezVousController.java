@@ -244,8 +244,12 @@ public class RendezVousController implements Initializable {
 
 
     private void handleDelete(Appointment appointment) {
-        System.out.println("Delete appointment: " + appointment.getId());
-        // TODO: Confirm and delete
+        try{
+            appointmentDAO.deleteAppointment(appointment.getId());
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
 }
 
 }
