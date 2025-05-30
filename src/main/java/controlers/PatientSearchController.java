@@ -11,7 +11,15 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import models.PatientPerson;
 import models.PatientPersonDAO;
-
+/**
+ * search a personPatient in a pop up and {@code return the ID} after the search with the 
+ * methode {@link #getSelectedPatientId()}
+ * <p> this class controles the stage that will pop up when the user want to search
+ * a personPatient and get his id 
+ * <p> called in {@link EditAppointmentController#openPatientSearch()}
+ * <p> also called in {@link AddAppointmentController#openPatientSearch()}
+ * @author amine 
+ */
 public class PatientSearchController {
     @FXML private TableView<models.PatientPerson> patientsTable;
     @FXML private TableColumn<models.PatientPerson, Integer> idColumn;
@@ -23,7 +31,10 @@ public class PatientSearchController {
     @FXML private ChoiceBox<String> filterChoiceBox;
 
     private int selectedPatientId = -1;
-
+    /**
+     * 
+     * @return the ID of the patient selected 
+     */
     public int getSelectedPatientId() {
         return selectedPatientId;
     }
@@ -44,13 +55,20 @@ public class PatientSearchController {
             e.printStackTrace();
         }
     }
-
+    /**
+     * fill the table with all the patient 
+     * @throws Exception
+     */
     private void refreshTable() throws Exception {
         PatientPersonDAO dao = new PatientPersonDAO();
         patientsTable.setItems(FXCollections.observableArrayList(dao.getAllPatientPersons()));
     }
 
     @FXML
+    /**
+     * filtered search logic
+     * @author hicham 
+     */
     public void search() {
         String searchText = searchField.getText().trim().toLowerCase();
         String filter = (String) filterChoiceBox.getSelectionModel().getSelectedItem();
@@ -86,6 +104,9 @@ public class PatientSearchController {
     }
 
     @FXML
+    /**
+     * select a patient with right lick and click the select button
+     */
     public void selectPatient() {
         PatientPerson selected = patientsTable.getSelectionModel().getSelectedItem();
         if (selected != null) {

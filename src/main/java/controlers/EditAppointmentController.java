@@ -31,7 +31,10 @@ public class EditAppointmentController {
 
     private models.Appointment appointment;
     private models.AppointmentDAO dao = new models.AppointmentDAO();
-
+    /**
+     * set an appointment to be displayed
+     * @param appointment
+     */
     public void setAppointment(models.Appointment appointment) {
         this.appointment = appointment;
 

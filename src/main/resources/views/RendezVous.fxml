@@ -27,7 +27,7 @@
             <VBox fx:id="calendarContainer" prefWidth="400" style="-fx-border-color: #1b7895;-fx-alignment: center;" />
             <BorderPane>
                <center>
-                  <Button fx:id="addAppointmentButton" text="Ajouter" BorderPane.alignment="CENTER" />
+                  <Button fx:id="addAppointmentButton" text="Ajouter" BorderPane.alignment="CENTER" style="-fx-background-color : transparent; -fx-text-fill : #1b7895 ; -fx-background-radius : 10 ; -fx-font-size : 12;"/>
                </center>
             </BorderPane>
          </children>

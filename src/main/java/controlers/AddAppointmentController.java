@@ -13,7 +13,15 @@ import java.util.Date;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-
+/**
+ * add appointment pop up controller
+ * <p> the user should insert the id of the patient instead of the name , and 
+ * to make aht easier a {@code search window} is added , you can pop it up by clicking 
+ * search ,he can {@code select the patient} after , and then the id when be submited 
+ * directly to the text area .
+ * <p> if the data is invalid an allert will be displayed 
+ * @author amine
+ */
 
 public class AddAppointmentController {
 
@@ -34,7 +42,7 @@ public class AddAppointmentController {
         saveButton.setOnAction(e -> {
             try {
                 // Combine date and time
-                System.out.println("the controller is recongnized");
+                
                 LocalDate date = datePicker.getValue();
                 LocalTime time = LocalTime.parse(timeField.getText(), DateTimeFormatter.ofPattern("HH:mm"));
                 Date newDate = java.util.Date.from(date.atTime(time).atZone(java.time.ZoneId.systemDefault()).toInstant());
@@ -44,7 +52,7 @@ public class AddAppointmentController {
                 appointment.setStatus(statusField.getText());
                 appointment.setPatientId(Integer.parseInt(patientIdField.getText()));
                 appointment.setDoctorId(Integer.parseInt(doctorIdField.getText()));
-                
+                // insert the appointment to the database
                 dao.insertAppointment(appointment);
                 closeWindow();
             } catch (Exception ex) {
@@ -54,6 +62,9 @@ public class AddAppointmentController {
         });
     }
     @FXML
+    /**
+     * open the window
+     */
     public void openPatientSearch() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/PatientSearch.fxml"));

@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -31,20 +30,22 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-
 import java.time.LocalDate;
-
+/**
+ * 
+ * <p> control the Rendez-vous scene , and handle {@code add} , {@code delete} and {@code edit} a Rendez-vous
+ * <p> handles also "searching" or {@code listing} the Rendez-vous by day using a callendar
+ * <p> it uses the date on the machine to set up the calendar 
+ * @author : amine 
+ */
 public class RendezVousController implements Initializable {
+    // FXML elements
+    @FXML private ComboBox<String> monthComboBox;
 
-    @FXML
-    private ComboBox<String> monthComboBox;
+    @FXML private ComboBox<Integer> yearComboBox;
 
-    @FXML
-    private ComboBox<Integer> yearComboBox;
+    @FXML private VBox calendarContainer; // 
 
-    @FXML
-    private VBox calendarContainer; // 
-    //
     @FXML private Button addAppointmentButton;
     // partie des rendez-vous
     @FXML private TableView<Appointment> appointmentTableView;
@@ -54,15 +55,15 @@ public class RendezVousController implements Initializable {
     @FXML private TableColumn<Appointment, String> statusColumn;
 
     
-
+    // models
     private models.CalendarModel model;
     private GridPane calendarGridPane;
     private models.AppointmentDAO appointmentDAO = new AppointmentDAO();
-
+    // the expected init function
     public void initialize(URL url,ResourceBundle rb) {
         model = new models.CalendarModel();
 
-        // Populate combo boxes
+    // Populate combo boxes
         monthComboBox.setItems(model.getMonths());
         yearComboBox.setItems(model.getYears());
 
@@ -70,19 +71,20 @@ public class RendezVousController implements Initializable {
         monthComboBox.setValue(model.getMonths().get(LocalDate.now().getMonthValue() - 1));
         yearComboBox.setValue(LocalDate.now().getYear());
 
-        // Bind combo box selections to the model
+    // Bind combo box selections to the model
         monthComboBox.setOnAction(event -> model.setMonth(monthComboBox.getSelectionModel().getSelectedIndex() + 1));
         yearComboBox.setOnAction(event -> model.setYear(yearComboBox.getValue()));
 
-        // Initialize and display the calendar
+    // Initialize and display the calendar
         createCalendarGrid();
         updateCalendar();
-        // 
+    // add appointment , set action and style
         addAppointmentButton.setOnAction(event->handleAddingAppointment());
-        // Listen for changes in month and year to update the calendar
+        
+    // Listen for changes in month and year to update the calendar
         model.monthProperty().addListener((obs, oldMonth, newMonth) -> updateCalendar());
         model.yearProperty().addListener((obs, oldYear, newYear) -> updateCalendar());
-        // 
+    // configure the columns of the tableview 
         iDColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         dateColumn.setCellValueFactory(cellData -> {
             // Format the java.util.Date to a readable string
@@ -96,36 +98,37 @@ public class RendezVousController implements Initializable {
             return new javafx.beans.property.SimpleStringProperty(person);
         });
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
-        // configure the right click 
+        //// configure the right click on a row edit- delete
         appointmentTableView.setRowFactory(tableView -> {
-        TableRow<Appointment> row = new TableRow<>();
+            TableRow<Appointment> row = new TableRow<>();
+        
 
-        ContextMenu contextMenu = new ContextMenu();
-        MenuItem editItem = new MenuItem("Edit");
-        MenuItem deleteItem = new MenuItem("Delete");
+            ContextMenu contextMenu = new ContextMenu();
+            MenuItem editItem = new MenuItem("Modifier");
+            MenuItem deleteItem = new MenuItem("Supprimer");
 
-        // Actions
-        editItem.setOnAction(event -> {
-            Appointment selected = row.getItem();
-            handleEdit(selected);
+            // Actions
+            editItem.setOnAction(event -> {
+                Appointment selected = row.getItem();
+                handleEdit(selected);
+            });
+
+            deleteItem.setOnAction(event -> {
+                Appointment selected = row.getItem();
+                handleDelete(selected);
+            });
+
+            contextMenu.getItems().addAll(editItem, deleteItem);
+
+            // Only show menu for non-empty rows
+            row.contextMenuProperty().bind(
+                javafx.beans.binding.Bindings.when(row.emptyProperty())
+                    .then((ContextMenu) null)
+                    .otherwise(contextMenu)
+            );
+
+            return row;
         });
-
-        deleteItem.setOnAction(event -> {
-            Appointment selected = row.getItem();
-            handleDelete(selected);
-        });
-
-        contextMenu.getItems().addAll(editItem, deleteItem);
-
-        // Only show menu for non-empty rows
-        row.contextMenuProperty().bind(
-            javafx.beans.binding.Bindings.when(row.emptyProperty())
-                .then((ContextMenu) null)
-                .otherwise(contextMenu)
-        );
-
-        return row;
-    });
 
     }
     /**
@@ -182,10 +185,9 @@ public class RendezVousController implements Initializable {
         }
         column = firstDayOfWeek - 1; // Adjust for 0-based grid
 
-        // Add day labels for the current month
+        // Add day Buttons for the current month and set them on action and set theyre style.
         for (int day = 1; day <= daysInMonth; day++) {
             Button dayButton = new Button(String.valueOf(day));
-            
 
             String defaultStyle = "-fx-padding: 10;\r\n" + //
                                 "    -fx-background-radius: 8;\r\n" + //
@@ -198,12 +200,12 @@ public class RendezVousController implements Initializable {
                                 "    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 4, 0.3, 0, 1);";
             String normalStyle = defaultStyle + "\r\n"+"    -fx-background-color: #f0f8ff; /* light blue */";//
 
-            dayButton.setStyle(normalStyle);
             String onHoverStyle= defaultStyle+"\r\n"+"-fx-background-color: #d0eaff;";
+
             String onMousePressedStyle= defaultStyle+"\r\n"+"-fx-background-color: #89cff0;";
 
             // Default style
-
+            dayButton.setStyle(normalStyle);
             // On hover
             dayButton.hoverProperty().addListener((obs, wasHovered, isNowHovered) -> {
                 if (isNowHovered) {
@@ -257,7 +259,9 @@ public class RendezVousController implements Initializable {
     
     }
     /**
-     * handle delete from the right click
+     * handle edit 
+     * <p> open a new {@code popup} window where you can edit the displyed data 
+     * of the selected appointment
      */
     private void handleEdit(Appointment appointment) {
         try {
@@ -265,26 +269,32 @@ public class RendezVousController implements Initializable {
             Parent root = loader.load();
 
             EditAppointmentController controller = loader.getController();
+            //dispay the data 
             controller.setAppointment(appointment);
-
+            // pop up a new mini window to display the - ready to be edited - appointment
             Stage stage = new Stage();
             stage.setTitle("Edit Appointment");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL); // blocks interaction with main window
             stage.setResizable(false);
-            stage.showAndWait();
+            stage.showAndWait(); // wait until the mini window is closed 
 
-            // Optionally: refresh table after editing
-            updateAppointmentTable(String.valueOf(model.getDay())); // if you track the day
-            System.out.println("view updated succesfully");
+            // refresh table after editing
+            updateAppointmentTable(String.valueOf(model.getDay())); //
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-
+    /**
+     * handle the delete request 
+     * <p> are you sure message pops up 
+     * @param appointment : the appointment to delete 
+     */
     private void handleDelete(Appointment appointment) {
         try {
+            // load the confirmation checkout
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/deletePopUp.fxml"));
             Parent root = loader.load();
             controlers.ConfirmDeleteAppointmentController controller = loader.getController();
@@ -294,18 +304,19 @@ public class RendezVousController implements Initializable {
             stage.initModality(Modality.APPLICATION_MODAL); // blocks interaction with main window
             stage.setResizable(false);
             stage.showAndWait();
+            // delete if the user is sure
             if(controller.isdeleteConfirmed()){
                 appointmentDAO.deleteAppointment(appointment.getId());
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        catch(SQLException e){
+        catch(SQLException e){ // catch the delete appointment exception if happend
             e.printStackTrace();
         }
     }
     /**
-     * load mini window to add new appointment
+     * load mini popup window to add new appointment
      */
     private void handleAddingAppointment(){
         try {
