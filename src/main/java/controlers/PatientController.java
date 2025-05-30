@@ -76,6 +76,7 @@ public class PatientController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    @SuppressWarnings("deprecation")
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Set the column resize policy to avoid extra columns

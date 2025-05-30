@@ -17,7 +17,7 @@ public class AppointmentDAO {
     private String password;
     private Connection connectionToDB;
     public AppointmentDAO() {
-        url = "jdbc:mysql://localhost:3306/ApplicationDeSuiviDesTraitementsMedicaux";
+        url = "jdbc:mysql://localhost:3306/javafxdb";
         user = "root";
         password = "";
         try {
@@ -99,5 +99,20 @@ public class AppointmentDAO {
 
         return appointments;
     }
+    public void updateAppointment(Appointment appointment) throws SQLException {
+        String query = "UPDATE Appointment SET DateTime = ?, ReasonToVisit = ?, Status = ?, PatientID = ?, DoctorID = ? WHERE Id = ?";
+
+        try (PreparedStatement ps = connectionToDB.prepareStatement(query)) {
+            ps.setTimestamp(1, new java.sql.Timestamp(appointment.getDateTime().getTime()));
+            ps.setString(2, appointment.getReasonToVisit());
+            ps.setString(3, appointment.getStatus());
+            ps.setInt(4, appointment.getPatientId());
+            ps.setInt(5, appointment.getDoctorId());
+            ps.setInt(6, appointment.getId());
+
+            ps.executeUpdate();
+        }
+    }
+
 
 }

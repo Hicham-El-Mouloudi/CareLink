@@ -1,6 +1,7 @@
 
 package controlers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
@@ -9,18 +10,27 @@ import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import models.Appointment;
 import models.AppointmentDAO;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.time.LocalDate;
 
@@ -69,6 +79,51 @@ public class RendezVousController implements Initializable {
         // Listen for changes in month and year to update the calendar
         model.monthProperty().addListener((obs, oldMonth, newMonth) -> updateCalendar());
         model.yearProperty().addListener((obs, oldYear, newYear) -> updateCalendar());
+        // 
+        iDColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        dateColumn.setCellValueFactory(cellData -> {
+            // Format the java.util.Date to a readable string
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
+            return new javafx.beans.property.SimpleStringProperty(sdf.format(cellData.getValue().getDateTime()));
+        });
+        personColumn.setCellValueFactory(cellData -> {
+            // You can return something like "DoctorID:PatientID" if no names are available
+            Appointment appt = cellData.getValue();
+            String person = "Doctor " + appt.getDoctorId() + ", Patient " + appt.getPatientId();
+            return new javafx.beans.property.SimpleStringProperty(person);
+        });
+        statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+        // configure the right click 
+        appointmentTableView.setRowFactory(tableView -> {
+        TableRow<Appointment> row = new TableRow<>();
+
+        ContextMenu contextMenu = new ContextMenu();
+        MenuItem editItem = new MenuItem("Edit");
+        MenuItem deleteItem = new MenuItem("Delete");
+
+        // Actions
+        editItem.setOnAction(event -> {
+            Appointment selected = row.getItem();
+            handleEdit(selected);
+        });
+
+        deleteItem.setOnAction(event -> {
+            Appointment selected = row.getItem();
+            handleDelete(selected);
+        });
+
+        contextMenu.getItems().addAll(editItem, deleteItem);
+
+        // Only show menu for non-empty rows
+        row.contextMenuProperty().bind(
+            javafx.beans.binding.Bindings.when(row.emptyProperty())
+                .then((ContextMenu) null)
+                .otherwise(contextMenu)
+        );
+
+        return row;
+    });
+
     }
     /**
      * initialize and set the style for the gridpane 
@@ -88,8 +143,8 @@ public class RendezVousController implements Initializable {
             calendarGridPane.getColumnConstraints().add(col);
         }
         // Set equal row constraints
-        for (int i = 0; i < 6; i++) {
-            row.setPercentHeight(100.0 / 6); // divide 100% evenly
+        for (int i = 0; i < 7; i++) {
+            row.setPercentHeight(100.0 / 7); // divide 100% evenly
             row.setVgrow(Priority.ALWAYS);
             calendarGridPane.getRowConstraints().add(row);
         }
@@ -110,7 +165,7 @@ public class RendezVousController implements Initializable {
         for(String s :daysAbrv){
             Label dayabrv = new Label(s);
             dayabrv.setMaxSize(Double.MAX_VALUE,Double.MAX_VALUE);
-            dayabrv.setStyle("-fx-font-size : 11; -fx-text-fill :#1b7895;");
+            dayabrv.setStyle("-fx-text-fill :#1b7895;");
             GridPane.setHalignment(dayabrv, HPos.CENTER);
             calendarGridPane.add(dayabrv,headerCounter++,0);
         }
@@ -146,6 +201,7 @@ public class RendezVousController implements Initializable {
      */
     public void updateAppointmentTable(String day){ 
         try {
+            model.setDay(Integer.valueOf(day));
             String year = String.valueOf(model.getYear());
             String month = String.valueOf(model.getMonth());
 
@@ -157,4 +213,39 @@ public class RendezVousController implements Initializable {
         }
     
     }
+    /**
+     * handle delete from the right click
+     */
+    private void handleEdit(Appointment appointment) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/editAppointment.fxml"));
+            Parent root = loader.load();
+            if (root == null){
+                System.out.println("[error] fxml not loaded");
+                return;
+            }
+            EditAppointmentController controller = loader.getController();
+            controller.setAppointment(appointment);
+
+            Stage stage = new Stage();
+            stage.setTitle("Edit Appointment");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL); // blocks interaction with main window
+            stage.setResizable(false);
+            stage.showAndWait();
+
+            // Optionally: refresh table after editing
+            updateAppointmentTable(String.valueOf(model.getDay())); // if you track the day
+            System.out.println("view updated succesfully");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private void handleDelete(Appointment appointment) {
+        System.out.println("Delete appointment: " + appointment.getId());
+        // TODO: Confirm and delete
+}
+
 }

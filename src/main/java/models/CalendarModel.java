@@ -8,7 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class CalendarModel {
-
+    private int day;
     private final IntegerProperty year = new SimpleIntegerProperty(LocalDate.now().getYear());
     private final IntegerProperty month = new SimpleIntegerProperty(LocalDate.now().getMonthValue());
     private final ObservableList<Integer> years = FXCollections.observableArrayList();
@@ -24,7 +24,12 @@ public class CalendarModel {
             years.add(i);
         }
     }
-
+    public int getDay(){
+        return day;
+    }
+    public void setDay(int number){
+        this.day=number;
+    }
     public int getYear() {
         return year.get();
     }
