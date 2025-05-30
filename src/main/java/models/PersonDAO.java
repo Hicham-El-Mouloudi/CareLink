@@ -17,7 +17,7 @@ public class PersonDAO {
     private String password;
     private Connection connectionToDB;
     public PersonDAO() {
-        url = "jdbc:mysql://localhost:3306/ApplicationDeSuiviDesTraitementsMedicaux";
+        url = "jdbc:mysql://localhost:3306/javafxdb";
         user = "root";
         password = "";
         try {

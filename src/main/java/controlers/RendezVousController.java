@@ -185,7 +185,47 @@ public class RendezVousController implements Initializable {
         // Add day labels for the current month
         for (int day = 1; day <= daysInMonth; day++) {
             Button dayButton = new Button(String.valueOf(day));
-            dayButton.setStyle("-fx-padding: 8;-fx-border-radius:5; -fx-border-color: lightgray; -fx-alignment: center; -fx-background-radius: 5;");
+            
+
+            String defaultStyle = "-fx-padding: 10;\r\n" + //
+                                "    -fx-background-radius: 8;\r\n" + //
+                                "    -fx-border-radius: 8;\r\n" + //
+                                "    -fx-border-color: lightgray;\r\n" + //
+                                "    -fx-text-fill: #2a2a2a;\r\n" + //
+                                "    -fx-font-weight: bold;\r\n" + //
+                                "    -fx-alignment: center;\r\n" + //
+                                "    -fx-cursor: hand;\r\n" + //
+                                "    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 4, 0.3, 0, 1);";
+            String normalStyle = defaultStyle + "\r\n"+"    -fx-background-color: #f0f8ff; /* light blue */";//
+
+            dayButton.setStyle(normalStyle);
+            String onHoverStyle= defaultStyle+"\r\n"+"-fx-background-color: #d0eaff;";
+            String onMousePressedStyle= defaultStyle+"\r\n"+"-fx-background-color: #89cff0;";
+
+            // Default style
+
+            // On hover
+            dayButton.hoverProperty().addListener((obs, wasHovered, isNowHovered) -> {
+                if (isNowHovered) {
+                    dayButton.setStyle(onHoverStyle);
+                } else {
+                    dayButton.setStyle(normalStyle);
+                }
+            });
+
+            // On click
+            dayButton.setOnMousePressed(e -> {
+                dayButton.setStyle(onMousePressedStyle);
+            });
+
+            dayButton.setOnMouseReleased(e -> {
+                // Reset to hover or default style after release
+                if (dayButton.isHover()) {
+                    dayButton.setStyle(onHoverStyle);
+                } else {
+                    dayButton.setStyle(normalStyle);
+                }
+            });
             dayButton.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
             dayButton.setOnAction(event-> updateAppointmentTable(dayButton.getText()));
             calendarGridPane.add(dayButton, column++, row);

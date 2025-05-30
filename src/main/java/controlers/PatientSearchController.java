@@ -1,6 +1,7 @@
 package controlers;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
@@ -51,8 +52,37 @@ public class PatientSearchController {
 
     @FXML
     public void search() {
-        // Use your existing search logic here
-        // Or move it into a shared utility class if reused
+        String searchText = searchField.getText().trim().toLowerCase();
+        String filter = (String) filterChoiceBox.getSelectionModel().getSelectedItem();
+        try {
+            models.PatientPersonDAO patientPersonDAO = new models.PatientPersonDAO();
+            ObservableList<models.PatientPerson> allPatients = FXCollections.observableArrayList(patientPersonDAO.getAllPatientPersons());
+            ObservableList<models.PatientPerson> filtered = FXCollections.observableArrayList();
+            for (models.PatientPerson p : allPatients) {
+                switch (filter) {
+                    case "By Email":
+                        if (p.getEmail() != null && p.getEmail().toLowerCase().contains(searchText)) filtered.add(p);
+                        break;
+                    case "By Full Name (Nom Complet)":
+                        if (p.getFullName() != null && p.getFullName().toLowerCase().contains(searchText)) filtered.add(p);
+                        break;
+                    case "By Age":
+                        if (String.valueOf(p.getAge()).contains(searchText)) filtered.add(p);
+                        break;
+                    case "By Sex":
+                        if (p.getSex() != null && p.getSex().toLowerCase().contains(searchText)) filtered.add(p);
+                        break;
+                    case "By Traitements (Treatments)":
+                        if (p.getMedicalConditions() != null && p.getMedicalConditions().toLowerCase().contains(searchText)) filtered.add(p);
+                        break;
+                    default:
+                        filtered.add(p);
+                }
+            }
+            patientsTable.setItems(filtered);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
