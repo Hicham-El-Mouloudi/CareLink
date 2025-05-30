@@ -21,7 +21,11 @@
             <TextField fx:id="statusField" GridPane.rowIndex="2" GridPane.columnIndex="1" GridPane.columnSpan="2"/>
 
             <Label text="Patient ID:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-            <TextField fx:id="patientIdField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+            <HBox spacing="5" GridPane.rowIndex="3" GridPane.columnIndex="1">
+                <TextField fx:id="patientIdField" editable="false" />
+                <Button text="Search" onAction="#openPatientSearch"/>
+            </HBox>
+
 
             <Label text="Doctor ID:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
             <TextField fx:id="doctorIdField" GridPane.rowIndex="4" GridPane.columnIndex="1"/>

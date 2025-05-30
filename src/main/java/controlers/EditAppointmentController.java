@@ -3,8 +3,14 @@ package controlers;
 
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.time.LocalDate;
@@ -65,6 +71,30 @@ public class EditAppointmentController {
             }
         });
     }
+    @FXML
+    public void openPatientSearch() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/PatientSearch.fxml"));
+            Parent root = loader.load();
+
+            PatientSearchController controller = loader.getController();
+
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Search Patient");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+
+            int selectedId = controller.getSelectedPatientId();
+            if (selectedId != -1) {
+                patientIdField.setText(String.valueOf(selectedId));
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private void closeWindow() {
         Stage stage = (Stage) cancelButton.getScene().getWindow();

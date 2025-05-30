@@ -5,6 +5,7 @@ module ensaminiprojet.applicationsuivitraitementsmedicaux {
     // requires java.sql;
     requires transitive java.sql;
     requires javafx.graphics;
+    requires javafx.base;
 
     exports ensaminiprojet.applicationsuivitraitementsmedicaux;
     exports controlers;
