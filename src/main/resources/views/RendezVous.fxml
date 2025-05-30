@@ -11,6 +11,8 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Pos?>
+
 
 <HBox style="-fx-alignment:center;"  xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.RendezVousController">
    <children>
@@ -23,6 +25,11 @@
                </children>
             </HBox>
             <VBox fx:id="calendarContainer" prefWidth="400" style="-fx-border-color: #1b7895;-fx-alignment: center;" />
+            <BorderPane>
+               <center>
+                  <Button fx:id="addAppointmentButton" text="Ajouter" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
          </children>
       </VBox>
       <ScrollPane prefWidth="500">

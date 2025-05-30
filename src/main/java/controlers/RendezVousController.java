@@ -44,6 +44,8 @@ public class RendezVousController implements Initializable {
 
     @FXML
     private VBox calendarContainer; // 
+    //
+    @FXML private Button addAppointmentButton;
     // partie des rendez-vous
     @FXML private TableView<Appointment> appointmentTableView;
     @FXML private TableColumn<Appointment, Integer> iDColumn;
@@ -75,7 +77,8 @@ public class RendezVousController implements Initializable {
         // Initialize and display the calendar
         createCalendarGrid();
         updateCalendar();
-
+        // 
+        addAppointmentButton.setOnAction(event->handleAddingAppointment());
         // Listen for changes in month and year to update the calendar
         model.monthProperty().addListener((obs, oldMonth, newMonth) -> updateCalendar());
         model.yearProperty().addListener((obs, oldYear, newYear) -> updateCalendar());
@@ -250,6 +253,26 @@ public class RendezVousController implements Initializable {
         catch(SQLException e){
             e.printStackTrace();
         }
-}
-
+    }
+    /**
+     * load mini window to add new appointment
+     */
+    private void handleAddingAppointment(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/addAppointment.fxml"));
+            Parent root = loader.load();
+            if (root == null){
+                System.out.println("[error] fxml not loaded");
+                return;
+            }
+            Stage stage = new Stage();
+            stage.setTitle("Ajouter Rendez-vous");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL); // blocks interaction with main window
+            stage.setResizable(false);
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
