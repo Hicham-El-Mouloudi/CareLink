@@ -263,10 +263,7 @@ public class RendezVousController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/editAppointment.fxml"));
             Parent root = loader.load();
-            if (root == null){
-                System.out.println("[error] fxml not loaded");
-                return;
-            }
+
             EditAppointmentController controller = loader.getController();
             controller.setAppointment(appointment);
 
@@ -287,8 +284,21 @@ public class RendezVousController implements Initializable {
 
 
     private void handleDelete(Appointment appointment) {
-        try{
-            appointmentDAO.deleteAppointment(appointment.getId());
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/deletePopUp.fxml"));
+            Parent root = loader.load();
+            controlers.ConfirmDeleteAppointmentController controller = loader.getController();
+            Stage stage = new Stage();
+            stage.setTitle("Edit Appointment");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL); // blocks interaction with main window
+            stage.setResizable(false);
+            stage.showAndWait();
+            if(controller.isdeleteConfirmed()){
+                appointmentDAO.deleteAppointment(appointment.getId());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         catch(SQLException e){
             e.printStackTrace();
@@ -301,10 +311,7 @@ public class RendezVousController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/addAppointment.fxml"));
             Parent root = loader.load();
-            if (root == null){
-                System.out.println("[error] fxml not loaded");
-                return;
-            }
+
             Stage stage = new Stage();
             stage.setTitle("Ajouter Rendez-vous");
             stage.setScene(new Scene(root));
