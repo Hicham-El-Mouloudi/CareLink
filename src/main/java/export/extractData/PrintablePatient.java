@@ -34,6 +34,10 @@ public class PrintablePatient {
 
     // Constructor
     public PrintablePatient(PatientPerson p) {
+        pdao = new PatientDAO();
+        tdao = new TraitementDAO();
+        ppdao = new PatientPersonDAO();
+        adao = new AppointmentDAO();
         this.nomComplet = p.getFullName();
         this.age = p.getAge() ;
         this.sexe = p.getSex();

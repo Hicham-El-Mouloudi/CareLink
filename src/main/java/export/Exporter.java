@@ -38,7 +38,7 @@ public class Exporter {
   
      * @throws IOException
      */
-    public static void print(PrintablePatient patient, String outputPath) throws IOException {
+    public static void exportPatientPDF(PrintablePatient patient, String outputPath) throws IOException {
         try (PDDocument document = new PDDocument()) {
             PDPage page = new PDPage(PDRectangle.A4);
             document.addPage(page);
