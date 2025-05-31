@@ -14,6 +14,9 @@ import models.Patient;
 import java.io.IOException;
 
 /**
+ * this class is created to handle {@code any pdf creation} in the application but for now 
+ * to create a pdf reprisentation of the {@code patient data }
+ * 
  * @author AMINE
  */
 public class Exporter {
@@ -59,7 +62,7 @@ public class Exporter {
             contentStream.beginText();
             contentStream.setFont(titleFont, 16);
             contentStream.newLineAtOffset(MARGIN, yPosition);
-            contentStream.showText("Patient : " + patient.getNomComplet());
+            contentStream.showText("Rapport De Patient : " + patient.getNomComplet());
             contentStream.endText();
             // new line
             yPosition -= LINE_HEIGHT * 1.5f;
@@ -158,7 +161,7 @@ public class Exporter {
     private static float drawTableHeader(PDPageContentStream contentStream,
                                          PDType1Font font,
                                          float x, float y) throws IOException {
-        float[] columnWidths = {50, 100, 100, 100};
+        float[] columnWidths = {100, 125, 125, 125};
         String[] headers = {"ID", "Date Début","Status", "Raison"};
 
         contentStream.setLineWidth(1f);
@@ -202,7 +205,7 @@ public class Exporter {
                                       PDType1Font font,
                                       Appointment rdv,
                                       float x, float y) throws IOException {
-        float[] columnWidths = {50, 80, 100, 100, 80, 100};
+        float[] columnWidths = {100, 125, 125, 125};
         //DateTimeFormatter customFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         //String formattedDate = today.format(customFormatter);
         String[] values = {
