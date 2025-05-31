@@ -42,8 +42,8 @@ public class HomeController implements Initializable {
             numberOfPatients.setText(String.valueOf(patientDAO.getNumberOfPatients()));
             numberOfTraitementsEnCours.setText(String.valueOf(traitementDAO.getNumberOfActiveTraitements()));
             numberOfAppointementsForToday.setText(String.valueOf(appointmentDAO.getNumberOfAppointmentsForToday()));
-        }catch(SQLException e){
-            System.out.println("Error: " + e.getMessage());
+        }catch(Exception e){
+            System.out.println("HomeController : Error While initializing : " + e.getMessage());
         }
     }    
     
