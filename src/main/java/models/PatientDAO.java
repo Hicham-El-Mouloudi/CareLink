@@ -7,28 +7,16 @@ package models;
 import java.sql.*;
 import java.util.*;
 
+import credentials.DBCredentials;
+
 /**
  *
  * @author lenovo
  */
 public class PatientDAO {
-    private String url;
-    private String user;
-    private String password;
     private Connection connectionToDB;
     public PatientDAO() {
-        url = "jdbc:mysql://localhost:3306/ApplicationDeSuiviDesTraitementsMedicaux";
-        user = "root";
-        password = "";
-        try {
-            connectionToDB = DriverManager.getConnection(url, user, password);
-            if (connectionToDB == null) {
-                System.out.println("Connection to DB returned null!");
-            }
-        } catch (SQLException e) {
-            System.out.println("Error in connection to DB: " + e.getMessage());
-            e.printStackTrace();
-        }
+        connectionToDB = DBCredentials.getCredentials().getConnection();
     }
     public List<Patient> getAllPatients() {
         List<Patient> patients = new ArrayList<>();

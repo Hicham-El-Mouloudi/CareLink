@@ -9,6 +9,8 @@ import java.sql.Date;
 import java.util.*;
 import java.time.*;
 
+import credentials.DBCredentials;
+
 /**
  *
  * @author lenovo
@@ -19,23 +21,10 @@ public class TraitementDAO {
     MedicationDAO medicationDAO = new MedicationDAO();
     Prescription_MedicationDAO prescription_MedicationDAO = new Prescription_MedicationDAO();
     // 
-    private String url;
-    private String user;
-    private String password;
     private Connection connectionToDB;
+    
     public TraitementDAO() {
-        url = "jdbc:mysql://localhost:3306/ApplicationDeSuiviDesTraitementsMedicaux";
-        user = "root";
-        password = "";
-        try {
-            connectionToDB = DriverManager.getConnection(url, user, password);
-            if (connectionToDB == null) {
-                System.out.println("Connection to DB returned null!");
-            }
-        } catch (SQLException e) {
-            System.out.println("Error in connection to DB: " + e.getMessage());
-            e.printStackTrace();
-        }
+        connectionToDB = DBCredentials.getCredentials().getConnection();
     }
     public List<Traitement> getAllTraitements() {
         try {
