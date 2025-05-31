@@ -16,7 +16,7 @@
 
 <HBox style="-fx-alignment:center;"  xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.RendezVousController">
    <children>
-      <VBox prefWidth="400" style="-fx-padding: 10; -fx-spacing: 10;">
+      <VBox prefWidth="400" style="-fx-padding: 10; -fx-spacing: 10; -fx-alignment : center ;">
          <children>
             <HBox prefHeight="25.0" prefWidth="301.0" style="-fx-alignment: center; -fx-spacing: 20; -fx-background-color: white; -fx-border-color: #1b7895;">
                <children>
@@ -36,10 +36,10 @@
          <content>
             <TableView fx:id="appointmentTableView" prefWidth="500">
                <columns>
-                  <TableColumn fx:id="iDColumn" prefWidth="75.0" text="ID" />
-                  <TableColumn fx:id="personColumn" prefWidth="75.0" text="Personne" />
-                  <TableColumn fx:id="dateColumn" prefWidth="102.66664123535156" text="Date" />
-                  <TableColumn fx:id="statusColumn" prefWidth="48.00004577636719" text="Statut" />
+                  <TableColumn fx:id="iDColumn" prefWidth="71.0" text="ID" />
+                  <TableColumn fx:id="personColumn" prefWidth="142.0" text="Personne" />
+                  <TableColumn fx:id="dateColumn" prefWidth="142.0" text="Date" />
+                  <TableColumn fx:id="statusColumn" prefWidth="142.0" text="Statut" />
                   
                </columns>
             </TableView>
