@@ -188,7 +188,7 @@ public class PatientController implements Initializable {
             editStage.setScene(new Scene(editRoot));
             editStage.initOwner(patientsTable.getScene().getWindow());
             editStage.showAndWait();
-            loadPatients();
+            loadPatients(); // to refresh view
         } catch (Exception e) {
             e.printStackTrace();
         }

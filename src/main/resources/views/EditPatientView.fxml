@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -41,8 +42,12 @@
                             <TextField fx:id="ageField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                             <Label fx:id="sexLabel" text="Sex:" GridPane.rowIndex="2" />
                             <HBox fx:id="sexHBox" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                <RadioButton fx:id="hommeRadio" text="Homme" />
-                                <RadioButton fx:id="femmeRadio" text="Femme" />
+                                <RadioButton fx:id="hommeRadio" text="Homme">
+                                    <toggleGroup>
+                                        <ToggleGroup fx:id="sexGroup" />
+                                    </toggleGroup>
+                                </RadioButton>
+                                <RadioButton fx:id="femmeRadio" text="Femme" toggleGroup="$sexGroup" />
                             </HBox>
                             <Label fx:id="emailLabel" text="E-Mail" GridPane.rowIndex="3" />
                             <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
@@ -82,8 +87,8 @@
                 </VBox>
             </HBox>
             <HBox fx:id="footerHBox">
-                <Button fx:id="cancelButton" text="Annuler" onAction="#handleCancel" />
-                <Button fx:id="saveButton" text="Enregistrer" onAction="#handleSave" />
+                <Button fx:id="cancelButton" onAction="#handleCancel" text="Annuler" />
+                <Button fx:id="saveButton" onAction="#handleSave" text="Enregistrer" />
             </HBox>
         </VBox>
     </children>
