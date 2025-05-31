@@ -1,6 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TextField?>
+
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.PatientSearchController">
     <top>
-        <HBox spacing="10" padding="10">
+        <HBox spacing="10" >
             <TextField fx:id="searchField" promptText="Search Patient..."/>
             <ChoiceBox fx:id="filterChoiceBox"/>
             <Button text="Search" onAction="#search"/>
@@ -18,7 +28,7 @@
         </TableView>
     </center>
     <bottom>
-        <HBox alignment="CENTER_RIGHT" padding="10">
+        <HBox alignment="CENTER_RIGHT" >
             <Button text="Select" onAction="#selectPatient"/>
             <Button text="Cancel" onAction="#closeWindow"/>
         </HBox>
