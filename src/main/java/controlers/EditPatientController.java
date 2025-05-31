@@ -19,7 +19,12 @@ import models.Person;
 import models.PersonDAO;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import models.Traitement;
@@ -28,7 +33,7 @@ import models.Appointment;
 import models.AppointmentDAO;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class EditPatientController {
+public class EditPatientController implements Initializable {
     private Patient patient;
     private Person person;
     private PatientDAO patientDAO = new PatientDAO();
@@ -37,7 +42,6 @@ public class EditPatientController {
     private Button saveButton;
     @FXML
     private Button cancelButton;
-
     @FXML
     private VBox editPatientBodyVBox;
     @FXML
@@ -73,8 +77,6 @@ public class EditPatientController {
     @FXML
     private Label telephoneLabel;
     @FXML
-    private TextField telephoneField;
-    @FXML
     private Label medicalRemarksLabel;
     @FXML
     private TextField medicalRemarksField;
@@ -109,6 +111,12 @@ public class EditPatientController {
     @FXML
     private HBox footerHBox;
 
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        traitementTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        rendezVousTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+    }
     public void setPatient(Patient patient) {
         this.patient = patient;
         if (patient != null) {
@@ -122,28 +130,20 @@ public class EditPatientController {
                     fullNameField.setText(person.getFullName());
                     emailField.setText(person.getEmail());
                     // Sex
-                    if ("Homme".equalsIgnoreCase(person.getGender())) {
+                    if ("Male".equalsIgnoreCase(person.getGender())) {
                         hommeRadio.setSelected(true);
                         femmeRadio.setSelected(false);
-                    } else if ("Femme".equalsIgnoreCase(person.getGender())) {
+                    } else if ("Female".equalsIgnoreCase(person.getGender())) {
                         hommeRadio.setSelected(false);
                         femmeRadio.setSelected(true);
                     } else {
                         hommeRadio.setSelected(false);
                         femmeRadio.setSelected(false);
                     }
-                    if (telephoneField != null && person.getInsuranceDetails() != null) {
-                        telephoneField.setText(person.getInsuranceDetails()); 
-                    }
-                    // Set age if available (date of birth to age conversion if needed)
+                    // Simple age calculation
                     if (ageField != null && person.getDateOfBirth() != null) {
-                        java.util.Calendar dob = java.util.Calendar.getInstance();
-                        dob.setTime(person.getDateOfBirth());
-                        java.util.Calendar today = java.util.Calendar.getInstance();
-                        int age = today.get(java.util.Calendar.YEAR) - dob.get(java.util.Calendar.YEAR);
-                        if (today.get(java.util.Calendar.DAY_OF_YEAR) < dob.get(java.util.Calendar.DAY_OF_YEAR)) {
-                            age--;
-                        }
+                        long ageInMillis = System.currentTimeMillis() - person.getDateOfBirth().getTime();
+                        int age = (int) (ageInMillis / (1000L * 60 * 60 * 24 * 365));
                         ageField.setText(String.valueOf(age));
                     }
                 }
@@ -203,10 +203,7 @@ public class EditPatientController {
         if (patient != null && person != null) {
             person.setFullName(fullNameField.getText());
             person.setEmail(emailField.getText());
-            person.setGender(hommeRadio.isSelected() ? "Homme" : (femmeRadio.isSelected() ? "Femme" : ""));
-            if (telephoneField != null) {
-                person.setInsuranceDetails(telephoneField.getText());
-            }
+            person.setGender(hommeRadio.isSelected() ? "Male" : (femmeRadio.isSelected() ? "Female" : ""));
             if (medicalRemarksField != null) {
                 patient.setMedicalConditions(medicalRemarksField.getText());
             }

@@ -36,7 +36,7 @@
                             <TableColumn fx:id="ageColumn" text="Age" maxWidth="250" />
                             <TableColumn fx:id="sexColumn" text="Sex" maxWidth="250" />
                             <TableColumn fx:id="treatmentColumn" text="Traitements" maxWidth="250" />
-                            <TableColumn fx:id="actionsColumn" text="Actions" maxWidth="700" prefWidth="600" />
+                            <TableColumn fx:id="actionsColumn" text="Actions" maxWidth="550" prefWidth="500" />
                         </columns>
                     </TableView>
                 </content>

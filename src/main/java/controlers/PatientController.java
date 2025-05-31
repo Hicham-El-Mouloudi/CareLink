@@ -184,6 +184,10 @@ public class PatientController implements Initializable {
             editController.setPatient(patient);
             // Show EditPatientView in a new window
             Stage editStage = new Stage();
+            editStage.setMinWidth(910);
+            editStage.setMinHeight(400);
+            editStage.setWidth(910);
+            editStage.setHeight(400);
             editStage.setTitle("Edit Patient");
             editStage.setScene(new Scene(editRoot));
             editStage.initOwner(patientsTable.getScene().getWindow());
