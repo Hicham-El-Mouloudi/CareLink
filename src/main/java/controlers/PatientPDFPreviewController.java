@@ -19,7 +19,12 @@ import org.apache.pdfbox.rendering.ImageType;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
+/**
+ * show preview of a pdf that will be created and take confirmation from user
+ * <p>the main role of this stage is to show preview because the user can change his 
+ * mind later while choosing the path of saving .
+ * @author amine
+ */
 public class PatientPDFPreviewController {
 
     @FXML private ImageView imageView;
@@ -31,11 +36,18 @@ public class PatientPDFPreviewController {
     public void setPatient(PatientPerson patient) {
         this.patient = patient;
     }
-
+    /**
+     * 
+     * @return the pdf creation confirmation
+     */
     public boolean wasExtracted() {
         return extracted;
     }
-
+    /**
+     * create a temprary pdf file and load it as an imageview using the main pdf
+     * creator {@link export.Exporter}. and {@link javafx.embed.swing.SwingFXUtils}
+     * 
+     */
     public void updateImage() {
         try {
             // Generate the PDF to a temporary file
@@ -57,7 +69,6 @@ public class PatientPDFPreviewController {
             e.printStackTrace(); // Or use a logger
         }
     }
-
     @FXML
     private void onExtract() {
         extracted = true;
