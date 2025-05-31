@@ -41,6 +41,26 @@ public class PatientPersonDAO {
             return new ArrayList<>();
         }
     }
+    public PatientPerson getPatientPersonByID(int id) {
+        try {
+            Patient patient = patientDAO.getPatientById(id);
+            Person person = personDAO.getPersonById(patient.getPersonId());
+            PatientPerson patientPerson = new PatientPerson(
+                        patient.getId(),
+                        person.getEmail(), // Assuming CNI is stored in email for now, adjust as needed
+                        person.getFullName(),
+                        calculateAge(person.getDateOfBirth()),
+                        person.getGender(),
+                        patient.getMedicalConditions()
+                    );
+            return patientPerson;
+        } catch(Exception e) {
+            // 
+            System.err.println("PatientPersonDAO : Error while exicuting 'getPatientPersonByID()'");
+            e.printStackTrace();
+            return new PatientPerson();
+        }
+    }
 
     private int calculateAge(java.util.Date dateOfBirth) {
         if (dateOfBirth == null) return 0;

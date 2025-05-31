@@ -60,8 +60,6 @@ public class TraitementController implements Initializable {
     @FXML
     private TextField raisonField;
     @FXML
-    private TextField nextAppointmentField;
-    @FXML
     private Button patientIdField;
     @FXML
     private ChoiceBox<String> statusChoiceBox;
@@ -73,8 +71,6 @@ public class TraitementController implements Initializable {
     private ToggleGroup followUpGroup;
     @FXML
     private Button enregistrerButton;
-    @FXML
-    private VBox choosePatientPane;
     @FXML
     private VBox prescriptionBodyVBox;
     @FXML
@@ -95,15 +91,17 @@ public class TraitementController implements Initializable {
     private Label patientSelectionLabel;
     @FXML
     private Label appointmentSelectionLabel;
+    @FXML
+    private Button appointmentIdField;
 
     // Initilizing DAOs
     TraitementDAO traitementDAO = new TraitementDAO();
     // This is the child controller of the patientSelection view in order ensure communication between both views
     PatientSelectionController childController;
-    // The doctor
+    // The active doctor
     int doctorId;
     // This variavle is set by the 'PatientSelectionController' class to identify a patient
-    int patientId;
+    int patientId = -1;
     String patientName;
     public void setPatientIdName(int id, String patientName){
         this.patientId = id;
@@ -119,25 +117,26 @@ public class TraitementController implements Initializable {
     }
 
     // Set appointment info from AppointmentSelectionController
-    private int appointmentId;
+    private int nextAppointmentId;
     private java.util.Date appointmentDateTime;
-    private String appointmentReason;
-    public void setAppointmentIdAndInfo(int id, java.util.Date dateTime, String reason) {
-        this.appointmentId = id;
+    private String status;
+    public void setNextAppointmentIdAndInfo(int id, java.util.Date dateTime, String status) {
+        this.nextAppointmentId = id;
         this.appointmentDateTime = dateTime;
-        this.appointmentReason = reason;
-        System.out.println("TraitementController : Selected Appointment    Id : " + id + "\t DateTime : " + dateTime + "\t Reason : " + reason);
-        // Update the label to show only the date
-        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
-        appointmentSelectionLabel.setText("Rendez-vous: " + reason + " (" + sdf.format(dateTime) + ")");
+        this.status = status;
+        System.out.println("TraitementController : Selected Appointment    Id : " + id + "\t DateTime : " + dateTime + "\t Status : " + status);
+        appointmentSelectionLabel.setText("le " + appointmentDateTime + " " + status);
         // Close the appointment selection view
         traitementsView.setRight(null);
+        // Changeing the Text of the button 'appointmentIdField'
+        appointmentIdField.setText("Changer Le Rendez-Vous");
     }
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        // 
         if (statusChoiceBox != null) {
             statusChoiceBox.getItems().addAll("En Cours", "Finie", "arrêté");
             statusChoiceBox.getSelectionModel().selectFirst();
@@ -153,6 +152,12 @@ public class TraitementController implements Initializable {
     @FXML
     private void openPatientChoice(ActionEvent event) {
         try {
+            // Checking if the Choice view is already open, if yes we close the view
+            if (traitementsView.getRight() != null) {
+                System.out.println("TraitementController : Already opened view 'patientSelectionView' -> close it");
+                traitementsView.setRight(null);
+                return;
+            }
             // Trying loading the view
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/patientSelectionView.fxml"));
             Parent patientChoiceView = loader.load() ;
@@ -169,9 +174,26 @@ public class TraitementController implements Initializable {
     @FXML
     private void openAppointmentChoice(ActionEvent event) {
         try {
+            if(patientId == -1) {
+                // Display a warnning 
+                Alert needForSelectionOfPatientAlert = new Alert(AlertType.INFORMATION);
+                needForSelectionOfPatientAlert.setTitle("Information requise");
+                needForSelectionOfPatientAlert.setHeaderText(null);
+                needForSelectionOfPatientAlert.setContentText("Veuillez d'abord sélectionner un patient.");
+                needForSelectionOfPatientAlert.showAndWait();
+                return;
+            }
+            // Checking if the Choice view is already open, if yes we close the view
+            if (traitementsView.getRight() != null) {
+                System.out.println("TraitementController : Already opened view 'AppointmentSelectionView' -> close it");
+                traitementsView.setRight(null);
+                return;
+            }
+            // Loading the appointement of the selected Patient in the 'patientId' and if it's null -> diplay Warnning
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/AppointmentSelectionView.fxml"));
             Parent appointmentChoiceView = loader.load();
             AppointmentSelectionController childAppointmentController = loader.getController();
+            childAppointmentController.setSelectedPatientID(patientId); // set The Patient Context
             childAppointmentController.setParentController(this);
             traitementsView.setRight(appointmentChoiceView);
         } catch (IOException e) {
@@ -207,7 +229,7 @@ public class TraitementController implements Initializable {
             notesField.getText(),
             raisonField.getText(),
             followUpYesRadio.isSelected(),
-            Integer.parseInt(nextAppointmentField.getText()),
+            nextAppointmentId,
             statusChoiceBox.getValue(),
             typeField.getText(),
             patientId,
@@ -216,7 +238,7 @@ public class TraitementController implements Initializable {
         );
         // Saving th Traitement
         int traitementID = traitementDAO.insertTraitement(newTraitement);
-        System.err.println("TraitementController : Saving Medication id = " + traitementID);
+        System.err.println("TraitementController : Saving Traitement Successsfully id = " + traitementID);
         
         // Clearing The view
         successfullSave();
@@ -235,7 +257,6 @@ public class TraitementController implements Initializable {
         descriptionField.clear();
         notesField.clear();
         raisonField.clear();
-        nextAppointmentField.clear();
         statusChoiceBox.getSelectionModel().selectFirst();
         followUpNoRadio.setSelected(true);
         patientSelectionLabel.setText("Choisissez Le Patient Concerné");
@@ -244,5 +265,8 @@ public class TraitementController implements Initializable {
         prescriptionDurationField.clear();
         prescriptionNameField.clear();
         prescriptionNotesField.clear();
+        appointmentSelectionLabel.setText("Choisissez Le Rendez-vous");
+        appointmentIdField.setText("Choisir Un Rendez-vous");
+        patientId = -1;
     }
 }

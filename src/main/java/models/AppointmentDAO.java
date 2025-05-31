@@ -53,6 +53,29 @@ public class AppointmentDAO {
             return new ArrayList<>();
         }
     }
+    public List<Appointment> getAllAppointmentsOfPatient(int id) {
+        try{
+            List<Appointment> appointments = new ArrayList<>();
+            String query = "SELECT * FROM Appointment WHERE PatientID = " + id;
+            Statement statement = connectionToDB.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                appointments.add(new Appointment(
+                    rs.getInt("Id"),
+                    rs.getTimestamp("DateTime"),
+                    rs.getString("ReasonToVisit"),
+                    rs.getString("Status"),
+                    rs.getInt("PatientID"),
+                    rs.getInt("DoctorID")
+                ));
+            }
+            return appointments;
+        } catch (SQLException e) {
+            System.err.println("AppointmentDAO : Error while calling 'getAllAppointmentsOfPatient' ");
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
     public void insertAppointment(Appointment a) {
         try {
             String query = "INSERT INTO Appointment(DateTime, ReasonToVisit, Status, PatientID, DoctorID) VALUES (?, ?, ?, ?, ?)";

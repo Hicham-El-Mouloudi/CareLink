@@ -67,7 +67,7 @@ public class TraitementDAO {
         }
     }
     public int insertTraitement(Traitement t){
-        String query = "INSERT INTO Traitement(Date, Description, NotesObservation, RaisonForTraitement, FollowUpRequired, NextAppoinementID, Status, Type, PatientID, DoctorID, PrescriptionID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Traitement(Date, Description, NotesObservation, RaisonForTraitement, FollowUpRequired, NextAppoinementID, Status, Type, PatientID, DoctorID, PrescriptionID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps = connectionToDB.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.setDate(1, Date.valueOf(t.getDate()));

@@ -64,20 +64,16 @@
                                  </toggleGroup></RadioButton>
                                         <RadioButton fx:id="followUpNoRadio" text="Non" toggleGroup="$followUpGroup" />
                                     </HBox>
-                                    <Label text="Next Appointement ID" GridPane.rowIndex="7" />
-                                    <TextField fx:id="nextAppointmentField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                                    <Label text="Patient " GridPane.rowIndex="8" />
-                                    <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                                    <Label text="Patient " GridPane.rowIndex="7" />
+                                    <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="7">
                                         <Label fx:id="patientSelectionLabel" text="Choisissez Le Patient Concerné" />
                                         <Button fx:id="patientIdField" onAction="#openPatientChoice" text="Choisir Un Patient" />
                                     </HBox>
-                                    <Label text="Rendez-vous" GridPane.rowIndex="9" />
-                                    <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                                    <Label text="Rendez-vous" GridPane.rowIndex="8" />
+                                    <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="8">
                                         <Label fx:id="appointmentSelectionLabel" text="Choisissez Le Rendez-vous" />
                                         <Button fx:id="appointmentIdField" onAction="#openAppointmentChoice" text="Choisir Un Rendez-vous" />
                                     </HBox>
-                                    <!-- The 'prescription' is created via the following filed "Prescription"  -->
-                                    <!-- The 'Doctor' is from the current Doctor User -->
                                 </children>
                             </GridPane>
                         </VBox>
@@ -115,7 +111,4 @@
             </ScrollPane>
         </VBox>
     </center>
-    <right>
-        <VBox fx:id="choosePatientPane" />
-    </right>
 </BorderPane>
