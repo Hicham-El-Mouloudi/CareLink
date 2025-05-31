@@ -6,6 +6,10 @@ module ensaminiprojet.applicationsuivitraitementsmedicaux {
     requires transitive java.sql;
     requires javafx.graphics;
     requires javafx.base;
+    
+    requires org.apache.fontbox;
+    requires org.apache.pdfbox;
+    requires org.apache.pdfbox.io;
 
     exports ensaminiprojet.applicationsuivitraitementsmedicaux;
     exports controlers;
