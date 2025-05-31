@@ -8,88 +8,81 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="615.0" stylesheets="@editpatient.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.EditPatientController">
-    <children>
-        <VBox fx:id="editPatientBodyVBox" prefHeight="400.0" prefWidth="615.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
-            <HBox fx:id="headerHBox">
-                <Label fx:id="editTitleLabel" text="Modifier Patient : Nom de patient" />
-            </HBox>
-            <HBox fx:id="mainContentHBox">
-                <VBox fx:id="formVBox">
-                    <GridPane fx:id="formGridPane">
-                        <columnConstraints>
-                            <ColumnConstraints />
-                            <ColumnConstraints />
-                        </columnConstraints>
-                        <rowConstraints>
-                            <RowConstraints />
-                            <RowConstraints />
-                            <RowConstraints />
-                            <RowConstraints />
-                            <RowConstraints />
-                        </rowConstraints>
-                        <children>
-                            <Label fx:id="fullNameLabel" text="Nom Complet :" />
-                            <TextField fx:id="fullNameField" GridPane.columnIndex="1" />
-                            <Label fx:id="ageLabel" text="Age:" GridPane.rowIndex="1" />
-                            <TextField fx:id="ageField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                            <Label fx:id="sexLabel" text="Sex:" GridPane.rowIndex="2" />
-                            <HBox fx:id="sexHBox" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                <RadioButton fx:id="hommeRadio" text="Homme">
-                                    <toggleGroup>
-                                        <ToggleGroup fx:id="sexGroup" />
-                                    </toggleGroup>
-                                </RadioButton>
-                                <RadioButton fx:id="femmeRadio" text="Femme" toggleGroup="$sexGroup" />
-                            </HBox>
-                            <Label fx:id="emailLabel" text="E-Mail" GridPane.rowIndex="3" />
-                            <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                            <Label fx:id="telephoneLabel" text="Telephone" GridPane.rowIndex="4" />
-                            <TextField fx:id="telephoneField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        </children>
-                    </GridPane>
-                    <Label fx:id="medicalRemarksLabel" text="Remarques Medical :" />
-                    <TextField fx:id="medicalRemarksField" />
-                </VBox>
-                <VBox fx:id="tablesVBox">
-                    <Label fx:id="traitementListLabel" text="List des Traitement :" />
-                    <ScrollPane fx:id="traitementScrollPane">
-                        <content>
-                            <TableView fx:id="traitementTableView">
-                                <columns>
-                                    <TableColumn fx:id="traitementIdColumn" text="Id" />
-                                    <TableColumn fx:id="traitementDescColumn" text="Description" />
-                                    <TableColumn fx:id="traitementStartColumn" text="Date Debut" />
-                                    <TableColumn fx:id="traitementStatus" text="Status" />
-                                </columns>
-                            </TableView>
-                        </content>
-                    </ScrollPane>
-                    <Label fx:id="rendezVousLabel" text="Rendez-Vous :" />
-                    <ScrollPane fx:id="rendezVousScrollPane">
-                        <content>
-                            <TableView fx:id="rendezVousTableView">
-                                <columns>
-                                    <TableColumn fx:id="rendezVousIdColumn" text="Id" />
-                                    <TableColumn fx:id="rendezVousDateColumn" text="Date" />
-                                    <TableColumn fx:id="rendezVousEtatColumn" text="Etat" />
-                                </columns>
-                            </TableView>
-                        </content>
-                    </ScrollPane>
-                </VBox>
-            </HBox>
-            <HBox fx:id="footerHBox">
-                <Button fx:id="cancelButton" onAction="#handleCancel" text="Annuler" />
-                <Button fx:id="saveButton" onAction="#handleSave" text="Enregistrer" />
-            </HBox>
-        </VBox>
-    </children>
-</AnchorPane>
+<VBox fx:id="editPatientBodyVBox" prefHeight="400" alignment="CENTER" maxHeight="Infinity" maxWidth="Infinity" stylesheets="@editpatient.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.EditPatientController">
+    <VBox maxWidth="1000" VBox.vgrow="ALWAYS" alignment="TOP_LEFT">
+        <Label fx:id="editTitleLabel" text="Modifier Patient : Nom de patient" />
+        <HBox fx:id="mainContentHBox" VBox.vgrow="ALWAYS">
+            <VBox fx:id="formVBox" prefWidth="400" prefHeight="500">
+                <GridPane fx:id="formGridPane">
+                    <columnConstraints>
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                    </rowConstraints>
+                    <children>
+                        <Label fx:id="fullNameLabel" text="Nom Complet :" />
+                        <TextField fx:id="fullNameField" GridPane.columnIndex="1" />
+                        <Label fx:id="ageLabel" text="Age:" GridPane.rowIndex="1" />
+                        <TextField fx:id="ageField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="sexLabel" text="Sex:" GridPane.rowIndex="2" />
+                        <HBox fx:id="sexHBox" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                            <RadioButton fx:id="hommeRadio" text="Homme">
+                                <toggleGroup>
+                                    <ToggleGroup fx:id="sexGroup" />
+                                </toggleGroup>
+                            </RadioButton>
+                            <RadioButton fx:id="femmeRadio" text="Femme" toggleGroup="$sexGroup" />
+                        </HBox>
+                        <Label fx:id="emailLabel" text="E-Mail" GridPane.rowIndex="3" />
+                        <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                    </children>
+                </GridPane>
+                <Label fx:id="medicalRemarksLabel" text="Conditions Médicale :" />
+                <TextField fx:id="medicalRemarksField" />
+            </VBox>
+            <VBox fx:id="tablesVBox" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                <Label fx:id="traitementListLabel" text="List des Traitement :" />
+                <ScrollPane fx:id="traitementScrollPane" VBox.vgrow="ALWAYS" fitToWidth="true" fitToHeight="true">
+                    <content>
+                        <TableView fx:id="traitementTableView" maxHeight="Infinity" maxWidth="Infinity">
+                            <columns>
+                                <TableColumn fx:id="traitementIdColumn" text="Id" />
+                                <TableColumn fx:id="traitementDescColumn" text="Description" />
+                                <TableColumn fx:id="traitementStartColumn" text="Date Debut" />
+                                <TableColumn fx:id="traitementStatus" text="Status" />
+                            </columns>
+                        </TableView>
+                    </content>
+                </ScrollPane>
+                <Label fx:id="rendezVousLabel" text="Rendez-Vous :" />
+                <ScrollPane fx:id="rendezVousScrollPane" VBox.vgrow="ALWAYS" fitToWidth="true" fitToHeight="true">
+                    <content>
+                        <TableView fx:id="rendezVousTableView" maxHeight="Infinity" maxWidth="Infinity">
+                            <columns>
+                                <TableColumn fx:id="rendezVousIdColumn" text="Id" />
+                                <TableColumn fx:id="rendezVousDateColumn" text="Date" />
+                                <TableColumn fx:id="rendezVousEtatColumn" text="Etat" />
+                            </columns>
+                        </TableView>
+                    </content>
+                </ScrollPane>
+            </VBox>
+        </HBox>
+        <HBox fx:id="footerHBox">
+            <Button fx:id="cancelButton" onAction="#handleCancel" text="Annuler" />
+            <Button fx:id="saveButton" onAction="#handleSave" text="Enregistrer" />
+        </HBox>
+    </VBox>
+</VBox>
