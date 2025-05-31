@@ -8,6 +8,7 @@ module ensaminiprojet.applicationsuivitraitementsmedicaux {
     exports ensaminiprojet.applicationsuivitraitementsmedicaux;
     exports controlers;
     exports models;
+    exports credentials;
     
     opens ensaminiprojet.applicationsuivitraitementsmedicaux to javafx.fxml;
     opens controlers to javafx.fxml;
