@@ -41,16 +41,24 @@
                                         </RadioButton>
                                         <RadioButton fx:id="followUpNoRadio" text="Non" toggleGroup="$followUpGroup" />
                                     </HBox>
-                                    <Label text="Patient" GridPane.rowIndex="7" />
-                                    <HBox spacing="10" alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                                        <Label fx:id="patientSelectionLabel" text="Choisissez Le Patient Concerné" />
-                                        <Button fx:id="patientIdField" onAction="#openPatientChoice" text="Choisir Un Patient" />
-                                    </HBox>
-                                    <Label text="Rendez-vous" GridPane.rowIndex="8" />
-                                    <HBox spacing="10" alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="8">
-                                        <Label fx:id="appointmentSelectionLabel" text="Choisissez Le Rendez-vous" />
-                                        <Button fx:id="appointmentIdField" onAction="#openAppointmentChoice" text="Choisir Un Rendez-vous" />
-                                    </HBox>
+                                    <!-- Patient & Appointment Selection as a GridPane with 3 columns -->
+                                    <GridPane hgap="0" vgap="10" GridPane.rowIndex="7" GridPane.columnIndex="0" GridPane.columnSpan="2">
+                                        <columnConstraints>
+                                            <ColumnConstraints hgrow="ALWAYS" percentWidth="20" />
+                                            <ColumnConstraints hgrow="ALWAYS" percentWidth="30" />
+                                            <ColumnConstraints hgrow="ALWAYS" percentWidth="50" />
+                                        </columnConstraints>
+                                        <children>
+                                            <!-- Patient Row -->
+                                            <Label text="Patient" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                                            <Label fx:id="patientSelectionLabel" text="Choisissez Le Patient Concerné" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+                                            <Button fx:id="patientIdField" onAction="#openPatientChoice" text="Choisir Un Patient" GridPane.rowIndex="0" GridPane.columnIndex="2" maxWidth="1.7976931348623157E308" GridPane.hgrow="ALWAYS" />
+                                            <!-- Appointment Row -->
+                                            <Label text="Rendez-vous" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                                            <Label fx:id="appointmentSelectionLabel" text="Choisissez Le Rendez-vous" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+                                            <Button fx:id="appointmentIdField" onAction="#openAppointmentChoice" text="Choisir Un Rendez-vous" GridPane.rowIndex="1" GridPane.columnIndex="2" maxWidth="1.7976931348623157E308" GridPane.hgrow="ALWAYS" />
+                                        </children>
+                                    </GridPane>
                                 </children>
                             </GridPane>
                         </VBox>
