@@ -7,6 +7,7 @@ package controlers;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import export.Exporter;
@@ -227,17 +228,31 @@ public class PatientController implements Initializable {
     }
 
     private void deletePatientPerson(PatientPerson patientPerson) {
-        try {
-            PatientPersonDAO dao = new PatientPersonDAO();
-            boolean success = dao.deletePatientPerson(patientPerson);
-            if (success) {
-                loadPatients();
-            } else {
-                System.out.println("Failed to delete patient and person.");
+         try {
+            // load the confirmation checkout
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/deletePopUp.fxml"));
+            Parent root = loader.load();
+            controlers.ConfirmDeleteAppointmentController controller = loader.getController();
+            Stage stage = new Stage();
+            stage.setTitle("delete confirmation");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL); // blocks interaction with main window
+            stage.setResizable(false);
+            stage.showAndWait();
+            // delete if the user is sure
+            if(controller.isdeleteConfirmed()){
+                PatientPersonDAO dao = new PatientPersonDAO();
+                boolean success = dao.deletePatientPerson(patientPerson);
+                if (success) {
+                    loadPatients();
+                } else {
+                    System.out.println("Failed to delete patient and person.");
+                }
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     private void Search(ActionEvent event) {

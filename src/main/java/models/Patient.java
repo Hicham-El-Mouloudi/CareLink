@@ -14,7 +14,9 @@ public class Patient {
     private String medicalConditions;
     private String state;
     private int personId;
-
+    public Patient(){
+        
+    }
     public Patient(int id, String emergencyContact, String medicalConditions, String state, int personId) {
         this.id = id;
         this.emergencyContact = emergencyContact;

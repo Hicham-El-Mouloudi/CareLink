@@ -15,7 +15,7 @@ public class Appointment {
     private String status;
     private int patientId;
     private int doctorId;
-
+    public Appointment(){id=0;}
     public Appointment(int id, java.util.Date dateTime, String reasonToVisit, String status, int patientId, int doctorId) {
         this.id = id;
         this.dateTime = dateTime;

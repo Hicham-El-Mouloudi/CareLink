@@ -14,6 +14,7 @@ public class PatientPerson {
     public PatientPerson() {
         id = 0; email = ""; fullName = ""; age = 0; sex = "Male"; medicalConditions = "";
     }
+   
 
     public PatientPerson(int id, String email, String fullName, int age, String sex, String medicalConditions) {
         this.id = id;
