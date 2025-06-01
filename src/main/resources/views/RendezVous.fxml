@@ -14,27 +14,27 @@
 <?import javafx.geometry.Pos?>
 
 
-<HBox style="-fx-alignment:center;"  xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.RendezVousController">
+<HBox style="-fx-alignment:center;"  xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.RendezVousController" stylesheets="@RendezVousView.css">
    <children>
       <VBox prefWidth="400" style="-fx-padding: 10; -fx-spacing: 10; -fx-alignment : center ;">
          <children>
-            <HBox prefHeight="25.0" prefWidth="301.0" style="-fx-alignment: center; -fx-spacing: 20; -fx-background-color: white; -fx-border-color: #1b7895;">
+            <HBox prefHeight="25.0" prefWidth="301.0" styleClass="hbox-month-year">
                <children>
                   <ComboBox fx:id="monthComboBox" prefWidth="120.0" promptText="MONTH" style="-fx-text-fill: #1b7895; -fx-font-size: 14; -fx-background-color: transparent;" />
                   <ComboBox fx:id="yearComboBox" prefWidth="100.0" promptText="YEAR" style="-fx-text-fill: #1b7895; -fx-font-size: 14; -fx-background-color: transparent;" />
                </children>
             </HBox>
-            <VBox fx:id="calendarContainer" prefWidth="400" style="-fx-border-color: #1b7895;-fx-alignment: center;" />
+            <VBox fx:id="calendarContainer" prefWidth="400" id="calendarContainer" />
             <BorderPane>
                <center>
-                  <Button fx:id="addAppointmentButton" text="Ajouter" BorderPane.alignment="CENTER" style="-fx-background-color : transparent; -fx-text-fill : #1b7895 ; -fx-background-radius : 10 ; -fx-font-size : 12;"/>
+                  <Button fx:id="addAppointmentButton" id="addAppointmentButton" text="Ajouter" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
          </children>
       </VBox>
       <ScrollPane prefWidth="500">
          <content>
-            <TableView fx:id="appointmentTableView" prefWidth="500">
+            <TableView fx:id="appointmentTableView" id="appointmentTableView" prefWidth="500">
                <columns>
                   <TableColumn fx:id="iDColumn" prefWidth="71.0" text="ID" />
                   <TableColumn fx:id="personColumn" prefWidth="142.0" text="Personne" />
