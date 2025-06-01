@@ -33,6 +33,8 @@ import javafx.scene.control.ScrollPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 // custom classes
 import models.*;
 
@@ -170,7 +172,15 @@ public class PatientController implements Initializable {
                         });
                         deleteButton.setOnAction(event -> {
                             PatientPerson patientPerson = getTableView().getItems().get(getIndex());
-                            deletePatientPerson(patientPerson);
+                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                            alert.setTitle("Confirmation de suppression");
+                            alert.setHeaderText(null);
+                            alert.setContentText("Êtes-vous sûr de vouloir supprimer ce patient ?");
+                            alert.showAndWait().ifPresent(response -> {
+                                if (response == ButtonType.OK) {
+                                    deletePatientPerson(patientPerson);
+                                }
+                            });
                         });
                         ExtractPDFButton.setOnAction(event-> {
                             PatientPerson patientPerson = getTableView().getItems().get(getIndex());
@@ -280,17 +290,25 @@ public class PatientController implements Initializable {
     }
 
     private void deleteAllPatients() {
-        try {
-            PatientPersonDAO dao = new PatientPersonDAO();
-            boolean success = dao.deleteAllPatientPersons();
-            if (success) {
-                loadPatients();
-            } else {
-                System.out.println("Failed to delete all patients.");
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation de suppression");
+        alert.setHeaderText(null);
+        alert.setContentText("Êtes-vous sûr de vouloir supprimer TOUS les patients ? Cette action est irréversible.");
+        alert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                try {
+                    PatientPersonDAO dao = new PatientPersonDAO();
+                    boolean success = dao.deleteAllPatientPersons();
+                    if (success) {
+                        loadPatients();
+                    } else {
+                        System.out.println("Failed to delete all patients.");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
     }
     private void previewPatientPDFExtract(PatientPerson patientPerson){
          try {

@@ -135,7 +135,11 @@ public class TheAppMainViewController implements Initializable {
     // navigate to traitements
     private void navigateToTraitements() {
         try {
-            Parent traitementsView = FXMLLoader.load(getClass().getResource("/views/TraitementView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/TraitementView.fxml"));
+            Parent traitementsView = loader.load();
+            TraitementController traitementController = loader.getController();
+            traitementController.setCurrentDoctorID(currentDoctorID);
+            
             mainView.setCenter(traitementsView);
         } catch (IOException e) {
             System.err.println("Error loading traitements view: " + e.getMessage() + "\n");

@@ -94,6 +94,14 @@ public class TraitementController implements Initializable {
     @FXML
     private Button appointmentIdField;
 
+
+    // The connected doctor
+    private int currentDoctorID = -1;
+    HomeController controller;
+    public void setCurrentDoctorID(int currentDoctorID) {
+        this.currentDoctorID = currentDoctorID;
+    }
+
     // Initilizing DAOs
     TraitementDAO traitementDAO = new TraitementDAO();
     // This is the child controller of the patientSelection view in order ensure communication between both views
@@ -246,7 +254,7 @@ public class TraitementController implements Initializable {
             statusChoiceBox.getValue(),            
             typeChoiceBox.getValue(),
             patientId,
-            0,
+            currentDoctorID,
             prescriptionID
         );
         // Saving th Traitement
