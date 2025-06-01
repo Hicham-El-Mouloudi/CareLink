@@ -14,10 +14,10 @@
 
 <AnchorPane maxHeight="650" maxWidth="450" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="613.0" stylesheets="@Login.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.LoginViewController">
    <children>
-      <BorderPane prefHeight="400.0" prefWidth="613.0">
+      <BorderPane prefHeight="400.0" prefWidth="800">
         
          <center>
-            <VBox prefHeight="378.0" prefWidth="614.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="378.0" prefWidth="700" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="60.0" left="100.0" right="100.0" top="60.0" />
                </BorderPane.margin>
@@ -63,7 +63,7 @@
                         </CheckBox>
                      </left>
                      <right>
-                        <HBox prefHeight="31.0" prefWidth="196.0" BorderPane.alignment="CENTER">
+                        <HBox prefHeight="31.0" prefWidth="400" BorderPane.alignment="CENTER">
                            <children>
                               <Button fx:id="btnSignUP" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#HandleSignUp" text="Sign Up">
                                  <font>
