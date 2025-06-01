@@ -1,4 +1,5 @@
 package controlers;
+import ensaminiprojet.applicationsuivitraitementsmedicaux.App;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -8,12 +9,18 @@ public class UserPopupController {
     @FXML private Label userLabel;
     @FXML private Button disconnectButton;
 
+    // Parent Controller
+	App rootApp;
+	// Setter for rootApp called from App when loading 'This View'
+	public void setRootApp(App rootApp) {
+		this.rootApp = rootApp;
+	}
+
     public void initialize() {
         // Optional logic
         disconnectButton.setOnAction(e -> {
             System.out.println("User disconnected.");
-            // TODO
-            // trigger logout here
+            rootApp.continueToSignInView();
         });
         String baseStyle = "-fx-text-fill: white; -fx-background-radius: 6; -fx-font-weight: bold;";
 

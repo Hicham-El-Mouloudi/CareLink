@@ -192,9 +192,10 @@ public class TheAppMainViewController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/UserPopup.fxml"));
             VBox popupContent = loader.load();
             UserPopupController controller = loader.getController();
-            //TODO
+            // 
+            controller.setRootApp(rootApp);
             // john doe should be replaced by the real name of the current loged in doctor 
-            controller.setUserName("John Doe");
+            controller.setUserName(DoctorDAO.getDoctorById(currentDoctorID).getPersonalInfo().getFullName());
 
             userPopup = new Popup();
             userPopup.getContent().add(popupContent);
