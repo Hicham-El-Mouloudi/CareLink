@@ -56,7 +56,7 @@ public class AddPatientController implements Initializable {
             String email = emailField.getText();
             String insurance = insuranceField.getText();
             String telephone = telephoneField.getText();
-            String gender = hommeRadio.isSelected() ? "Homme" : femmeRadio.isSelected() ? "Femme" : "";
+            String gender = hommeRadio.isSelected() ? "Male" : femmeRadio.isSelected() ? "Female" : "";
             String medicalRemarks = medicalRemarksField.getText();
             int age = 0;
             try { age = Integer.parseInt(ageField.getText()); } catch (Exception ignored) {}
