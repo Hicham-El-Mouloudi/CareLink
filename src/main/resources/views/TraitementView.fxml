@@ -12,9 +12,9 @@
                 <content>
                     <VBox alignment="CENTER" fillWidth="true" spacing="32" style="-fx-padding: 40 0 40 0;">
                         <!-- Card: Nouveau Traitement -->
-                        <VBox fx:id="traitementBodyVBox" alignment="TOP_CENTER" maxWidth="600" spacing="24" styleClass="card">
+                        <VBox fx:id="traitementBodyVBox" alignment="TOP_CENTER" maxWidth="1000" spacing="24" styleClass="card">
                             <Label fx:id="detailsLabel" text="Nouveau Traitement" styleClass="sectionTitle" />
-                            <GridPane fx:id="traitementGrid" alignment="CENTER" hgap="14" vgap="10" maxWidth="520">
+                            <GridPane fx:id="traitementGrid" alignment="CENTER" hgap="14" vgap="10" maxWidth="900">
                                 <columnConstraints>
                                     <ColumnConstraints hgrow="ALWAYS" percentWidth="40" />
                                     <ColumnConstraints hgrow="ALWAYS" percentWidth="60" />
@@ -55,9 +55,9 @@
                             </GridPane>
                         </VBox>
                         <!-- Card: Prescription -->
-                        <VBox fx:id="prescriptionBodyVBox" alignment="TOP_CENTER" maxWidth="600" spacing="24" styleClass="card">
+                        <VBox fx:id="prescriptionBodyVBox" alignment="TOP_CENTER" maxWidth="1000" spacing="24" styleClass="card">
                             <Label fx:id="prescriptionDetailsLabel" text="Prescription" styleClass="sectionTitle" />
-                            <GridPane fx:id="prescriptionTraitementGrid" alignment="CENTER" hgap="14" vgap="10" maxWidth="520">
+                            <GridPane fx:id="prescriptionTraitementGrid" alignment="CENTER" hgap="14" vgap="10" maxWidth="900">
                                 <columnConstraints>
                                     <ColumnConstraints hgrow="ALWAYS" percentWidth="40" />
                                     <ColumnConstraints hgrow="ALWAYS" percentWidth="60" />
