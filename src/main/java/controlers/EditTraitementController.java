@@ -78,9 +78,9 @@ public class EditTraitementController implements Initializable {
         
         if (traitement != null) {
             // Set Title
-            titleLabel.setText("Modification Traitement Pour : " + patientPersonDAO.getPatientPersonById(traitement.getPatientId()).getFullName());
+            titleLabel.setText("Modification Traitement Pour : " + patientPersonDAO.getPatientPersonByID(traitement.getPatientId()).getFullName());
             // Set date
-            datePicker.setValue(traitement.getDate().toLocalDate());
+            datePicker.setValue(traitement.getDate());
             
             // Set type and status in choice boxes
             typeChoiceBox.setValue(traitement.getType());
