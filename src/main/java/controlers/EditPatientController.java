@@ -266,6 +266,47 @@ public class EditPatientController implements Initializable {
             private final Button modifyButton = new Button("Modify");
 
             {
+                // Default: teal gradient (shades of #2a9d8f)
+                modifyButton.setStyle(""
+                    + "-fx-background-color: linear-gradient(to right, #2a9d8f, #21867a);"
+                    + "-fx-text-fill: #fff;"
+                    + "-fx-font-weight: bold;"
+                    + "-fx-background-radius: 8;"
+                    + "-fx-border-radius: 8;"
+                    + "-fx-padding: 6 18;"
+                    + "-fx-cursor: hand;"
+                    + "-fx-font-size: 14px;"
+                    + "-fx-effect: dropshadow(gaussian, #2a9d8f, 3, 0.15, 0, 1);"
+                    + "-fx-border-color: #21867a;"
+                    + "-fx-border-width: 1;"
+                );
+                // Hover: darker teal gradient (shades of #2a9d8f)
+                modifyButton.setOnMouseEntered(e -> modifyButton.setStyle(""
+                    + "-fx-background-color: linear-gradient(to right, #21867a, #176055);"
+                    + "-fx-text-fill: #fff;"
+                    + "-fx-font-weight: bold;"
+                    + "-fx-background-radius: 8;"
+                    + "-fx-border-radius: 8;"
+                    + "-fx-padding: 6 18;"
+                    + "-fx-cursor: hand;"
+                    + "-fx-font-size: 14px;"
+                    + "-fx-effect: dropshadow(gaussian, #176055, 3, 0.15, 0, 1);"
+                    + "-fx-border-color: #176055;"
+                    + "-fx-border-width: 1;"
+                ));
+                modifyButton.setOnMouseExited(e -> modifyButton.setStyle(""
+                    + "-fx-background-color: linear-gradient(to right, #2a9d8f, #21867a);"
+                    + "-fx-text-fill: #fff;"
+                    + "-fx-font-weight: bold;"
+                    + "-fx-background-radius: 8;"
+                    + "-fx-border-radius: 8;"
+                    + "-fx-padding: 6 18;"
+                    + "-fx-cursor: hand;"
+                    + "-fx-font-size: 14px;"
+                    + "-fx-effect: dropshadow(gaussian, #2a9d8f, 3, 0.15, 0, 1);"
+                    + "-fx-border-color: #21867a;"
+                    + "-fx-border-width: 1;"
+                ));
                 modifyButton.setOnAction(event -> {
                     Traitement traitement = getTableView().getItems().get(getIndex());
                     openModifyTraitement(traitement);

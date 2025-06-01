@@ -5,6 +5,24 @@
     -fx-spacing: 15;
 }
 
+/* Card-like appearance for the main inner VBox */
+#editPatientBodyVBox > VBox {
+    -fx-background-color: #ffffffee;
+    -fx-background-radius: 18;
+    -fx-effect: dropshadow(gaussian, #b3e0ff, 16, 0.18, 0, 2);
+    -fx-padding: 28 36 28 36;
+    -fx-spacing: 18;
+}
+
+/* Title label */
+#editTitleLabel {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: linear-gradient(to right, #1b7895, #15677d);
+    -fx-padding: 0 0 18 0;
+    -fx-effect: dropshadow(gaussian, #b3e0ff, 6, 0.18, 0, 2);
+}
+
 #headerHBox {
     -fx-spacing: 10;
     -fx-alignment: center;
@@ -23,32 +41,138 @@
     -fx-vgap: 10;
 }
 
+/* Form labels and fields */
+#formVBox Label, #formGridPane Label {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1b7895;
+}
+
+#formVBox TextField, #formVBox .text-field, #formGridPane TextField, #formGridPane .text-field {
+    -fx-background-color: white;
+    -fx-border-color: #1b7895;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-font-size: 15px;
+    -fx-padding: 7 10;
+}
+
+#formVBox TextField:focused, #formVBox .text-field:focused, #formGridPane TextField:focused, #formGridPane .text-field:focused {
+    -fx-border-color: #15677d;
+    -fx-border-width: 2;
+}
+
 #sexHBox {
     -fx-alignment: center;
-    -fx-spacing: 10;
+    -fx-spacing: 16;
 }
 
+#sexHBox .radio-button {
+    -fx-font-size: 15px;
+    -fx-text-fill: #333;
+}
+
+#sexHBox .radio-button .radio {
+    -fx-background-color: white;
+    -fx-border-color: #1b7895;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-border-width: 2;
+    -fx-padding: 3;
+}
+
+#sexHBox .radio-button:selected .radio .dot {
+    -fx-background-color: #1b7895;
+    -fx-padding: 4;
+}
+
+#medicalRemarksLabel {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1b7895;
+    -fx-padding: 10 0 0 0;
+}
+
+#medicalRemarksField {
+    -fx-background-color: white;
+    -fx-border-color: #1b7895;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-font-size: 15px;
+    -fx-padding: 7 10;
+}
+
+#medicalRemarksField:focused {
+    -fx-border-color: #15677d;
+    -fx-border-width: 2;
+}
+
+/* Table section styling */
 #tablesVBox {
-    -fx-spacing: 10;
+    -fx-spacing: 18;
 }
-
 #traitementTableView, #rendezVousTableView {
     -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: #1b7895;
+    -fx-border-width: 1;
+    -fx-font-size: 14px;
 }
-
-#footerHBox {
-    -fx-spacing: 10;
-    -fx-alignment: center-right;
-    -fx-padding: 10;
-}
-
-#saveButton {
+#traitementTableView .column-header, #rendezVousTableView .column-header {
     -fx-background-color: #1b7895;
     -fx-text-fill: white;
-    -fx-background-radius: 10;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
 }
 
+#traitementListLabel, #rendezVousLabel {
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1b7895;
+    -fx-padding: 10 0 0 0;
+}
+
+/* ScrollPane tweaks for spacing and rounded corners */
+.scroll-pane, .scroll-pane .viewport {
+    -fx-background-color: transparent;
+    -fx-background-radius: 12;
+    -fx-padding: 0 0 10 0;
+}
+
+/* Footer buttons */
+#footerHBox {
+    -fx-spacing: 16;
+    -fx-alignment: center-right;
+    -fx-padding: 18 0 0 0;
+}
+#saveButton {
+    -fx-background-color: linear-gradient(to right, #1b7895, #15677d);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-padding: 10 32;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, #b3e0ff, 4, 0.18, 0, 2);
+    -fx-font-size: 15px;
+    -fx-border-color: #1b7895;
+    -fx-border-width: 1;
+}
+#saveButton:hover {
+    -fx-background-color: linear-gradient(to right, #15677d, #1b7895);
+}
 #cancelButton {
     -fx-background-color: white;
-    -fx-background-radius: 10;
+    -fx-text-fill: #e74c3c;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: #e74c3c;
+    -fx-padding: 10 32;
+    -fx-cursor: hand;
+    -fx-font-size: 15px;
+}
+#cancelButton:hover {
+    -fx-background-color: #ffebeb;
 }
