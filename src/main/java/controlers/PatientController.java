@@ -4,8 +4,13 @@
  */
 package controlers;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import export.Exporter;
+import export.extractData.PrintablePatient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,6 +30,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 // custom classes
 import models.*;
@@ -142,6 +149,7 @@ public class PatientController implements Initializable {
                 return new TableCell<PatientPerson, Void>() {
                     private final Button previewButton = new Button("Preview&Update");
                     private final Button deleteButton = new Button("Delete");
+                    private final Button ExtractPDFButton = new Button("Extraire:PDF");
                     {
                         // Embedded styling for previewButton
                         previewButton.setStyle("-fx-background-color: #1b7895; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold; -fx-padding: 5 15 5 15; -fx-cursor: hand; -fx-font-size: 13px; -fx-border-color: #1b7895; -fx-border-radius: 10; -fx-border-width: 1;");
@@ -151,6 +159,7 @@ public class PatientController implements Initializable {
                         deleteButton.setStyle("-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold; -fx-padding: 5 15 5 15; -fx-cursor: hand; -fx-font-size: 13px; -fx-border-color: #e74c3c; -fx-border-radius: 10; -fx-border-width: 1;");
                         deleteButton.setOnMouseEntered(e -> deleteButton.setStyle("-fx-background-color: #c0392b; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold; -fx-padding: 5 15 5 15; -fx-cursor: hand; -fx-font-size: 13px; -fx-border-color: #e74c3c; -fx-border-radius: 10; -fx-border-width: 1;"));
                         deleteButton.setOnMouseExited(e -> deleteButton.setStyle("-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold; -fx-padding: 5 15 5 15; -fx-cursor: hand; -fx-font-size: 13px; -fx-border-color: #e74c3c; -fx-border-radius: 10; -fx-border-width: 1;"));
+                        // set on action
                         previewButton.setOnAction(event -> {
                             PatientPerson patientPerson = getTableView().getItems().get(getIndex());
                             previewPatient(patientPerson);
@@ -159,6 +168,10 @@ public class PatientController implements Initializable {
                             PatientPerson patientPerson = getTableView().getItems().get(getIndex());
                             deletePatientPerson(patientPerson);
                         });
+                        ExtractPDFButton.setOnAction(event-> {
+                            PatientPerson patientPerson = getTableView().getItems().get(getIndex());
+                            previewPatientPDFExtract(patientPerson);
+                        });
                     }
                     @Override
                     protected void updateItem(Void item, boolean empty) {
@@ -166,7 +179,7 @@ public class PatientController implements Initializable {
                         if (empty) {
                             setGraphic(null);
                         } else {
-                            HBox hbox = new HBox(5, previewButton, deleteButton);
+                            HBox hbox = new HBox(5, previewButton, deleteButton,ExtractPDFButton);
                             setGraphic(hbox);
                         }
                     }
@@ -275,5 +288,60 @@ public class PatientController implements Initializable {
             e.printStackTrace();
         }
     }
+    private void previewPatientPDFExtract(PatientPerson patientPerson){
+         try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/PatientPDFPreview.fxml"));
+        Parent root = loader.load();
+
+        PatientPDFPreviewController controller = loader.getController();
+        controller.setPatient(patientPerson);
+        controller.updateImage();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Preview PDF");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+
+        if (controller.wasExtracted()) {
+            PrintablePatient p = new PrintablePatient(patientPerson);
+            File file = showSavePdfDialog((Stage)searchBarHBox.getScene().getWindow());
+            String fullPath =file.getAbsolutePath();
+            if(!fullPath.toLowerCase().endsWith(".pdf")){
+                fullPath.concat(".pdf");
+            }
+            Exporter.exportPatientPDF(p,fullPath);
+            
+            System.out.println("User chose to extract the PDF.");
+        } else {
+            System.out.println("User cancelled the export.");
+        }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public File showSavePdfDialog(@SuppressWarnings("exports") Stage ownerWindow) {
+        FileChooser fileChooser = new FileChooser();
+
+        // Set dialog title
+        fileChooser.setTitle("Save PDF");
+
+        // Set extension filter to allow only PDF files
+        FileChooser.ExtensionFilter pdfFilter = new FileChooser.ExtensionFilter("PDF Files (*.pdf)", "*.pdf");
+        fileChooser.getExtensionFilters().add(pdfFilter);
+        fileChooser.setSelectedExtensionFilter(pdfFilter);
+
+        // Optionally set initial file name
+        fileChooser.setInitialFileName("document.pdf");
+
+        // Show the Save File dialog
+        File file = fileChooser.showSaveDialog(ownerWindow);
+
+        return file; // Will be null if user cancels
+    }
+
     
 }

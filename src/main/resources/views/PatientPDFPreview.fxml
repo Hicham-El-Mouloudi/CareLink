@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="controlers.PatientPDFPreviewController"
+            prefWidth="500" prefHeight="350" maxWidth="500" maxHeight="350"
+            style="-fx-background-color: #f5f5f5; -fx-border-color: #ccc; -fx-border-width: 1;">
+    
+    <!-- Image Preview Area -->
+    <center>
+        <VBox alignment="CENTER" spacing="10" >
+            <Label text="Aperçu du PDF" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+            <ImageView fx:id="imageView" fitWidth="300" preserveRatio="true" />
+        </VBox>
+    </center>
+
+    <!-- Bottom Action Buttons -->
+    <bottom>
+        <HBox alignment="CENTER" spacing="15" >
+            <Button text="📄 Extraire" onAction="#onExtract" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" />
+            <Button text="❌ Annuler" onAction="#onCancel" style="-fx-background-color: #f44336; -fx-text-fill: white;" />
+        </HBox>
+    </bottom>
+</BorderPane>

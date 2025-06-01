@@ -5,13 +5,21 @@
 package controlers;
 
 import java.net.URL;
+
 import java.util.ResourceBundle;
 
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import javafx.stage.Popup;
+import javafx.stage.Screen;
+import javafx.util.Duration;
+import javafx.animation.ScaleTransition;
 import javafx.fxml.*;
+import javafx.geometry.Bounds;
+
 import java.io.IOException;
 import javafx.scene.layout.BorderPane;
 
@@ -41,6 +49,11 @@ public class TheAppMainViewController implements Initializable {
     private Pane bodyContent;
     @FXML
     private BorderPane mainView;
+    @FXML 
+    private Button UserButton;
+    // non Fxml 
+    private Popup userPopup;
+
 
     /**
      * Initializes the controller class.
@@ -70,6 +83,8 @@ public class TheAppMainViewController implements Initializable {
         AideButton.setOnAction(event -> {
             navigateToAide();
         });
+        UserButton.setOnAction(e -> showUserPopup());
+
     }
     // ------------------------------------------------------------------------------------------------------
     // ---------------------------------------- NAVIGATION FUNCTIONS ----------------------------------------
@@ -143,4 +158,56 @@ public class TheAppMainViewController implements Initializable {
     public void setBodyContent(@SuppressWarnings("exports") Pane bodyContent) {
         this.bodyContent = bodyContent;
     }
+    //
+    private void showUserPopup() {
+        if (userPopup != null && userPopup.isShowing()) {
+            userPopup.hide();
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/UserPopup.fxml"));
+            VBox popupContent = loader.load();
+            UserPopupController controller = loader.getController();
+            //TODO
+            // john doe should be replaced by the real name of the current loged in doctor 
+            controller.setUserName("John Doe");
+
+            userPopup = new Popup();
+            userPopup.getContent().add(popupContent);
+            userPopup.setAutoHide(true);
+
+            Bounds buttonBounds = UserButton.localToScreen(UserButton.getBoundsInLocal());
+
+            // measure popup width accurately
+            popupContent.applyCss();
+            popupContent.layout();
+            double popupWidth = popupContent.prefWidth(-1);
+
+            double screenWidth = Screen.getPrimary().getVisualBounds().getWidth();
+
+            double x = buttonBounds.getMaxX() - popupWidth;
+            if (x + popupWidth > screenWidth) {
+                x = screenWidth - popupWidth - 10;
+            }
+            if (x < 0) {
+                x = 10;
+            }
+
+            double y = buttonBounds.getMaxY() + 5;
+
+            popupContent.setScaleX(0.8);
+            popupContent.setScaleY(0.8);
+            userPopup.show(UserButton.getScene().getWindow(), x, y);
+
+            ScaleTransition scale = new ScaleTransition(Duration.millis(180), popupContent);
+            scale.setToX(1.0);
+            scale.setToY(1.0);
+            scale.play();
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
 }

@@ -33,3 +33,6 @@
         </HBox>
     </bottom>
 </BorderPane>
+<!-- the original file keep discarding the changes after a while of saving , or
+  commiting , i even run it and after a while i loose all the changeds i commited 
+  on it-->
