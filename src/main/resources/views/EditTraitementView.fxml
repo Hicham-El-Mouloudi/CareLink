@@ -4,45 +4,47 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" 
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="controlers.EditTraitementController"
-      alignment="CENTER" spacing="10" maxWidth="600" 
+      alignment="CENTER"
       styleClass="mainFxmlClass" stylesheets="@edittraitementview.css">
-    <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
-    </padding>
-
-    <Label fx:id="titleLabel" text="Modification De Traitement" styleClass="title"/>
-    
-    <Label fx:id="dateLabel" text="Date"/>
-    <DatePicker fx:id="datePicker"/>
-    
-    <Label fx:id="typeLabel" text="Type"/>
-    <ChoiceBox fx:id="typeChoiceBox" maxWidth="Infinity"/>
-    
-    <Label fx:id="statusLabel" text="Status"/>
-    <ChoiceBox fx:id="statusChoiceBox" maxWidth="Infinity"/>
-    
-    <Label fx:id="descriptionLabel" text="Description"/>
-    <TextField fx:id="descriptionField" maxWidth="Infinity"/>
-    
-    <Label fx:id="notesLabel" text="Notes"/>
-    <TextArea fx:id="notesField" maxWidth="Infinity"/>
-    
-    <Label fx:id="raisonLabel" text="Raison Pour Le Traitement"/>
-    <TextField fx:id="raisonField" maxWidth="Infinity"/>
-    
-    <Label fx:id="followUpLabel" text="Suivi Requis" />
-    <HBox fx:id="followUpContainer" spacing="20">
-        <RadioButton fx:id="followUpYesRadio" text="Oui">
-            <toggleGroup>
-                <ToggleGroup fx:id="followUpGroup"/>
-            </toggleGroup>
-        </RadioButton>
-        <RadioButton fx:id="followUpNoRadio" text="Non" toggleGroup="$followUpGroup"/>
-    </HBox>    
-    <HBox fx:id="buttonContainer" spacing="10" alignment="CENTER_RIGHT">
-        <Button fx:id="saveButton" text="Enregistrer" onAction="#handleSave"/>
-        <Button fx:id="cancelButton" text="Annuler" onAction="#handleCancel"/>
-    </HBox>
+    <VBox alignment="CENTER" maxWidth="500" spacing="10">
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+        <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+            <content>
+                <VBox spacing="10" alignment="CENTER">
+                    <Label fx:id="titleLabel" text="Modification De Traitement" styleClass="title"/>
+                    <Label fx:id="dateLabel" text="Date"/>
+                    <DatePicker fx:id="datePicker"/>
+                    <Label fx:id="typeLabel" text="Type"/>
+                    <ChoiceBox fx:id="typeChoiceBox" maxWidth="Infinity"/>
+                    <Label fx:id="statusLabel" text="Status"/>
+                    <ChoiceBox fx:id="statusChoiceBox" maxWidth="Infinity"/>
+                    <Label fx:id="descriptionLabel" text="Description"/>
+                    <TextField fx:id="descriptionField" maxWidth="Infinity"/>
+                    <Label fx:id="notesLabel" text="Notes"/>
+                    <TextArea fx:id="notesField" maxWidth="Infinity"/>
+                    <Label fx:id="raisonLabel" text="Raison Pour Le Traitement"/>
+                    <TextField fx:id="raisonField" maxWidth="Infinity"/>
+                    <HBox fx:id="followUpContainer" spacing="20" alignment="CENTER_LEFT">
+                        <Label fx:id="followUpLabel" text="Suivi Requis" />
+                        <HBox spacing="15">
+                            <RadioButton fx:id="followUpYesRadio" text="Oui" styleClass="follow-up-radio">
+                                <toggleGroup>
+                                    <ToggleGroup fx:id="followUpGroup"/>
+                                </toggleGroup>
+                            </RadioButton>
+                            <RadioButton fx:id="followUpNoRadio" text="Non" toggleGroup="$followUpGroup" styleClass="follow-up-radio"/>
+                        </HBox>
+                    </HBox>
+                    <HBox fx:id="buttonContainer" spacing="10" alignment="CENTER_RIGHT">
+                        <Button fx:id="saveButton" text="Enregistrer" onAction="#handleSave"/>
+                        <Button fx:id="cancelButton" text="Annuler" onAction="#handleCancel"/>
+                    </HBox>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </VBox>
 </VBox>

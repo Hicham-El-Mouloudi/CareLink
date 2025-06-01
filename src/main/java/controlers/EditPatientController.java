@@ -293,10 +293,8 @@ public class EditPatientController implements Initializable {
             controller.setSelectedTraitement(traitement);
             
             Stage stage = new Stage();
-            stage.setMinHeight(600);
-            stage.setMaxHeight(600);
-            stage.setMaxWidth(400);
-            stage.setMinWidth(400);
+            stage.setMinHeight(700);
+            stage.setMinWidth(500);
             stage.setTitle("Modifier Traitement");
             stage.setScene(new Scene(root));
             stage.showAndWait();

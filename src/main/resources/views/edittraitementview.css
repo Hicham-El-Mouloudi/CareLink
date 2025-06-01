@@ -1,7 +1,118 @@
-/*
- * Empty Stylesheet file.
- */
-
 .mainFxmlClass {
+    -fx-background-color: #f1f9ff;
+}
 
+.title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: linear-gradient(to right, #1b7895, #15677d);
+    -fx-padding: 0 0 24 0;
+    -fx-effect: dropshadow(gaussian, #b3e0ff, 6, 0.2, 0, 2);
+}
+
+.label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1b7895;
+}
+
+.text-field, .text-area, .date-picker, .choice-box {
+    -fx-background-color: white;
+    -fx-border-color: #1b7895;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-font-size: 14px;
+}
+
+.text-field:focused, .text-area:focused, .date-picker:focused, .choice-box:focused {
+    -fx-border-color: #15677d;
+    -fx-border-width: 2;
+}
+
+.text-area {
+    -fx-padding: 5;
+}
+
+.text-area .content {
+    -fx-background-color: white;
+    -fx-background-radius: 5;
+}
+
+#followUpContainer {
+    -fx-padding: 10;
+    -fx-spacing: 20;
+    -fx-background-color: white;
+    -fx-border-color: #1b7895;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.follow-up-radio {
+    -fx-font-size: 14px;
+}
+
+.follow-up-radio .radio {
+    -fx-background-color: white;
+    -fx-border-color: #1b7895;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-border-width: 2;
+    -fx-padding: 3;
+}
+
+.follow-up-radio:selected .radio .dot {
+    -fx-background-color: #1b7895;
+    -fx-padding: 4;
+}
+
+#buttonContainer {
+    -fx-padding: 20 0 0 0;
+}
+
+#saveButton {
+    -fx-background-color: linear-gradient(to right, #1b7895, #15677d);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-padding: 10 32;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, #b3e0ff, 4, 0.18, 0, 2);
+    -fx-font-size: 15px;
+    -fx-border-color: #1b7895;
+    -fx-border-width: 1;
+}
+
+#saveButton:hover {
+    -fx-background-color: linear-gradient(to right, #15677d, #1b7895);
+}
+
+#cancelButton {
+    -fx-background-color: white;
+    -fx-text-fill: #e74c3c;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: #e74c3c;
+    -fx-padding: 8 25;
+    -fx-cursor: hand;
+}
+
+#cancelButton:hover {
+    -fx-background-color: #ffebeb;
+}
+
+/* Add subtle shadow and background to the inner form container */
+VBox[maxWidth="500"] {
+    -fx-background-color: #ffffffcc;
+    -fx-background-radius: 16;
+    -fx-effect: dropshadow(gaussian, #b3e0ff, 12, 0.15, 0, 2);
+    -fx-padding: 24 32 24 32;
+}
+
+/* ScrollPane tweaks for spacing and rounded corners */
+.scroll-pane, .scroll-pane .viewport {
+    -fx-background-color: transparent;
+    -fx-background-radius: 16;
+    -fx-padding: 0 0 10 0;
 }
