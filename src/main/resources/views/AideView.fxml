@@ -1,15 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 
-<VBox styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.AideController" alignment="CENTER">
-    <stylesheets>
-        <URL value="@aideview.css"/>
-    </stylesheets>
-    <Label text="Aide" />
-</VBox>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<ScrollPane xmlns:fx="http://javafx.com/fxml" fitToWidth="true">
+    <VBox spacing="20" >
+        
+        <!-- Titre principal -->
+        <Label text="Aide - Application Médicale" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+
+        <!-- Image d'entête -->
+         <!--
+        <ImageView fitWidth="600" preserveRatio="true">
+            <image>
+                <Image url="@images/header.png" />
+            </image>
+        </ImageView>
+    -->
+
+        <!-- Table des matières -->
+        <Label text="Table des matières" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+        <VBox spacing="5">
+            <Hyperlink text="1. Connexion" />
+            <Hyperlink text="2. Gestion des Patients" />
+            <Hyperlink text="3. Gestion des Rendez-vous" />
+            <Hyperlink text="4. Gestion des Traitements" />
+            <Hyperlink text="5. Exportation PDF et Aperçu" />
+            <Hyperlink text="6. Déconnexion" />
+        </VBox>
+
+        <!-- Section Connexion -->
+        <Label text="1. Connexion" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+        <Label wrapText="true" text="L’écran de connexion permet aux utilisateurs d’accéder à l’application en entrant leur nom d’utilisateur et leur mot de passe. En cas de succès, ils accèdent à l’interface principale. Une option pour créer un nouveau compte est également disponible." />
+
+        <!-- Image Connexion -->
+         <!-- <ImageView fitWidth="400" preserveRatio="true">
+            <image>
+                <Image url="@images/login.png" />
+            </image>
+        </ImageView> -->
+       
+
+        <!-- Section Patients -->
+        <Label text="2. Gestion des Patients" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+        <Label wrapText="true" text="L’interface des patients permet de rechercher, afficher, ajouter, modifier, supprimer ou exporter les dossiers patients. La recherche se fait par nom, âge ou coordonnées. Un aperçu PDF est affiché avant exportation. Un bouton permet d’ajouter un nouveau patient via un formulaire dédié." />
+
+        <!-- Image Patients -->
+         <!--         <ImageView fitWidth="400" preserveRatio="true">
+            <image>
+                <Image url="@images/patients.png" />
+            </image>
+        </ImageView>-->
+
+
+        <!-- Section Rendez-vous -->
+        <Label text="3. Gestion des Rendez-vous" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+        <Label wrapText="true" text="Cette section permet de gérer les rendez-vous via un calendrier. En sélectionnant une date, les rendez-vous du jour apparaissent. L’ajout et la modification se font dans des fenêtres dédiées. Il est possible de rechercher un patient pour l’associer au rendez-vous. Chaque action est accompagnée de dialogues de confirmation ou d’erreur." />
+
+        <!-- Image Rendez-vous -->
+         <!--        <ImageView fitWidth="400" preserveRatio="true">
+            <image>
+                <Image url="@images/rendezvous.png" />
+            </image>
+        </ImageView> -->
+
+
+        <!-- Section Traitements -->
+        <Label text="4. Gestion des Traitements" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+        <Label wrapText="true" text="L’ajout de traitements médicaux se fait via un formulaire organisé. L’utilisateur sélectionne un patient et un rendez-vous concerné. Il n’existe pas de liste directe des traitements ici, ils sont consultables depuis la fiche patient." />
+
+        <!-- Image Traitement -->
+         <!--        <ImageView fitWidth="400" preserveRatio="true">
+            <image>
+                <Image url="@images/traitement.png" />
+            </image>
+        </ImageView> -->
+
+
+        <!-- Section PDF Export -->
+        <Label text="5. Exportation PDF et Aperçu" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+        <Label wrapText="true" text="Lors de l’exportation d’un patient, un aperçu du document PDF est affiché grâce à JavaFX Embedded Swing. Cela permet de vérifier les informations avant de sauvegarder le fichier PDF sur le disque. L’utilisateur choisit l’emplacement via un explorateur de fichiers." />
+
+        <!-- Image PDF Preview -->
+         <!--        <ImageView fitWidth="400" preserveRatio="true">
+            <image>
+                <Image url="@images/pdf_preview.png" />
+            </image>
+        </ImageView> -->
+
+
+        <!-- Section Déconnexion -->
+        <Label text="6. Déconnexion" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+        <Label wrapText="true" text="Un bouton utilisateur en haut de l’interface permet d’ouvrir une fenêtre pour se déconnecter. Cela ramène l’utilisateur vers la page de connexion, assurant une meilleure sécurité et permettant de changer rapidement de compte." />
+
+        <!-- Image Déconnexion -->
+         <!--        <ImageView fitWidth="400" preserveRatio="true">
+            <image>
+                <Image url="@images/logout.png" />
+            </image>
+        </ImageView>
+ -->
+
+        <!-- Pied de page -->
+        <Separator />
+        <Label text="Merci d’avoir utilisé notre application médicale." style="-fx-font-style: italic;" />
+
+    </VBox>
+</ScrollPane>
