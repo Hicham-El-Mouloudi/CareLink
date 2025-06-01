@@ -1,91 +1,142 @@
 /*
- * Empty Stylesheet file.
+ * Modern, blue-themed style for TraitementView using only shades of #0077b6
  */
 
 .mainFxmlClass {
-
+    -fx-background-color: linear-gradient(to bottom, #eaf6fb 0%, #c6e6fa 100%);
 }
 
-/* Main container for TraitementView */
-#traitementBodyVBox, #prescriptionBodyVBox{
-    -fx-background-color: #f1f9ff;
-    -fx-padding: 24 32 24 32;
+#traitementBodyVBox, #prescriptionBodyVBox {
+    -fx-background-color: #ffffff;
+    -fx-padding: 32 40 32 40;
+    -fx-background-radius: 18;
+    -fx-effect: dropshadow(gaussian, #0077b633, 12, 0.18, 0, 4);
+    -fx-spacing: 24;
 }
 
 #titleLabel {
     -fx-font-size: 26px;
     -fx-font-weight: bold;
-    -fx-text-fill: #1b7895;
+    -fx-text-fill: #005f87;
     -fx-padding: 12 0 0 0;
 }
 
 #detailsLabel, #prescriptionDetailsLabel {
-    -fx-text-fill: #1b7895;
-    -fx-font-size: 20px;
+    -fx-text-fill: #0077b6;
+    -fx-font-size: 22px;
     -fx-font-weight: bold;
-    -fx-padding: 0 0 12 0;
+    -fx-padding: 0 0 18 0;
 }
 
-#traitementGrid {
-    -fx-hgap: 10;
-    -fx-vgap: 7;
+#traitementGrid, #prescriptionTraitementGrid {
+    -fx-hgap: 14;
+    -fx-vgap: 10;
 }
 
-#traitementGrid Label {
+#traitementGrid Label, #prescriptionTraitementGrid Label {
     -fx-font-weight: bold;
-    -fx-font-size: 14px;
+    -fx-font-size: 15px;
+    -fx-text-fill: #005f87;
 }
 
 #traitementGrid TextField,
-#traitementGrid DatePicker {
-    -fx-background-color: white;
+#traitementGrid DatePicker,
+#traitementGrid ChoiceBox,
+#traitementGrid TextArea,
+#prescriptionTraitementGrid TextField,
+#prescriptionTraitementGrid TextArea {
+    -fx-background-color: #e0f3fa;
     -fx-background-radius: 10;
     -fx-border-radius: 10;
-    -fx-border-color: #1b7895;
-    -fx-padding: 4 8 4 8;
-    -fx-font-size: 13px;
+    -fx-border-color: #0077b6;
+    -fx-padding: 6 10 6 10;
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow(gaussian, #0077b611, 2, 0.08, 0, 1);
 }
 
 #traitementGrid TextField:focused,
-#traitementGrid DatePicker:focused {
-    -fx-border-color: #15677d;
+#traitementGrid DatePicker:focused,
+#traitementGrid ChoiceBox:focused,
+#traitementGrid TextArea:focused,
+#prescriptionTraitementGrid TextField:focused,
+#prescriptionTraitementGrid TextArea:focused {
+    -fx-border-color: #005f87;
 }
 
-#statusCheckBox {
-    -fx-font-weight: bold;
-    -fx-font-size: 13px;
-    -fx-text-fill: #1b7895;
+#traitementGrid RadioButton,
+#traitementGrid Label,
+#prescriptionTraitementGrid Label {
+    -fx-font-size: 14px;
+}
+
+#traitementGrid RadioButton {
+    -fx-text-fill: #0077b6;
+    -fx-font-weight: normal;
+}
+
+#traitementGrid RadioButton:selected {
+    -fx-text-fill: #00334a;
 }
 
 #enregistrerButton {
-    -fx-background-color: #1b7895;
+    -fx-background-color: linear-gradient(to right, #0077b6, #005f87);
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-background-radius: 10;
-    -fx-padding: 10 32 10 32;
+    -fx-background-radius: 12;
+    -fx-padding: 12 36 12 36;
     -fx-cursor: hand;
-    -fx-font-size: 16px;
-    -fx-effect: dropshadow(gaussian, #b3e0ff, 4, 0.2, 0, 2);
-    -fx-border-color: #1b7895;
-    -fx-border-radius: 10;
-    -fx-border-width: 1;
-    -fx-margin-top: 18;
-    -fx-margin-bottom: 8;
+    -fx-font-size: 17px;
+    -fx-effect: dropshadow(gaussian, #0077b633, 6, 0.18, 0, 2);
+    -fx-border-color: #0077b6;
+    -fx-border-radius: 12;
+    -fx-border-width: 1.5;
 }
 #enregistrerButton:hover {
-    -fx-background-color: #15677d;
+    -fx-background-color: linear-gradient(to right, #005f87, #00334a);
 }
 
 #statusChoiceBox {
-    -fx-background-color: white;
-    -fx-border-color: #1b7895;
+    -fx-background-color: #e0f3fa;
+    -fx-border-color: #0077b6;
     -fx-border-radius: 10;
     -fx-background-radius: 10;
-    -fx-font-size: 14px;
-    -fx-text-fill: #1b7895;
-    -fx-padding: 4 8 4 8;
+    -fx-font-size: 15px;
+    -fx-text-fill: #005f87;
+    -fx-padding: 6 10 6 10;
     -fx-cursor: hand;
 }
 #statusChoiceBox:focused {
-    -fx-border-color: #15677d;
+    -fx-border-color: #005f87;
+}
+
+/* ScrollPane styling */
+.scroll-pane {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+/* Patient and Appointment selection buttons */
+#patientIdField, #appointmentIdField {
+    -fx-background-color: linear-gradient(to right, #0077b6, #005f87);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-padding: 7 20 7 20;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow(gaussian, #0077b622, 2, 0.10, 0, 1);
+    -fx-border-color: #0077b6;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+}
+#patientIdField:hover, #appointmentIdField:hover {
+    -fx-background-color: linear-gradient(to right, #005f87, #00334a);
+}
+
+/* Label for patient/appointment selection */
+#patientSelectionLabel, #appointmentSelectionLabel {
+    -fx-text-fill: #005f87;
+    -fx-font-size: 13px;
+    -fx-font-weight: normal;
 }
