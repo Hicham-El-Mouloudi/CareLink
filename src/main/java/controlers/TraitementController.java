@@ -50,9 +50,9 @@ public class TraitementController implements Initializable {
     @FXML
     private GridPane traitementGrid;
     @FXML
-    private DatePicker datePicker;
+    private DatePicker datePicker;    
     @FXML
-    private TextField typeField;
+    private ChoiceBox<String> typeChoiceBox;
     @FXML
     private TextField descriptionField;
     @FXML
@@ -133,14 +133,27 @@ public class TraitementController implements Initializable {
     }
     /**
      * Initializes the controller class.
-     */
+     */    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // 
+        //
         if (statusChoiceBox != null) {
             statusChoiceBox.getItems().addAll("En Cours", "Finie", "arrêté");
             statusChoiceBox.getSelectionModel().selectFirst();
         }
+        
+        // Initialize type choices
+        if (typeChoiceBox != null) {
+            typeChoiceBox.getItems().addAll(
+                "Consultation",
+                "Chirurgie",
+                "Thérapie",
+                "Suivi",
+                "Autre"
+            );
+            typeChoiceBox.getSelectionModel().selectFirst();
+        }
+        
         followUpGroup = new ToggleGroup();
         if (followUpYesRadio != null && followUpNoRadio != null) {
             followUpYesRadio.setToggleGroup(followUpGroup);
@@ -230,8 +243,8 @@ public class TraitementController implements Initializable {
             raisonField.getText(),
             followUpYesRadio.isSelected(),
             nextAppointmentId,
-            statusChoiceBox.getValue(),
-            typeField.getText(),
+            statusChoiceBox.getValue(),            
+            typeChoiceBox.getValue(),
             patientId,
             0,
             prescriptionID
@@ -251,9 +264,9 @@ public class TraitementController implements Initializable {
         needForPatientAlert.setTitle("Traitement enregistré");
         needForPatientAlert.setContentText("Le traitement a été enregistré avec succès.");
         needForPatientAlert.showAndWait();
-        // Clearing Fields
+        // Clearing Fields        
         datePicker.setValue(null);
-        typeField.clear();
+        typeChoiceBox.getSelectionModel().selectFirst();
         descriptionField.clear();
         notesField.clear();
         raisonField.clear();

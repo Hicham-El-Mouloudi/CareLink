@@ -77,25 +77,26 @@ public class EditTraitementController implements Initializable {
         this.selectedTraitement = traitement;
         
         if (traitement != null) {
-            // Set Title
-            titleLabel.setText("Modification Traitement Pour : " + patientPersonDAO.getPatientPersonByID(traitement.getPatientId()).getFullName());
-            // Set date
-            datePicker.setValue(traitement.getDate());
-            
-            // Set type and status in choice boxes
-            typeChoiceBox.setValue(traitement.getType());
-            statusChoiceBox.setValue(traitement.getStatus());
-            
-            // Set text fields
-            descriptionField.setText(traitement.getDescription());
-            notesField.setText(traitement.getNotesObservation());
-            raisonField.setText(traitement.getRaisonForTraitement());
-            
-            // Set follow up radio buttons
-            if (traitement.isFollowUpRequired()) {
-                followUpYesRadio.setSelected(true);
-            } else {
-                followUpNoRadio.setSelected(true);
+        // Set Title
+        titleLabel.setText("Modification Traitement Pour : "
+                + patientPersonDAO.getPatientPersonByID(traitement.getPatientId()).getFullName());
+        // Set date
+        datePicker.setValue(traitement.getDate());
+
+        // Set type and status in choice boxes
+        typeChoiceBox.setValue(traitement.getType());
+        statusChoiceBox.setValue(traitement.getStatus());
+
+        // Set text fields
+        descriptionField.setText(traitement.getDescription());
+        notesField.setText(traitement.getNotesObservation());
+        raisonField.setText(traitement.getRaisonForTraitement());
+
+        // Set follow up radio buttons
+        if (traitement.isFollowUpRequired()) {
+            followUpYesRadio.setSelected(true);
+        } else {
+            followUpNoRadio.setSelected(true);
             }
         }
     }
@@ -107,19 +108,14 @@ public class EditTraitementController implements Initializable {
         // Initialize type choices
         typeChoiceBox.getItems().addAll(
             "Consultation",
-            "Surgery",
-            "Therapy",
-            "Follow-up",
-            "Other"
+            "Chirurgie",
+            "Thérapie",
+            "Suivi",
+            "Autre"
         );
         
         // Initialize status choices
-        statusChoiceBox.getItems().addAll(
-            "Pending",
-            "In Progress",
-            "Completed",
-            "Cancelled"
-        );
+        statusChoiceBox.getItems().addAll("En Cours", "Finie", "arrêté");
     }    
 
     @FXML
