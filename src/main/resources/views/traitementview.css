@@ -7,7 +7,7 @@
 }
 
 /* Main container for TraitementView */
-#traitementBodyVBox {
+#traitementBodyVBox, #prescriptionBodyVBox{
     -fx-background-color: #f1f9ff;
     -fx-padding: 24 32 24 32;
 }
@@ -19,7 +19,7 @@
     -fx-padding: 12 0 0 0;
 }
 
-#detailsLabel {
+#detailsLabel, #prescriptionDetailsLabel {
     -fx-text-fill: #1b7895;
     -fx-font-size: 20px;
     -fx-font-weight: bold;

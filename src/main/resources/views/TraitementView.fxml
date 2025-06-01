@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.TraitementController">
+<BorderPane fx:id="traitementsView" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="controlers.TraitementController">
     <center>
         <VBox alignment="CENTER" fillWidth="true" spacing="20" styleClass="mainFxmlClass" stylesheets="@traitementview.css">
             <ScrollPane fx:id="traitementScrollPane" fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">
                 <content>
                     <VBox alignment="CENTER" fillWidth="true">
                         <VBox fx:id="traitementBodyVBox" alignment="TOP_CENTER" fillWidth="false" maxWidth="900" minWidth="400" spacing="20" VBox.vgrow="ALWAYS">
-                            <Label fx:id="detailsLabel" text="Ajout de traitements" />
-                            <GridPane fx:id="traitementGrid" alignment="CENTER" hgap="10" maxWidth="800" minWidth="300" vgap="7" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                            <Label fx:id="detailsLabel" text="Nouveau Traitement" />
+                            <GridPane fx:id="traitementGrid" alignment="CENTER" hgap="10" maxWidth="800" minWidth="200" vgap="7" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
                                 <columnConstraints>
                                     <ColumnConstraints hgrow="ALWAYS" maxWidth="400" minWidth="100" />
                                     <ColumnConstraints hgrow="ALWAYS" maxWidth="400" minWidth="100" />
@@ -27,45 +42,68 @@
                                     <RowConstraints maxHeight="60" minHeight="30" vgrow="ALWAYS" />
                                     <RowConstraints maxHeight="60" minHeight="30" vgrow="ALWAYS" />
                                     <RowConstraints maxHeight="60" minHeight="30" vgrow="ALWAYS" />
+                                </rowConstraints>
+                                <children>
+                                    <Label text="Date" GridPane.rowIndex="0" />
+                                    <DatePicker fx:id="datePicker" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                    <Label text="Type" GridPane.rowIndex="1" />
+                                    <TextField fx:id="typeField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label text="Status" GridPane.rowIndex="2" />
+                                    <ChoiceBox fx:id="statusChoiceBox" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label text="Description" GridPane.rowIndex="3" />
+                                    <TextField fx:id="descriptionField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Label text="Notes" GridPane.rowIndex="4" />
+                                    <TextArea fx:id="notesField" prefRowCount="3" GridPane.columnIndex="1" GridPane.rowIndex="4" VBox.vgrow="ALWAYS" />
+                                    <Label text="Raison For Traitment" GridPane.rowIndex="5" />
+                                    <TextField fx:id="raisonField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <Label text="Follow Up Required" GridPane.rowIndex="6" />
+                                    <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                        <RadioButton fx:id="followUpYesRadio" text="Oui">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="followUpGroup" />
+                                 </toggleGroup></RadioButton>
+                                        <RadioButton fx:id="followUpNoRadio" text="Non" toggleGroup="$followUpGroup" />
+                                    </HBox>
+                                    <Label text="Patient " GridPane.rowIndex="7" />
+                                    <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                        <Label fx:id="patientSelectionLabel" text="Choisissez Le Patient Concerné" />
+                                        <Button fx:id="patientIdField" onAction="#openPatientChoice" text="Choisir Un Patient" />
+                                    </HBox>
+                                    <Label text="Rendez-vous" GridPane.rowIndex="8" />
+                                    <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                                        <Label fx:id="appointmentSelectionLabel" text="Choisissez Le Rendez-vous" />
+                                        <Button fx:id="appointmentIdField" onAction="#openAppointmentChoice" text="Choisir Un Rendez-vous" />
+                                    </HBox>
+                                </children>
+                            </GridPane>
+                        </VBox>
+                        <VBox fx:id="prescriptionBodyVBox" alignment="TOP_CENTER" fillWidth="false" maxWidth="900" minWidth="400" spacing="20" VBox.vgrow="ALWAYS">
+                            <Label fx:id="prescriptionDetailsLabel" text=" Prescription " />
+                            <GridPane id="traitementGrid" fx:id="prescriptionTraitementGrid" alignment="CENTER" hgap="10" maxWidth="800" minWidth="300" vgap="7" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                                <columnConstraints>
+                                    <ColumnConstraints hgrow="ALWAYS" maxWidth="400" minWidth="100" />
+                                    <ColumnConstraints hgrow="ALWAYS" maxWidth="400" minWidth="100" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                    <RowConstraints maxHeight="60" minHeight="30" vgrow="ALWAYS" />
                                     <RowConstraints maxHeight="60" minHeight="30" vgrow="ALWAYS" />
                                     <RowConstraints maxHeight="60" minHeight="30" vgrow="ALWAYS" />
                                     <RowConstraints maxHeight="60" minHeight="30" vgrow="ALWAYS" />
                                 </rowConstraints>
                                 <children>
-                                    <Label text="ID" GridPane.rowIndex="0" />
-                                    <TextField fx:id="idField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                                    <Label text="Date" GridPane.rowIndex="1" />
-                                    <DatePicker fx:id="datePicker" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Label text="Type" GridPane.rowIndex="2" />
-                                    <TextField fx:id="typeField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <Label text="Status" GridPane.rowIndex="3" />
-                                    <ChoiceBox fx:id="statusChoiceBox" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <Label text="Description" GridPane.rowIndex="4" />
-                                    <TextField fx:id="descriptionField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <Label text="Notes" GridPane.rowIndex="5" />
-                                    <TextField fx:id="notesField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                    <Label text="Raison For Traitment" GridPane.rowIndex="6" />
-                                    <TextField fx:id="raisonField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                    <Label text="Follow Up Required" GridPane.rowIndex="7" />
-                                    <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                                        <RadioButton fx:id="followUpYesRadio" text="Oui" toggleGroup="$followUpGroup" />
-                                        <RadioButton fx:id="followUpNoRadio" text="Non" toggleGroup="$followUpGroup" />
-                                    </HBox>
-                                    <Label text="Next Appointement ID" GridPane.rowIndex="8" />
-                                    <TextField fx:id="nextAppointmentField" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                                    <Label text="Patient ID" GridPane.rowIndex="9" />
-                                    <TextField fx:id="patientIdField" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                                    <Label text="Doctor ID" GridPane.rowIndex="10" />
-                                    <TextField fx:id="doctorIdField" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                                    <Label text="Prescription ID" GridPane.rowIndex="11" />
-                                    <TextField fx:id="prescriptionIdField" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-                                    <Label text="Medical Record ID" GridPane.rowIndex="12" />
-                                    <TextField fx:id="medicalRecordIdField" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                                    <Label text="Dosage Et Intructions" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                                    <TextArea fx:id="prescriptionDosageInstructionField" prefRowCount="2" GridPane.columnIndex="1" GridPane.rowIndex="0" VBox.vgrow="ALWAYS" />
+                                    <Label text="Duration" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                    <TextField fx:id="prescriptionDurationField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label text="Name" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                                    <TextField fx:id="prescriptionNameField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label text="Notes" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                                    <TextArea fx:id="prescriptionNotesField" prefRowCount="2" GridPane.columnIndex="1" GridPane.rowIndex="3" VBox.vgrow="ALWAYS" />
                                 </children>
                             </GridPane>
                             <HBox alignment="BOTTOM_RIGHT" HBox.hgrow="ALWAYS">
                                 <Region HBox.hgrow="ALWAYS" />
-                                <Button fx:id="enregistrerButton" text="Enregistrer" textAlignment="RIGHT" />
+                                <Button fx:id="enregistrerButton" onAction="#enregistrerTraitement" text="Enregistrer" textAlignment="RIGHT" />
                             </HBox>
                         </VBox>
                     </VBox>
@@ -73,7 +111,4 @@
             </ScrollPane>
         </VBox>
     </center>
-    <right>
-        <VBox fx:id="choosePatientPane"/>
-    </right>
 </BorderPane>

@@ -1,5 +1,6 @@
 package models;
 
+import java.sql.SQLException;
 import java.util.*;
 
 /**
@@ -12,12 +13,15 @@ public class PatientPersonDAO {
     public PatientPersonDAO() {
         this.patientDAO = new PatientDAO();
         this.personDAO = new PersonDAO();
-    }    public List<PatientPerson> getAllPatientPersons() {
+    }
+
+    public List<PatientPerson> getAllPatientPersons() {
         try {
             List<Patient> patients = patientDAO.getAllPatients();
             List<PatientPerson> result = new ArrayList<>();
+            Person person;
             for (Patient patient : patients) {
-                Person person = personDAO.getPersonById(patient.getPersonId());
+                person = personDAO.getPersonById(patient.getPersonId());
                 if (person != null) {
                     result.add(new PatientPerson(
                         patient.getId(),
@@ -30,9 +34,31 @@ public class PatientPersonDAO {
                 }
             }
             return result;
-        } catch (Exception e) {
+        } catch(Exception e) {
+            // 
+            System.err.println("PatientPersonDAO : Error while exicuting 'getAllPatientPersons()'");
             e.printStackTrace();
-            return new ArrayList<>(); // Return empty list in case of error
+            return new ArrayList<>();
+        }
+    }
+    public PatientPerson getPatientPersonByID(int id) {
+        try {
+            Patient patient = patientDAO.getPatientById(id);
+            Person person = personDAO.getPersonById(patient.getPersonId());
+            PatientPerson patientPerson = new PatientPerson(
+                        patient.getId(),
+                        person.getEmail(),
+                        person.getFullName(),
+                        calculateAge(person.getDateOfBirth()),
+                        person.getGender(),
+                        patient.getMedicalConditions()
+                    );
+            return patientPerson;
+        } catch(Exception e) {
+            // 
+            System.err.println("PatientPersonDAO : Error while exicuting 'getPatientPersonByID()'");
+            e.printStackTrace();
+            return new PatientPerson();
         }
     }
 
@@ -46,7 +72,9 @@ public class PatientPersonDAO {
             age--;
         }
         return age;
-    }    public boolean deletePatientPerson(PatientPerson patientPerson) {
+    }
+
+    public boolean deletePatientPerson(PatientPerson patientPerson) {
         try {
             // Delete from Patient first (foreign key constraint)
             boolean patientDeleted = patientDAO.deletePatient(patientPerson.getId());
@@ -54,31 +82,10 @@ public class PatientPersonDAO {
             boolean personDeleted = personDAO.deletePerson(patientPerson.getId());
             return patientDeleted && personDeleted;
         } catch (Exception e) {
+            System.err.println("PatientPersonDAO : Error while exicuting 'deletePatientPerson()'");
             e.printStackTrace();
             return false;
         }
-    }
-
-    public PatientPerson getPatientPersonById(int id) {
-        try {
-            Patient patient = patientDAO.getPatientById(id);
-            if (patient != null) {
-                Person person = personDAO.getPersonById(patient.getPersonId());
-                if (person != null) {
-                    return new PatientPerson(
-                        patient.getId(),
-                        person.getEmail(),
-                        person.getFullName(),
-                        calculateAge(person.getDateOfBirth()),
-                        person.getGender(),
-                        patient.getMedicalConditions()
-                    );
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("PatientPersonDAO : Error while calling 'getPatientPersonById'");
-        }
-        return null;
     }
 
     /**

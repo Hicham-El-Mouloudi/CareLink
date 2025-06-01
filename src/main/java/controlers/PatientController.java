@@ -100,6 +100,8 @@ public class PatientController implements Initializable {
             "By Sex",
             "By Traitements (Treatments)"
         );
+        
+        // Default to first option
         filterChoiceBox.getSelectionModel().selectFirst();
 
         // Set up search button action

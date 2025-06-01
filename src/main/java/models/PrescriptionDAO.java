@@ -5,6 +5,7 @@
 package models;
 
 import java.sql.*;
+import java.sql.Date;
 import java.util.*;
 
 import credentials.DBCredentials;
@@ -32,11 +33,26 @@ public class PrescriptionDAO {
         }
         return list;
     }
-    public void insertPrescription(Prescription p) throws SQLException {
-        String query = "INSERT INTO Prescription(Date, DoctorID) VALUES (?, ?)";
-        PreparedStatement ps = connectionToDB.prepareStatement(query);
-        ps.setDate(1, new java.sql.Date(p.getDate().getTime()));
-        ps.setInt(2, p.getDoctorId());
-        ps.executeUpdate();
+    public int insertPrescription(Prescription p){
+        try {
+            String query = "INSERT INTO Prescription(Date, DoctorID) VALUES (?, ?)";
+            PreparedStatement ps = connectionToDB.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setDate(1, new java.sql.Date(p.getDate().getTime()));
+            ps.setInt(2, p.getDoctorId());
+            ps.executeUpdate();
+            ResultSet result = ps.getGeneratedKeys();
+            // Getting the ID of the prescription just saved
+            if (result.next()) {
+                return result.getInt(1);
+            }
+            else {
+                throw new SQLException("PrescriptionDAO : Inserting prescription failed, no ID obtained.");
+            }
+        }catch(SQLException e) {
+            // 
+            System.err.println("PrescriptionDAO : Error executing insertPrescription function");
+            e.printStackTrace();
+            return -1;
+        }
     }
 }
