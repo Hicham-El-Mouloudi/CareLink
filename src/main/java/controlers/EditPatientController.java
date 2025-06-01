@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -23,6 +24,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -99,6 +101,8 @@ public class EditPatientController implements Initializable {
     @FXML
     private TableColumn<Traitement, String> traitementStatus;
     @FXML
+    private TableColumn<Traitement, Void> actionsColumn;
+    @FXML
     private Label rendezVousLabel;
     @FXML
     private ScrollPane rendezVousScrollPane;
@@ -118,6 +122,7 @@ public class EditPatientController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         traitementTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         rendezVousTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        setupActionsColumn();
     }
     public void setPatient(Patient patient) {
         this.patient = patient;
@@ -254,5 +259,50 @@ public class EditPatientController implements Initializable {
     private void closeWindow() {
         Stage stage = (Stage) saveButton.getScene().getWindow();
         stage.close();
+    }
+
+    private void setupActionsColumn() {
+        actionsColumn.setCellFactory(column -> new TableCell<Traitement, Void>() {
+            private final Button modifyButton = new Button("Modify");
+
+            {
+                modifyButton.setOnAction(event -> {
+                    Traitement traitement = getTableView().getItems().get(getIndex());
+                    openModifyTraitement(traitement);
+                });
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(modifyButton);
+                }
+            }
+        });
+    }
+
+    private void openModifyTraitement(Traitement traitement) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/EditTraitementView.fxml"));
+            Parent root = loader.load();
+            
+            EditTraitementController controller = loader.getController();
+            controller.setSelectedTraitement(traitement);
+            
+            Stage stage = new Stage();
+            stage.setMinHeight(600);
+            stage.setMaxHeight(600);
+            stage.setMaxWidth(400);
+            stage.setMinWidth(400);
+            stage.setTitle("Modifier Traitement");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("EditPatientController : Error loading  /views/EditTraitementView.fxml");
+        }
     }
 }

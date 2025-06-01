@@ -4,13 +4,15 @@
  */
 package models;
 
+import java.sql.Date;
+
 /**
  *
  * @author lenovo
  */
 public class Traitement {
     private int id;
-    private java.util.Date date;
+    private Date date;
     private String description;
     private String notesObservation;
     private String raisonForTraitement;
@@ -23,7 +25,7 @@ public class Traitement {
     private int prescriptionId;
     private int medicalRecordId;
 
-    public Traitement(int id, java.util.Date date, String description, String notesObservation, String raisonForTraitement, boolean followUpRequired, int nextAppoinementId, String status, String type, int patientId, int doctorId, int prescriptionId, int medicalRecordId) {
+    public Traitement(int id, Date date, String description, String notesObservation, String raisonForTraitement, boolean followUpRequired, int nextAppoinementId, String status, String type, int patientId, int doctorId, int prescriptionId, int medicalRecordId) {
         this.id = id;
         this.date = date;
         this.description = description;
@@ -38,7 +40,7 @@ public class Traitement {
         this.prescriptionId = prescriptionId;
         this.medicalRecordId = medicalRecordId;
     }
-    public Traitement(java.util.Date date, String description, String notesObservation, String raisonForTraitement, boolean followUpRequired, int nextAppoinementId, String status, String type, int patientId, int doctorId, int prescriptionId, int medicalRecordId) {
+    public Traitement(Date date, String description, String notesObservation, String raisonForTraitement, boolean followUpRequired, int nextAppoinementId, String status, String type, int patientId, int doctorId, int prescriptionId, int medicalRecordId) {
         this.date = date;
         this.description = description;
         this.notesObservation = notesObservation;
@@ -54,8 +56,8 @@ public class Traitement {
     }
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
-    public java.util.Date getDate() { return date; }
-    public void setDate(java.util.Date date) { this.date = date; }
+    public Date getDate() { return date; }
+    public void setDate(Date date) { this.date = date; }
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
     public String getNotesObservation() { return notesObservation; }
