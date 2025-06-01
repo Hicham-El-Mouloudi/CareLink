@@ -1,0 +1,56 @@
+/* styles.css */
+
+.root {
+    -fx-font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    -fx-font-size: 14px;
+    -fx-background-color: #f5f7fa;
+}
+
+.label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+}
+
+.titled-pane > .title {
+    -fx-background-color: #4a90e2;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 5 10 5 10;
+}
+
+.titled-pane > .content {
+    -fx-background-color: white;
+    -fx-padding: 15;
+    -fx-border-color: #ddd;
+    -fx-border-width: 1;
+    -fx-border-radius: 4;
+}
+
+.text-field, .password-field, .date-picker {
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-border-color: #ccc;
+    -fx-padding: 6 8 6 8;
+}
+
+.text-field:focused, .password-field:focused, .date-picker:focused {
+    -fx-border-color: #4a90e2;
+    -fx-effect: dropshadow(gaussian, #4a90e2, 5, 0.3, 0, 0);
+}
+
+.button {
+    -fx-background-color: #4a90e2;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 4;
+    -fx-padding: 8 15 8 15;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #357abd;
+}
+
+.radio-button {
+    -fx-padding: 0 10 0 0;
+}

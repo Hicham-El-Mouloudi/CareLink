@@ -1,0 +1,49 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+
+#addPatientBodyVBox {
+    -fx-background-color: #f1f9ff;
+    -fx-padding: 20;
+    -fx-spacing: 15;
+}
+
+#headerHBox {
+    -fx-spacing: 10;
+    -fx-alignment: center;
+}
+
+#formVBox {
+    -fx-spacing: 10;
+    -fx-padding: 0 10 0 10;
+}
+
+#formGridPane {
+    -fx-vgap: 10;
+}
+
+#sexHBox {
+    -fx-alignment: center;
+    -fx-spacing: 10;
+}
+
+#footerHBox {
+    -fx-spacing: 10;
+    -fx-alignment: center-right;
+    -fx-padding: 10;
+}
+
+#saveButton {
+    -fx-background-color: #1b7895;
+    -fx-text-fill: white;
+    -fx-background-radius: 10;
+}
+
+#cancelButton {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+}

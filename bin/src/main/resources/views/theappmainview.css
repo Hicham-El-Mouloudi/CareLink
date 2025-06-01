@@ -1,0 +1,43 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+
+/* Menu bar styling for TheAppMainView */
+
+/* Top menu bar background */
+#menuBar, .top-bar, .HBox#menuBar {
+    -fx-background-color: #1b7895;
+}
+
+/* Menu bar buttons */
+#AccueilButton, #PatientsButton, #RendezVousButton, #TraitementsButton, #AideButton, #UserButton {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-border-width: 0;
+    -fx-cursor: hand;
+}
+.menuButtons:pressed {
+    -fx-background-color: #f1f9ff;
+    -fx-text-fill: #1b7895;
+    -fx-background-radius: 0;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-border-width: 0;
+    -fx-cursor: hand;
+}
+#UserButton {
+    -fx-pref-height: 25px;
+    -fx-pref-width: 56px;
+}
+
+/* Optional: Add hover effect for menu buttons */
+#AccueilButton:hover, #PatientsButton:hover, #RendezVousButton:hover, #TraitementsButton:hover, #AideButton:hover, #UserButton:hover {
+    -fx-background-color: #15708a;
+}
+

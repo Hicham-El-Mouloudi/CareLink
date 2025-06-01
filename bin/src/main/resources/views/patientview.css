@@ -1,0 +1,78 @@
+/* PatientView body background */
+#bodyVBox {
+    -fx-background-color: #f1f9ff;
+}
+
+/* Search bar container */
+#searchBarHBox {
+    -fx-padding: 5;
+}
+
+/* BorderPane in search bar */
+#searchBarBorderPane {
+    /* No specific style needed, but you can add spacing if desired */
+}
+
+/* Filter section */
+#filterHBox {
+    -fx-alignment: center;
+    -fx-spacing: 10;
+}
+#filterLabel {
+    -fx-text-fill: #1b7895;
+}
+#filterChoiceBox {
+    -fx-border-color: #1b7895;
+    -fx-background-color: white;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+/* Search field section */
+#searchFieldHBox {
+    -fx-border-color: #1b7895;
+    -fx-background-color: white;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-alignment: center;
+}
+#searchField {
+    -fx-background-color: white;
+    -fx-border-color: transparent;
+    -fx-background-radius: 10;
+}
+#searchButton {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+/* Table section */
+#tableScrollPane {
+    -fx-background-color: white;
+}
+#patientsTable {
+    -fx-background-color: white;
+}
+#patientsTable .column-header {
+    -fx-background-color: #1b7895;
+    -fx-text-fill: white;
+}
+
+/* Add Patient button */
+#addPatientButton {
+    -fx-background-color: #1b7895;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 8 20 8 20;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow(gaussian, #b3e0ff, 4, 0.2, 0, 2);
+    -fx-border-color: #1b7895;
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
+    -fx-margin-left: 10;
+}
+#addPatientButton:hover {
+    -fx-background-color: #15677d;
+}

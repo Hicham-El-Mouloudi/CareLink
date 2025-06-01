@@ -18,8 +18,9 @@ public class App extends Application {
     private static Scene scene;
 
     @Override
-    public void start(@SuppressWarnings("exports") Stage stage) throws IOException {
-        scene = new Scene(loadFXML("/views/TheAppMainView"),950,600);
+    public void start(Stage stage) throws IOException {
+        scene = new Scene(loadFXML("/views/LogIn"), 640, 480);
+        ///views/TheAppMainView
         stage.setTitle("CareLink");
         stage.setMinHeight(600);
         stage.setMinWidth(950);
