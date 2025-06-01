@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import models.Appointment;
 
 import java.io.IOException;
 import java.util.Date;
@@ -34,7 +35,7 @@ public class AddAppointmentController {
     @FXML private Button saveButton;
     @FXML private Button cancelButton;
 
-    private models.Appointment appointment;
+    private models.Appointment appointment = new Appointment();
     private models.AppointmentDAO dao = new models.AppointmentDAO();
     @FXML
     public void initialize() {
@@ -46,7 +47,7 @@ public class AddAppointmentController {
                 LocalDate date = datePicker.getValue();
                 LocalTime time = LocalTime.parse(timeField.getText(), DateTimeFormatter.ofPattern("HH:mm"));
                 Date newDate = java.util.Date.from(date.atTime(time).atZone(java.time.ZoneId.systemDefault()).toInstant());
-
+                
                 appointment.setDateTime(newDate);
                 appointment.setReasonToVisit(reasonField.getText());
                 appointment.setStatus(statusField.getText());
