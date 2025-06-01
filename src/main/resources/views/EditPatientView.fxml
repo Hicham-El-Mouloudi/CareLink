@@ -62,6 +62,7 @@
                                 <TableColumn fx:id="traitementDescColumn" text="Description" />
                                 <TableColumn fx:id="traitementStartColumn" text="Date Debut" />
                                 <TableColumn fx:id="traitementStatus" text="Status" />
+                                <TableColumn fx:id="actionsColumn" text=""/>
                             </columns>
                         </TableView>
                     </content>

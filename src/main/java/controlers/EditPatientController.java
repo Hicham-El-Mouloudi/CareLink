@@ -1,6 +1,7 @@
 package controlers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -8,6 +9,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -119,6 +121,7 @@ public class EditPatientController implements Initializable {
     }
     public void setPatient(Patient patient) {
         this.patient = patient;
+        System.out.println("EditPatientController : The selected Patient : " + patient.getId());
         if (patient != null) {
             try {
                 // Load the associated Person
@@ -167,13 +170,13 @@ public class EditPatientController implements Initializable {
                     traitements.add(t);
                 }
             }
+            traitementListLabel.setText("List des Traitements : (" + traitements.size() + ")");
             // Set up columns if not already set
             if (traitementIdColumn != null) traitementIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
             if (traitementDescColumn != null) traitementDescColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
             if (traitementStartColumn != null) traitementStartColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
             if (traitementStatus != null) traitementStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
             if (traitementTableView != null) traitementTableView.setItems(traitements);
-            if (traitementListLabel != null) traitementListLabel.setText("List des Traitements : (" + traitements.size() + ")");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -198,15 +201,41 @@ public class EditPatientController implements Initializable {
         }
     }
 
-    @FXML
+    /**
+     * Calculate date of birth from age
+     * @param age The age in years
+     * @return Date object representing the date of birth
+     */
+    private java.util.Date calculateDateOfBirth(int age) {
+        java.util.Calendar calendar = java.util.Calendar.getInstance();
+        calendar.add(java.util.Calendar.YEAR, -age);  // Subtract age from current date
+        return calendar.getTime();
+    }    @FXML
     private void handleSave() {
         if (patient != null && person != null) {
             person.setFullName(fullNameField.getText());
+            System.out.println("EditPatientController : saving person name : " + fullNameField.getText());
             person.setEmail(emailField.getText());
+            System.out.println("EditPatientController : saving person email : " + emailField.getText());
             person.setGender(hommeRadio.isSelected() ? "Male" : (femmeRadio.isSelected() ? "Female" : ""));
-            if (medicalRemarksField != null) {
-                patient.setMedicalConditions(medicalRemarksField.getText());
+            System.out.println("EditPatientController : saving person sex  : " + (hommeRadio.isSelected() ? "Male" : (femmeRadio.isSelected() ? "Female" : "")));
+              // Save age
+            try {
+                int age = Integer.parseInt(ageField.getText().trim());
+                java.util.Date dateOfBirth = calculateDateOfBirth(age);
+                person.setDateOfBirth(dateOfBirth);
+                System.out.println("EditPatientController : saving person age : " + age);
+            } catch (NumberFormatException e) {
+                System.out.println("EditPatientController : invalid age format");
+                Alert invalidAge = new Alert(AlertType.INFORMATION);
+                invalidAge.setTitle("Erreur de saisie");
+                invalidAge.setHeaderText(null);
+                invalidAge.setContentText("L'âge saisi est invalide. Veuillez entrer une valeur correcte.");
+                invalidAge.showAndWait();
             }
+            
+            patient.setMedicalConditions(medicalRemarksField.getText());
+            System.out.println("EditPatientController : saving patient medical conditions  : " + medicalRemarksField.getText());
             try {
                 patientDAO.updatePatient(patient);
                 personDAO.updatePerson(person);
