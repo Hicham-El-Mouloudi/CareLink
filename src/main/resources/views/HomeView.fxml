@@ -23,7 +23,7 @@
     <!-- Welcome Section -->
     <VBox alignment="CENTER" spacing="5">
         <Label text="Bienvenue !" style="-fx-font-size: 24px;" />
-        <Label text="Connecté en tant que: Médecin" />
+        <Label fx:id="currentDoctor" text="Connecté en tant que: Médecin" />
     </VBox>
 
     <!-- Stats Section -->

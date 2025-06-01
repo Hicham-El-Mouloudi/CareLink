@@ -103,7 +103,7 @@ public class DoctorDAO {
                 return new Doctor(
                     rs.getInt("id"),
                     rs.getString("Specialisation"),
-                    rs.getString("Certification"),
+                    rs.getString("CertificationCredentials"),
                     rs.getString("Schedule"),
                     rs.getString("Department"),
                     rs.getInt("PersonID")

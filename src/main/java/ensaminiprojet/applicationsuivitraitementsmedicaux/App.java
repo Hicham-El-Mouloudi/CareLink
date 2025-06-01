@@ -18,6 +18,14 @@ public class App extends Application {
 
     private static Scene scene;
     private static Stage theMainStage;
+    TheAppMainViewController controller;
+    // 
+    private int currentDoctorID = -1;
+    public void setCurrentDoctorID(int currentDoctorID) {
+        if (currentDoctorID != -1) {
+            controller.setCurrentDoctorID(currentDoctorID);
+        }
+    }
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -44,7 +52,11 @@ public class App extends Application {
             Scene newScene = new Scene(loader.load());
             if (fxmlPath == "/views/TheAppMainView.fxml") {
                 TheAppMainViewController controller = loader.getController();
+                this.controller = controller;
                 controller.setRootApp(this);
+                // setting up the current doctor ID that have just loged in
+                System.out.println("App : the current Doctor ID : " + currentDoctorID);
+                // controller.setCurrentDoctorID(currentDoctorID);
                 // controller.setDoctorID();
             } else if (fxmlPath == "/views/SignUpView.fxml") {
                 SignUpControler controller = loader.getController();

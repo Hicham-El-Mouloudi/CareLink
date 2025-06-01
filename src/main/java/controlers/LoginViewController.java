@@ -2,6 +2,7 @@ package controlers;
 
 
 import ensaminiprojet.applicationsuivitraitementsmedicaux.App;
+import models.*;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -51,9 +52,10 @@ public class LoginViewController  {
 	            	
 	            }
 	            
-	            
+	            System.out.println("HandleLoginAction : The Id found is : " + doctor.getId());
 	            // Successful LogIn -> Go to the main app
 				rootApp.continueToTheAppMainView();
+				rootApp.setCurrentDoctorID(doctor.getId());
 
 	            
 	            

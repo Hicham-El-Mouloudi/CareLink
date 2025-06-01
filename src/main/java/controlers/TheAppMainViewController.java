@@ -55,11 +55,15 @@ public class TheAppMainViewController implements Initializable {
     // non Fxml 
     private Popup userPopup;
 
-    // Doctor Id
-    private int doctorID;
-    // 
-    public void setDoctorID(int doctorID) {
-        this.doctorID = doctorID;
+    // The connected doctor
+    private int currentDoctorID = -1;
+    HomeController controller;
+    public void setCurrentDoctorID(int currentDoctorID) {
+        if (currentDoctorID != -1) {
+            this.currentDoctorID = currentDoctorID;
+            System.out.println("TheAppMainViewController : the current Coctor ID : " + currentDoctorID);
+            controller.setCurrentDoctorID(currentDoctorID);
+        }
     }
 
     // 
@@ -106,7 +110,12 @@ public class TheAppMainViewController implements Initializable {
     // navigate to home
     private void navigateToHome() {
         try {
-            Parent homeView = FXMLLoader.load(getClass().getResource("/views/HomeView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/HomeView.fxml"));
+            Parent homeView = loader.load();
+            System.out.println("TheAppMainViewController : loading the '/views/HomeView.fxml' ");
+            HomeController homeController = loader.getController();
+            this.controller = homeController;
+            // homeController.setCurrentDoctorID(currentDoctorID);
             mainView.setCenter(homeView);
         } catch (IOException e) {
             System.err.println("Error loading home view: " + e.getMessage() + "\n");
