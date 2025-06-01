@@ -5,9 +5,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DataAccessSettings {
-	   private static final String URL = "jdbc:mysql://localhost:3306/ApplicationDeSuiviDesTraitementsMedicaux";
-	    private static final String USER = "root";
-	    private static final String PASSWORD = "";
+		
+	   private static final String URL =credentials.DBCredentials.getCredentials().getURL();
+	    private static final String USER = credentials.DBCredentials.getCredentials().getuser();
+	    private static final String PASSWORD = credentials.DBCredentials.getCredentials().getPasswd();
 
 	    public static Connection getConnection() throws SQLException {
 	        return DriverManager.getConnection(URL, USER, PASSWORD);

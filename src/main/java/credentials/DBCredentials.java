@@ -25,6 +25,13 @@ public class DBCredentials {
     long port;
     String dbName;
     // 
+    public String getuser(){
+        return user;
+    }
+    public String getPasswd(){
+        return password;
+    }
+
     private static DBCredentials dbc;
     public DBCredentials(){
         user = "root";
@@ -34,7 +41,7 @@ public class DBCredentials {
         subProtocol = "mysql";
         host = "localhost";
         port = 3306;
-        dbName = "ApplicationDeSuiviDesTraitementsMedicaux";
+        dbName = "javafxdb";
     }
     // The core Credential Object
     static public DBCredentials getCredentials(){
@@ -60,7 +67,7 @@ public class DBCredentials {
     }
 
     // 
-    private String getURL() {
+    public String getURL() {
         return protocol + ":" + subProtocol + "://" + host + ":" + port + "/" + dbName ;
     }
     
