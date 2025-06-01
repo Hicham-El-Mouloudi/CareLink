@@ -107,7 +107,7 @@ public class TheAppMainViewController implements Initializable {
     // navigate to rendez-vous
     private void navigateToRendezVous() {
         try {
-            Parent rendezVousView = FXMLLoader.load(getClass().getResource("/views/RendezVousView.fxml"));
+            Parent rendezVousView = FXMLLoader.load(getClass().getResource("/views/RendezVous.fxml"));
             mainView.setCenter(rendezVousView);
         } catch (IOException e) {
             System.err.println("Error loading rendez-vous view: " + e.getMessage() + "\n");
@@ -140,7 +140,7 @@ public class TheAppMainViewController implements Initializable {
         }
     }
 
-    public void setBodyContent(Pane bodyContent) {
+    public void setBodyContent(@SuppressWarnings("exports") Pane bodyContent) {
         this.bodyContent = bodyContent;
     }
 }

@@ -25,8 +25,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.*;
 import javafx.stage.Stage;
 // custom classes
 import models.*;
@@ -80,6 +78,7 @@ public class PatientController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    @SuppressWarnings("deprecation")
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Set the column resize policy to avoid extra columns
