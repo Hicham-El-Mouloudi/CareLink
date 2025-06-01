@@ -6,110 +6,113 @@
 <?import java.lang.String?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.layout.HBox?>
-
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" prefWidth="600" prefHeight="750" stylesheets="@SignUp.css" fx:controller="controlers.SignUpControler">
-    
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controlers.SignUpControler"
+            stylesheets="@SignUp.css"
+            prefWidth="800" prefHeight="600"
+            styleClass="root">
+
     <fx:define>
- 		<ToggleGroup fx:id="genderToggleGroup" />
- 	</fx:define>
-    
-    <children>
-        <VBox spacing="15.0" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10">
-            <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
-            </padding>
+        <ToggleGroup fx:id="genderToggleGroup" />
+    </fx:define>
+
+    <center>
+        <HBox alignment="CENTER" >
             <children>
-
-                <Label text="Doctor Sign Up">
-                    <font>
-                        <Font name="Arial Bold" size="18" />
-                    </font>
-                </Label>
-
-                <!-- Personal Information -->
-                <TitledPane text="Personal Information" expanded="true">
+                <ScrollPane fitToWidth="true" >
                     <content>
-                        <GridPane hgap="10" vgap="10">
-                            <padding>
-                                <Insets top="10" right="10" bottom="10" left="10"/>
-                            </padding>
+                        <VBox prefWidth="600" spacing="15.0" fillWidth="true" styleClass="centered-form">
                             <children>
-                                <Label text="Full Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                                <TextField fx:id="txtFullName" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-                                <Label text="Email:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                                <TextField fx:id="txtEmail" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                                <Label text="Doctor Sign Up">
+                                    <font>
+                                        <Font name="Arial Bold" size="18" />
+                                    </font>
+                                </Label>
 
-                                <Label text="Gender:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                                
-                              
-                                <HBox spacing="10" GridPane.rowIndex="2" GridPane.columnIndex="1">
-								    <children>
-								        <RadioButton fx:id="maleRadio" text="Male" toggleGroup="$genderToggleGroup"/>
-								        <RadioButton fx:id="femaleRadio" text="Female" toggleGroup="$genderToggleGroup"/>
-								    </children>
-								      
-								</HBox>
+                                <!-- Personal Information -->
+                                <TitledPane text="Personal Information" expanded="true">
+                                    <content>
+                                        <GridPane hgap="10" vgap="10">
+                                            <padding>
+                                                <Insets top="10" right="10" bottom="10" left="10"/>
+                                            </padding>
+                                            <children>
+                                                <Label text="Full Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                                <TextField fx:id="txtFullName" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-                                <Label text="Date of Birth:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-                                <DatePicker fx:id="dpDOB" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                                                <Label text="Email:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                                                <TextField fx:id="txtEmail" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                                                <Label text="Gender:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                                                <HBox spacing="10" GridPane.rowIndex="2" GridPane.columnIndex="1">
+                                                    <children>
+                                                        <RadioButton fx:id="maleRadio" text="Male" toggleGroup="$genderToggleGroup"/>
+                                                        <RadioButton fx:id="femaleRadio" text="Female" toggleGroup="$genderToggleGroup"/>
+                                                    </children>
+                                                </HBox>
+
+                                                <Label text="Date of Birth:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                                                <DatePicker fx:id="dpDOB" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                                            </children>
+                                        </GridPane>
+                                    </content>
+                                </TitledPane>
+
+                                <!-- Professional Information -->
+                                <TitledPane text="Professional Information" expanded="true">
+                                    <content>
+                                        <GridPane hgap="10" vgap="10">
+                                            <padding>
+                                                <Insets top="10" right="10" bottom="10" left="10"/>
+                                            </padding>
+                                            <children>
+                                                <Label text="Specialisation:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                                <TextField fx:id="txtSpecialisation" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                                                <Label text="Schedule:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                                                <TextField fx:id="txtSchedule" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                                                <Label text="Department:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                                                <TextField fx:id="txtDepartment" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                                            </children>
+                                        </GridPane>
+                                    </content>
+                                </TitledPane>
+
+                                <!-- Login Info -->
+                                <TitledPane text="Account Credentials" expanded="true">
+                                    <content>
+                                        <GridPane hgap="10" vgap="10">
+                                            <padding>
+                                                <Insets top="10" right="10" bottom="10" left="10"/>
+                                            </padding>
+                                            <children>
+                                                <Label text="Username:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                                <TextField fx:id="txtUsername" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                                                <Label text="Password:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                                                <PasswordField fx:id="txtPassword" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                                            </children>
+                                        </GridPane>
+                                    </content>
+                                </TitledPane>
+
+                                <!-- Buttons -->
+                                <HBox spacing="10" alignment="CENTER">
+                                    <children>
+                                        <Button fx:id="btnSignUp" text="Sign Up" onAction="#handleSignUp" />
+                                        <Button fx:id="btnCancel" text="Cancel" onAction="#handleCancel" />
+                                    </children>
+                                </HBox>
+
                             </children>
-                        </GridPane>
+                        </VBox>
                     </content>
-                </TitledPane>
-
-                <!-- Professional Information -->
-                <TitledPane text="Professional Information" expanded="true">
-                    <content>
-                        <GridPane hgap="10" vgap="10">
-                            <padding>
-                                <Insets top="10" right="10" bottom="10" left="10"/>
-                            </padding>
-                            <children>
-                                <Label text="Specialisation:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                                <TextField fx:id="txtSpecialisation" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-
-                                <Label text="Schedule:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                                <TextField fx:id="txtSchedule" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-
-                                <Label text="Department:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                                <TextField fx:id="txtDepartment" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
-                            </children>
-                        </GridPane>
-                    </content>
-                </TitledPane>
-
-                <!-- Login Info -->
-                <TitledPane text="Account Credentials" expanded="true">
-                    <content>
-                        <GridPane hgap="10" vgap="10">
-                            <padding>
-                                <Insets top="10" right="10" bottom="10" left="10"/>
-                            </padding>
-                            <children>
-                                <Label text="Username:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                                <TextField fx:id="txtUsername" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-
-                                <Label text="Password:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                                <PasswordField fx:id="txtPassword" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-                            </children>
-                        </GridPane>
-                    </content>
-                </TitledPane>
-
-                <!-- Buttons -->
-                <HBox spacing="10" alignment="CENTER">
-                    <children>
-                        <Button fx:id="btnSignUp" text="Sign Up" onAction="#handleSignUp"  />
-                        <Button fx:id="btnCancel" text="Cancel" onAction="#handleCancel"  />
-                    </children>
-                </HBox>
-
+                </ScrollPane>
             </children>
-        </VBox>
-    </children>
-</AnchorPane>
-
+        </HBox>
+    </center>
+</BorderPane>
