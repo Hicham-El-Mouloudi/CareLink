@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox fx:controller="controlers.UserPopupController"
+      xmlns:fx="http://javafx.com/fxml"
+      spacing="0" alignment="CENTER_LEFT"
+      style="-fx-background-color: white; -fx-border-color: #CCCCCC;
+             -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding :10">
+    <effect>
+        <DropShadow color="#00000033" radius="10" offsetX="0" offsetY="4"/>
+    </effect>
+
+    <!-- Inner VBox with margin for simulated padding -->
+    
+        <Label fx:id="userLabel" text="Unknown"
+               style="-fx-font-size: 14px; -fx-text-fill: #333333;"/>
+        <Button fx:id="disconnectButton" text="Disconnect"
+                style="-fx-background-color: #D9534F; -fx-text-fill: white;
+                       -fx-background-radius: 6; -fx-font-weight: bold;"/>
+    
+    <VBox.margin>
+        <Insets top="15" bottom="15" left="20" right="20"/>
+    </VBox.margin>
+</VBox>
