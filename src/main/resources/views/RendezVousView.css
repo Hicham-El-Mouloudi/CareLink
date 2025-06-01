@@ -1,0 +1,76 @@
+/* RendezVousView.css - Modern blue minimalist style inspired by patientview.css */
+
+/* Main background for left panel */
+VBox {
+    -fx-background-color: #f1f9ff;
+}
+
+/* Month/Year ComboBox bar */
+.hbox-month-year {
+    -fx-alignment: center;
+    -fx-spacing: 20;
+    -fx-background-color: white;
+    -fx-border-color: #1b7895;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 6 12 6 12;
+}
+
+#monthComboBox, #yearComboBox {
+    -fx-text-fill: #1b7895;
+    -fx-font-size: 14px;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+}
+
+#calendarContainer {
+    -fx-border-color: #1b7895;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-background-color: white;
+    -fx-padding: 12;
+    -fx-alignment: center;
+}
+
+#addAppointmentButton {
+    -fx-background-color: #1b7895;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 8 20 8 20;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow(gaussian, #b3e0ff, 4, 0.2, 0, 2);
+    -fx-border-color: #1b7895;
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
+}
+#addAppointmentButton:hover {
+    -fx-background-color: #15677d;
+}
+
+/* Table section */
+ScrollPane {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-padding: 0 0 0 10;
+}
+#appointmentTableView {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+}
+#appointmentTableView .column-header {
+    -fx-background-color: #1b7895;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+}
+#appointmentTableView .table-row-cell:selected {
+    -fx-background-color: #b3e0ff;
+}
+#appointmentTableView .table-row-cell {
+    -fx-background-color: white;
+    -fx-font-size: 13px;
+}

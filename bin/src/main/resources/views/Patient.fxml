@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="615.0" style="-fx-background-color: #f1f9ff;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.Patient">
+   <children>
+      <HBox prefHeight="25.0" prefWidth="549.0" style="-fx-background-color: #1b7895;">
+         <children>
+            <BorderPane prefHeight="19.0" prefWidth="600.0">
+               <left>
+                  <HBox prefHeight="25.0" prefWidth="560.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Button mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Home" textAlignment="CENTER" />
+                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: #f1f9ff; -fx-text-fill: #1b7895; -fx-background-radius: 0;" text="Patients" textAlignment="CENTER" />
+                        <Button layoutX="57.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Rendez-vous" textAlignment="CENTER" />
+                        <Button layoutX="103.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Traitements" textAlignment="CENTER">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <effect>
+                              <ColorAdjust />
+                           </effect>
+                        </Button>
+                        <Button layoutX="150.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Aide" textAlignment="CENTER" />
+                     </children>
+                  </HBox>
+               </left>
+               <right>
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="56.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="User" textAlignment="CENTER" BorderPane.alignment="CENTER">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </right>
+            </BorderPane>
+         </children>
+      </HBox>
+      <HBox prefHeight="7.0" prefWidth="615.0" style="-fx-padding: 5;" styleClass="search">
+         <children>
+            <BorderPane prefHeight="35.0" prefWidth="635.0">
+               <right>
+                  <HBox prefHeight="11.0" prefWidth="200.0" style="-fx-alignment: center; -fx-spacing: 10;" styleClass="ali" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label text="filtre" />
+                        <ChoiceBox prefHeight="28.0" prefWidth="80.0" style="-fx-border-color: #1b7895; -fx-background-color: white; -fx-border-radius: 10; -fx-background-radius: 10;" />
+                     </children>
+                  </HBox>
+               </right>
+               <center>
+                  <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #1b7895; -fx-background-color: white; -fx-border-radius: 10; -fx-background-radius: 10; -fx-alignment: center;" BorderPane.alignment="CENTER">
+                     <children>
+                        <TextField prefHeight="28.0" prefWidth="371.0" style="-fx-background-color: white; -fx-border-color: transparent; -fx-background-radius: 10;" />
+                        <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="87.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="Search" />
+                     </children>
+                  </HBox>
+               </center>
+            </BorderPane>
+         </children>
+      </HBox>
+      <ScrollPane prefHeight="329.0" prefWidth="615.0">
+         <content>
+            <TableView prefHeight="365.0" prefWidth="617.0" style="-fx-background-color: white;">
+              <columns>
+                <TableColumn prefWidth="65.99999487400055" text="Id" />
+                <TableColumn prefWidth="88.66667175292969" text="CNI" />
+                  <TableColumn prefWidth="112.0" text="Nom Complet" />
+                  <TableColumn prefWidth="77.3333740234375" text="Age" />
+                  <TableColumn prefWidth="74.66668701171875" text="Sex" />
+                  <TableColumn prefWidth="180.0" text="Traitements" />
+              </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
+   </children>
+</VBox>

@@ -15,7 +15,11 @@ public class Person {
     private String email;
     private java.util.Date dateOfBirth;
     private String insuranceDetails;
-
+    
+    public Person() {
+    	
+    }
+    
     public Person(int id, String fullName, String gender, String email, java.util.Date dateOfBirth, String insuranceDetails) {
         this.id = id;
         this.fullName = fullName;
@@ -43,4 +47,7 @@ public class Person {
     public void setDateOfBirth(java.util.Date dateOfBirth) { this.dateOfBirth = dateOfBirth; }
     public String getInsuranceDetails() { return insuranceDetails; }
     public void setInsuranceDetails(String insuranceDetails) { this.insuranceDetails = insuranceDetails; }
+    
+    
+    
 }

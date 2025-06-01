@@ -1,14 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
-
-<VBox styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="controlers.TraitementController" alignment="CENTER">
-   <stylesheets>
-       <URL value="@traitementview.css" />
-   </stylesheets>
-   <Label text="Traitements" />
-   </VBox>
+<BorderPane fx:id="traitementsView" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="controlers.TraitementController">
+    <center>
+        <VBox alignment="CENTER" fillWidth="true" spacing="0" styleClass="mainFxmlClass" stylesheets="@traitementview.css">
+            <ScrollPane fx:id="traitementScrollPane" fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS" style="-fx-background:transparent;">
+                <content>
+                    <VBox alignment="CENTER" fillWidth="true" spacing="32" style="-fx-padding: 40 0 40 0;">
+                        <!-- Card: Nouveau Traitement -->
+                        <VBox fx:id="traitementBodyVBox" alignment="TOP_CENTER" maxWidth="1000" spacing="24" styleClass="card">
+                            <Label fx:id="detailsLabel" text="Nouveau Traitement" styleClass="sectionTitle" />
+                            <GridPane fx:id="traitementGrid" alignment="CENTER" hgap="14" vgap="10" maxWidth="900">
+                                <columnConstraints>
+                                    <ColumnConstraints hgrow="ALWAYS" percentWidth="40" />
+                                    <ColumnConstraints hgrow="ALWAYS" percentWidth="60" />
+                                </columnConstraints>
+                                <children>
+                                    <Label text="Date" GridPane.rowIndex="0" />
+                                    <DatePicker fx:id="datePicker" prefWidth="400" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                    <Label text="Type" GridPane.rowIndex="1" />
+                                    <ChoiceBox fx:id="typeChoiceBox" prefWidth="400" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label text="Status" GridPane.rowIndex="2" />
+                                    <ChoiceBox fx:id="statusChoiceBox" prefWidth="400" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label text="Description" GridPane.rowIndex="3" />
+                                    <TextField fx:id="descriptionField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Label text="Notes" GridPane.rowIndex="4" />
+                                    <TextArea fx:id="notesField" prefRowCount="3" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Label text="Raison For Traitment" GridPane.rowIndex="5" />
+                                    <TextField fx:id="raisonField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <Label text="Follow Up Required" GridPane.rowIndex="6" />
+                                    <HBox spacing="16" alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                        <RadioButton fx:id="followUpYesRadio" text="Oui">
+                                            <toggleGroup>
+                                                <ToggleGroup fx:id="followUpGroup" />
+                                            </toggleGroup>
+                                        </RadioButton>
+                                        <RadioButton fx:id="followUpNoRadio" text="Non" toggleGroup="$followUpGroup" />
+                                    </HBox>
+                                    <!-- Patient & Appointment Selection as a GridPane with 3 columns -->
+                                    <GridPane hgap="0" vgap="10" GridPane.rowIndex="7" GridPane.columnIndex="0" GridPane.columnSpan="2">
+                                        <columnConstraints>
+                                            <ColumnConstraints hgrow="ALWAYS" percentWidth="20" />
+                                            <ColumnConstraints hgrow="ALWAYS" percentWidth="30" />
+                                            <ColumnConstraints hgrow="ALWAYS" percentWidth="50" />
+                                        </columnConstraints>
+                                        <children>
+                                            <!-- Patient Row -->
+                                            <Label text="Patient" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                                            <Label fx:id="patientSelectionLabel" text="Choisissez Le Patient Concerné" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+                                            <Button fx:id="patientIdField" onAction="#openPatientChoice" text="Choisir Un Patient" GridPane.rowIndex="0" GridPane.columnIndex="2" maxWidth="1.7976931348623157E308" GridPane.hgrow="ALWAYS" />
+                                            <!-- Appointment Row -->
+                                            <Label text="Rendez-Vous Suivant" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                                            <Label fx:id="appointmentSelectionLabel" text="Choisissez Le Rendez-vous" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+                                            <Button fx:id="appointmentIdField" onAction="#openAppointmentChoice" text="Choisir Un Rendez-vous" GridPane.rowIndex="1" GridPane.columnIndex="2" maxWidth="1.7976931348623157E308" GridPane.hgrow="ALWAYS" />
+                                        </children>
+                                    </GridPane>
+                                </children>
+                            </GridPane>
+                        </VBox>
+                        <!-- Card: Prescription -->
+                        <VBox fx:id="prescriptionBodyVBox" alignment="TOP_CENTER" maxWidth="1000" spacing="24" styleClass="card">
+                            <Label fx:id="prescriptionDetailsLabel" text="Prescription" styleClass="sectionTitle" />
+                            <GridPane fx:id="prescriptionTraitementGrid" alignment="CENTER" hgap="14" vgap="10" maxWidth="900">
+                                <columnConstraints>
+                                    <ColumnConstraints hgrow="ALWAYS" percentWidth="40" />
+                                    <ColumnConstraints hgrow="ALWAYS" percentWidth="60" />
+                                </columnConstraints>
+                                <children>
+                                    <Label text="Dosage Et Intructions" GridPane.rowIndex="2" />
+                                    <TextArea fx:id="prescriptionDosageInstructionField" prefRowCount="2" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label text="Duration" GridPane.rowIndex="1" />
+                                    <TextField fx:id="prescriptionDurationField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label text="Name" GridPane.rowIndex="0" />
+                                    <TextField fx:id="prescriptionNameField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                    <Label text="Notes" GridPane.rowIndex="3" />
+                                    <TextArea fx:id="prescriptionNotesField" prefRowCount="2" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                </children>
+                            </GridPane>
+                            <HBox alignment="BOTTOM_RIGHT" spacing="0" HBox.hgrow="ALWAYS">
+                                <Region HBox.hgrow="ALWAYS" />
+                                <Button fx:id="enregistrerButton" onAction="#enregistrerTraitement" text="Enregistrer" />
+                            </HBox>
+                        </VBox>
+                    </VBox>
+                </content>
+            </ScrollPane>
+        </VBox>
+    </center>
+</BorderPane>

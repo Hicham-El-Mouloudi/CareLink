@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox fx:controller="controlers.EditPatient" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="615.0" style="-fx-background-color: #f1f9ff;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox prefHeight="25.0" prefWidth="549.0" style="-fx-background-color: #1b7895;">
+         <children>
+            <BorderPane prefHeight="19.0" prefWidth="600.0">
+               <left>
+                  <HBox prefHeight="25.0" prefWidth="560.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Button mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Home" textAlignment="CENTER" />
+                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: #f1f9ff; -fx-text-fill: #1b7895; -fx-background-radius: 0;" text="Patients" textAlignment="CENTER" />
+                        <Button layoutX="57.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Rendez-vous" textAlignment="CENTER" />
+                        <Button layoutX="103.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Traitements" textAlignment="CENTER">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <effect>
+                              <ColorAdjust />
+                           </effect>
+                        </Button>
+                        <Button layoutX="150.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Aide" textAlignment="CENTER" />
+                     </children>
+                  </HBox>
+               </left>
+               <right>
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="56.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="User" textAlignment="CENTER" BorderPane.alignment="CENTER">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </right>
+            </BorderPane>
+         </children>
+      </HBox>
+      <HBox prefHeight="26.0" prefWidth="615.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="56.0" style="-fx-background-color: transparent;" text="return" />
+            <Label prefHeight="26.0" prefWidth="502.0" style="-fx-alignment: center;" text="Modifier Patient : Nom de patient" />
+         </children>
+      </HBox>
+      <HBox prefHeight="319.0" prefWidth="615.0">
+         <children>
+            <VBox prefHeight="319.0" prefWidth="299.0" style="-fx-padding: 0 10 0 10;">
+               <children>
+                  <GridPane prefHeight="199.0" prefWidth="299.0" style="-fx-vgap: 10;">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="149.33334350585938" minWidth="10.0" prefWidth="95.33333587646484" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.00000762939453" minWidth="10.0" prefWidth="212.66666412353516" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="101.66668701171875" minHeight="0.0" percentHeight="20.0" prefHeight="34.99999491373698" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="228.9999910990397" minHeight="10.0" percentHeight="20.0" prefHeight="30.99998982747396" valignment="CENTER" vgrow="ALWAYS" />
+                      <RowConstraints maxHeight="274.3332824707031" minHeight="7.333343505859375" percentHeight="20.0" prefHeight="24.666676839192704" valignment="CENTER" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="249.6666361490885" minHeight="0.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="241.99998474121094" minHeight="10.0" percentHeight="20.0" prefHeight="33.66666666666666" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Nom Complet :" />
+                        <TextField prefHeight="25.0" prefWidth="194.0" style="-fx-background-radius: 10;" GridPane.columnIndex="1" />
+                        <Label prefHeight="17.0" prefWidth="25.0" text="Age:" GridPane.rowIndex="1" />
+                        <TextField prefHeight="25.0" prefWidth="103.0" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label text="Sex:" GridPane.rowIndex="2" />
+                        <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-alignment: center; -fx-spacing: 10;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <children>
+                              <RadioButton mnemonicParsing="false" text="Homme" />
+                              <RadioButton mnemonicParsing="false" text="Femme" />
+                           </children>
+                        </HBox>
+                        <Label text="E-Mail" GridPane.rowIndex="3" />
+                        <TextField style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label text="Telephone" GridPane.rowIndex="4" />
+                     </children>
+                  </GridPane>
+                  <Label prefHeight="17.0" prefWidth="298.0" text="Remarques Medical :" />
+                  <TextField prefHeight="102.0" prefWidth="275.0" style="-fx-background-radius: 10;" />
+               </children>
+            </VBox>
+            <VBox prefHeight="319.0" prefWidth="313.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="315.0" text="List des Traitement :" />
+                  <ScrollPane prefHeight="286.0" prefWidth="308.0">
+                     <content>
+                        <TableView prefHeight="198.0" prefWidth="291.0" style="-fx-background-color: white;">
+                          <columns>
+                            <TableColumn prefWidth="42.000001311302185" text="Id" />
+                            <TableColumn prefWidth="78.66662216186523" text="Description" />
+                              <TableColumn prefWidth="78.00000762939453" text="Date Debut" />
+                              <TableColumn prefWidth="104.66670227050781" text="Date Fin" />
+                          </columns>
+                        </TableView>
+                     </content>
+                  </ScrollPane>
+                  <Label prefHeight="17.0" prefWidth="359.0" text="Rendez-Vous :" />
+                  <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                     <content>
+                        <TableView prefHeight="113.0" prefWidth="292.0">
+                          <columns>
+                            <TableColumn prefWidth="99.99999487400055" text="Id" />
+                            <TableColumn prefWidth="98.66670227050781" text="Date" />
+                              <TableColumn prefWidth="90.0" text="Etat" />
+                          </columns>
+                        </TableView>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox prefHeight="30.0" prefWidth="615.0">
+         <children>
+            <BorderPane prefHeight="44.0" prefWidth="616.0" style="-fx-padding: 10;">
+               <left>
+                  <Button mnemonicParsing="false" style="-fx-background-color: white;" text="Annuler" BorderPane.alignment="CENTER" />
+               </left>
+               <right>
+                  <Button mnemonicParsing="false" style="-fx-background-color: #1b7895; -fx-text-fill: white; -fx-background-radius: 10;" text="Enregistrer" BorderPane.alignment="CENTER" />
+               </right>
+            </BorderPane>
+         </children>
+      </HBox>
+   </children>
+</VBox>

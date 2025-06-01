@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="theAppointmentSelectionForTraitement" alignment="TOP_CENTER" maxHeight="Infinity"
+  maxWidth="700.0" minHeight="-Infinity" minWidth="300.0" prefWidth="550.0"
+  stylesheets="@AppointmentSelectionView.css" xmlns="http://javafx.com/javafx/23.0.1"
+  xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.AppointmentSelectionController">
+  <Label fx:id="thePatientNameLabel" alignment="CENTER" prefHeight="50" text="Aucun patient n'est selectionner" />
+  <HBox fx:id="searchFieldHBox" alignment="CENTER_LEFT" maxHeight="40" maxWidth="600" HBox.hgrow="ALWAYS">
+    <TextField fx:id="searchField" promptText="Quel Est Le Motif Du Rendez-vous ?" HBox.hgrow="ALWAYS" />
+    <Button fx:id="searchButton" onAction="#search" text="Search" />
+  </HBox>
+  <ScrollPane fitToWidth="true">
+    <content>
+      <TableView fx:id="appointmentTableView" prefWidth="408.0">
+        <columns>
+          <TableColumn fx:id="dateTimeColumn" text="Date et Heure" />
+          <TableColumn fx:id="statusColumn" text="Statut" />
+          <TableColumn fx:id="reasonColumn" text="Motif" />
+          <TableColumn fx:id="selectColumn" text="" />
+        </columns>
+      </TableView>
+    </content>
+  </ScrollPane>
+</VBox>

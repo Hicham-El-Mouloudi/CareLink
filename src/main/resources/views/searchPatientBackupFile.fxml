@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TextField?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.PatientSearchController">
+    <top>
+        <HBox spacing="10" >
+            <TextField fx:id="searchField" promptText="Search Patient..."/>
+            <ChoiceBox fx:id="filterChoiceBox"/>
+            <Button text="Search" onAction="#search"/>
+        </HBox>
+    </top>
+    <center>
+        <TableView fx:id="patientsTable">
+            <columns>
+                <TableColumn fx:id="idColumn" text="ID"/>
+                <TableColumn fx:id="fullNameColumn" text="Full Name"/>
+                <TableColumn fx:id="emailColumn" text="Email"/>
+                <TableColumn fx:id="ageColumn" text="Age"/>
+                <TableColumn fx:id="sexColumn" text="Sex"/>
+            </columns>
+        </TableView>
+    </center>
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" >
+            <Button text="Select" onAction="#selectPatient"/>
+            <Button text="Cancel" onAction="#closeWindow"/>
+        </HBox>
+    </bottom>
+</BorderPane>
+<!-- the original file keep discarding the changes after a while of saving , or
+  commiting , i even run it and after a while i loose all the changeds i commited 
+  on it-->

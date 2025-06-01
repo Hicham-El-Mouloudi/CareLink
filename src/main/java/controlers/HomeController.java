@@ -26,11 +26,25 @@ public class HomeController implements Initializable {
     private Label numberOfTraitementsEnCours;
     @FXML
     private Label numberOfAppointementsForToday;
-    
+     @FXML
+    private Label currentDoctor;
 
     PatientDAO patientDAO = new PatientDAO();
     TraitementDAO traitementDAO = new TraitementDAO();
     AppointmentDAO appointmentDAO = new AppointmentDAO();
+
+    // The connected doctor
+    private int currentDoctorID;
+    public void setCurrentDoctorID(int currentDoctorID) {
+        this.currentDoctorID = currentDoctorID;
+        Doctor doctor = DoctorDAO.getDoctorById(this.currentDoctorID);
+        if (doctor == null) {
+            currentDoctor.setText("Connecté en tant que: Inconnu (ID: " + this.currentDoctorID + ")");
+            System.err.println("HomeController: No doctor found with ID: " + this.currentDoctorID);
+            return;
+        }
+        currentDoctor.setText("Connecté en tant que: " + doctor.getPersonalInfo().getFullName());
+    }
     /**
      * Initializes the controller class.
      */
@@ -42,8 +56,8 @@ public class HomeController implements Initializable {
             numberOfPatients.setText(String.valueOf(patientDAO.getNumberOfPatients()));
             numberOfTraitementsEnCours.setText(String.valueOf(traitementDAO.getNumberOfActiveTraitements()));
             numberOfAppointementsForToday.setText(String.valueOf(appointmentDAO.getNumberOfAppointmentsForToday()));
-        }catch(SQLException e){
-            System.out.println("Error: " + e.getMessage());
+        }catch(Exception e){
+            System.out.println("HomeController : Error While initializing : " + e.getMessage());
         }
     }    
     
