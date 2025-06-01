@@ -90,7 +90,7 @@ public class PrintablePatient {
                 }
             }
         }
-        catch(SQLException e){
+        catch(Exception e){
             e.printStackTrace();
         }
         if(found)
@@ -113,7 +113,7 @@ public class PrintablePatient {
                 result.add(apt);
             }
         }}
-        catch(SQLException e){
+        catch(Exception e){
             e.printStackTrace();
         }
         return result;
