@@ -147,8 +147,8 @@ public class PatientController implements Initializable {
             @Override
             public TableCell<PatientPerson, Void> call(final TableColumn<PatientPerson, Void> param) {
                 return new TableCell<PatientPerson, Void>() {
-                    private final Button previewButton = new Button("Preview&Update");
-                    private final Button deleteButton = new Button("Delete");
+                    private final Button previewButton = new Button("Aperçu&Mise-à-jour");
+                    private final Button deleteButton = new Button("Supprimer");
                     private final Button ExtractPDFButton = new Button("Extraire:PDF");
                     {
                         // Embedded styling for previewButton

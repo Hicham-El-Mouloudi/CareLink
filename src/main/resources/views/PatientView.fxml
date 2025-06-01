@@ -16,10 +16,10 @@
         <HBox fx:id="searchBarHBox" alignment="CENTER" spacing="10" maxWidth="1100">
             <HBox fx:id="searchFieldHBox" HBox.hgrow="ALWAYS" alignment="CENTER_LEFT">
                 <TextField fx:id="searchField" HBox.hgrow="ALWAYS" />
-                <Button fx:id="searchButton" text="Search" />
+                <Button fx:id="searchButton" text="Rechercher" />
             </HBox>
             <HBox fx:id="filterHBox" HBox.hgrow="ALWAYS" alignment="CENTER_RIGHT">
-                <Label fx:id="filterLabel" text="filtre" />
+                <Label fx:id="filterLabel" text="recherche par" />
                 <ChoiceBox fx:id="filterChoiceBox" />
             </HBox>
             <Button fx:id="addPatientButton" text="Ajouter Patient" id="addPatientButton" />
