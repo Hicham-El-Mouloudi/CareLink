@@ -1,17 +1,30 @@
 /*
- * Minimalist blue style for PatientSelectionView using only shades of #0077b6
- */
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Jun 1, 2025, 6:12:01 AM
+    Author     : lenovo
+*/
+/* Minimalist blue style for AppointmentSelectionView using only shades of #0077b6 */
 
 .mainFxmlClass {
     -fx-background-color: #f7fbfd;
 }
 
-#thePatientSelectionForTraitement {
+#theAppointmentSelectionForTraitement {
     -fx-background-color: #fff;
     -fx-padding: 24 24 24 24;
     -fx-background-radius: 10;
     -fx-effect: dropshadow(gaussian, #0077b610, 6, 0.10, 0, 2);
     -fx-spacing: 14;
+}
+
+#thePatientNameLabel {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0077b6;
+    -fx-padding: 0 0 10 0;
 }
 
 #searchFieldHBox {
@@ -77,7 +90,6 @@
     -fx-background-color: #e0f3fa;
 }
 
-/* Selection button in table (if any) */
 .selection-button {
     -fx-background-color: #0077b6;
     -fx-text-fill: white;
@@ -92,3 +104,4 @@
 .selection-button:hover {
     -fx-background-color: #005f87;
 }
+

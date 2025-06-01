@@ -98,6 +98,40 @@ public class AppointmentSelectionController implements Initializable {
                 return new TableCell<Appointment, Void>() {
                     private final Button selectButton = new Button("Sélectionner");
                     {
+                        selectButton.getStyleClass().add("selection-button");
+                        selectButton.setStyle(
+                            "-fx-background-color: #0077b6;" +
+                            "-fx-text-fill: white;" +
+                            "-fx-font-weight: normal;" +
+                            "-fx-background-radius: 6;" +
+                            "-fx-padding: 4 12 4 12;" +
+                            "-fx-cursor: hand;" +
+                            "-fx-font-size: 12px;" +
+                            "-fx-border-color: transparent;" +
+                            "-fx-effect: none;"
+                        );
+                        selectButton.setOnMouseEntered(e -> selectButton.setStyle(
+                            "-fx-background-color: #005f87;" +
+                            "-fx-text-fill: white;" +
+                            "-fx-font-weight: normal;" +
+                            "-fx-background-radius: 6;" +
+                            "-fx-padding: 4 12 4 12;" +
+                            "-fx-cursor: hand;" +
+                            "-fx-font-size: 12px;" +
+                            "-fx-border-color: transparent;" +
+                            "-fx-effect: none;"
+                        ));
+                        selectButton.setOnMouseExited(e -> selectButton.setStyle(
+                            "-fx-background-color: #0077b6;" +
+                            "-fx-text-fill: white;" +
+                            "-fx-font-weight: normal;" +
+                            "-fx-background-radius: 6;" +
+                            "-fx-padding: 4 12 4 12;" +
+                            "-fx-cursor: hand;" +
+                            "-fx-font-size: 12px;" +
+                            "-fx-border-color: transparent;" +
+                            "-fx-effect: none;"
+                        ));
                         selectButton.setOnAction(event -> {
                             Appointment appt = getTableView().getItems().get(getIndex());
                             System.out.println("AppointmentSelectionController : Appointment selected: " + appt.getId());

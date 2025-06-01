@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="thePatientSelectionForTraitement" alignment="TOP_CENTER" maxHeight="Infinity" maxWidth="700.0" minHeight="-Infinity" minWidth="300.0" prefWidth="408.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.PatientSelectionController">
+<VBox fx:id="thePatientSelectionForTraitement" alignment="TOP_CENTER" maxHeight="Infinity" maxWidth="700.0" minHeight="-Infinity" minWidth="300.0" prefWidth="408.0" stylesheets="@patientselectionview.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.PatientSelectionController">
   <HBox fx:id="searchFieldHBox" alignment="CENTER_LEFT" maxHeight="40" maxWidth="600" HBox.hgrow="ALWAYS">
     <TextField fx:id="searchField" promptText="Quel Est Le Nom Du Patient ?" HBox.hgrow="ALWAYS" />
     <Button fx:id="searchButton" onAction="#search" text="Search" />
