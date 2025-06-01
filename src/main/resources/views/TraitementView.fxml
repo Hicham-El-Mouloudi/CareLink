@@ -21,11 +21,11 @@
                                 </columnConstraints>
                                 <children>
                                     <Label text="Date" GridPane.rowIndex="0" />
-                                    <DatePicker fx:id="datePicker" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                    <DatePicker fx:id="datePicker" prefWidth="400" GridPane.columnIndex="1" GridPane.rowIndex="0" />
                                     <Label text="Type" GridPane.rowIndex="1" />
-                                    <ChoiceBox fx:id="typeChoiceBox" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <ChoiceBox fx:id="typeChoiceBox" prefWidth="400" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <Label text="Status" GridPane.rowIndex="2" />
-                                    <ChoiceBox fx:id="statusChoiceBox" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <ChoiceBox fx:id="statusChoiceBox" prefWidth="400" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                     <Label text="Description" GridPane.rowIndex="3" />
                                     <TextField fx:id="descriptionField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                     <Label text="Notes" GridPane.rowIndex="4" />
@@ -54,7 +54,7 @@
                                             <Label fx:id="patientSelectionLabel" text="Choisissez Le Patient Concerné" GridPane.rowIndex="0" GridPane.columnIndex="1" />
                                             <Button fx:id="patientIdField" onAction="#openPatientChoice" text="Choisir Un Patient" GridPane.rowIndex="0" GridPane.columnIndex="2" maxWidth="1.7976931348623157E308" GridPane.hgrow="ALWAYS" />
                                             <!-- Appointment Row -->
-                                            <Label text="Rendez-vous" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                                            <Label text="Rendez-Vous Suivant" GridPane.rowIndex="1" GridPane.columnIndex="0" />
                                             <Label fx:id="appointmentSelectionLabel" text="Choisissez Le Rendez-vous" GridPane.rowIndex="1" GridPane.columnIndex="1" />
                                             <Button fx:id="appointmentIdField" onAction="#openAppointmentChoice" text="Choisir Un Rendez-vous" GridPane.rowIndex="1" GridPane.columnIndex="2" maxWidth="1.7976931348623157E308" GridPane.hgrow="ALWAYS" />
                                         </children>
@@ -71,12 +71,12 @@
                                     <ColumnConstraints hgrow="ALWAYS" percentWidth="60" />
                                 </columnConstraints>
                                 <children>
-                                    <Label text="Dosage Et Intructions" GridPane.rowIndex="0" />
-                                    <TextArea fx:id="prescriptionDosageInstructionField" prefRowCount="2" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                    <Label text="Dosage Et Intructions" GridPane.rowIndex="2" />
+                                    <TextArea fx:id="prescriptionDosageInstructionField" prefRowCount="2" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                     <Label text="Duration" GridPane.rowIndex="1" />
                                     <TextField fx:id="prescriptionDurationField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Label text="Name" GridPane.rowIndex="2" />
-                                    <TextField fx:id="prescriptionNameField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label text="Name" GridPane.rowIndex="0" />
+                                    <TextField fx:id="prescriptionNameField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
                                     <Label text="Notes" GridPane.rowIndex="3" />
                                     <TextArea fx:id="prescriptionNotesField" prefRowCount="2" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                 </children>
