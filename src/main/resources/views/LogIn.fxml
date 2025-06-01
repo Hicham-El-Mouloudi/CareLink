@@ -65,7 +65,7 @@
                      <right>
                         <HBox prefHeight="31.0" prefWidth="196.0" BorderPane.alignment="CENTER">
                            <children>
-                              <Button fx:id="btnSignUP" alignment="CENTER_RIGHT" mnemonicParsing="false" text="Sign Up">
+                              <Button fx:id="btnSignUP" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#HandleSignUp" text="Sign Up">
                                  <font>
                                     <Font name="Arial" size="12.0" />
                                  </font>

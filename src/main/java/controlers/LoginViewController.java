@@ -1,5 +1,6 @@
 package controlers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import models.Doctor;
 import javafx.scene.control.Alert;
@@ -39,6 +40,7 @@ public class LoginViewController  {
 	            if(chbRememberMe.isSelected()) {
 	            	//save username and password into the windows registry or some config file
 	            	
+	            	
 	            }
 	            
 	            
@@ -61,6 +63,19 @@ public class LoginViewController  {
         alert.setContentText(message);
         alert.showAndWait();
     }
+	
+	@FXML private void HandleSignUp(ActionEvent event) {
+	     
+		//fo to sign up scene
+		
+        showAlert("", "Go to Sign Up Scene , link not implimented yet");
+		
+		
+		
+		
+    }
+	
+	
 	
 	
 	

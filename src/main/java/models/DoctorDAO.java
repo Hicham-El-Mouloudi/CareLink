@@ -18,7 +18,7 @@ import models.Doctor;
 public class DoctorDAO {
 
     public static boolean addNewDoctor(Doctor doctor) {
-        String sql = "INSERT INTO Doctor (Specialisation, Certification, schedule, Departement, Person_ID) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Doctor (Specialisation, CertificationCredentials, Schedule, Department, PersonID,username,password) VALUES (?, ?, ?, ?, ?,?,?)";
 
         //this is a try-with-resources statement, it closes all object that implement AutoClosable
         try (Connection conn = DataAccessSettings.getConnection();
@@ -31,7 +31,10 @@ public class DoctorDAO {
             stmt.setString(3, doctor.getSchedule());
             stmt.setString(4, doctor.getDepartment());
             stmt.setInt(5, doctor.getPersonalInfo().getId());
-            
+            stmt.setString(6, doctor.getUsername());
+
+            stmt.setString(7, doctor.getPassword());
+
             
             return stmt.executeUpdate() > 0;
 
@@ -44,7 +47,7 @@ public class DoctorDAO {
     }
 
     public static boolean updateDoctor(Doctor doctor) {
-        String sql = "UPDATE Doctor SET Specialisation = ?, Certification = ?, schedule = ?, Departement = ?, Person_ID = ? WHERE id = ?";
+        String sql = "UPDATE Doctor SET Specialisation = ?, CertificationCredentials = ?, Schedule = ?, Department = ?, PersonID = ?,password = ?  WHERE id = ?";
 
         try (Connection conn = DataAccessSettings.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -54,7 +57,10 @@ public class DoctorDAO {
             stmt.setString(3, doctor.getSchedule());
             stmt.setString(4, doctor.getDepartment());
             stmt.setInt(5, doctor.getPersonalInfo().getId());
-            stmt.setInt(6, doctor.getId());
+
+            stmt.setString(6, doctor.getPassword());
+            
+            stmt.setInt(7, doctor.getId());
 
             return stmt.executeUpdate() > 0;
 
@@ -93,9 +99,9 @@ public class DoctorDAO {
                     rs.getInt("id"),
                     rs.getString("Specialisation"),
                     rs.getString("Certification"),
-                    rs.getString("schedule"),
-                    rs.getString("Departement"),
-                    rs.getInt("Person_ID")
+                    rs.getString("Schedule"),
+                    rs.getString("Department"),
+                    rs.getInt("PersonID")
                 );
             }
 
@@ -122,10 +128,10 @@ public class DoctorDAO {
                     return new Doctor(
                         rs.getInt("id"),
                         rs.getString("Specialisation"),
-                        rs.getString("Certification"),
-                        rs.getString("schedule"),
-                        rs.getString("Departement"),
-                        rs.getInt("Person_ID")
+                        rs.getString("CertificationCredentials"),
+                        rs.getString("Schedule"),
+                        rs.getString("Department"),
+                        rs.getInt("PersonID")
                     );
                 }
             }
@@ -152,10 +158,11 @@ public class DoctorDAO {
                     return new Doctor(
                         rs.getInt("id"),
                         rs.getString("Specialisation"),
-                        rs.getString("Certification"),
-                        rs.getString("schedule"),
-                        rs.getString("Departement"),
-                        rs.getInt("Person_ID") // optional if you keep this field
+                        rs.getString("CertificationCredentials"),
+                        rs.getString("Schedule"),
+                        rs.getString("Department"),
+                        rs.getInt("PersonID") // optional if you keep this field
+                      
                     );
                 }
             }
@@ -203,10 +210,10 @@ public class DoctorDAO {
                 Doctor doc = new Doctor(
                     rs.getInt("id"),
                     rs.getString("Specialisation"),
-                    rs.getString("Certification"),
-                    rs.getString("schedule"),
-                    rs.getString("Departement"),
-                    rs.getInt("Person_ID")
+                    rs.getString("CertificationCredentials"),
+                    rs.getString("Schedule"),
+                    rs.getString("Department"),
+                    rs.getInt("PersonID")
                 );
                 doctors.add(doc);
             }

@@ -10,7 +10,7 @@
 
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" prefWidth="600" prefHeight="750" stylesheets="@SignUp.css">
+<AnchorPane xmlns:fx="http://javafx.com/fxml" prefWidth="600" prefHeight="750" stylesheets="@SignUp.css" fx:controller="controlers.SignUpControler">
     
     <fx:define>
  		<ToggleGroup fx:id="genderToggleGroup" />
@@ -48,8 +48,8 @@
                               
                                 <HBox spacing="10" GridPane.rowIndex="2" GridPane.columnIndex="1">
 								    <children>
-								        <RadioButton text="Male" toggleGroup="$genderToggleGroup"/>
-								        <RadioButton text="Female" toggleGroup="$genderToggleGroup"/>
+								        <RadioButton fx:id="maleRadio" text="Male" toggleGroup="$genderToggleGroup"/>
+								        <RadioButton fx:id="femaleRadio" text="Female" toggleGroup="$genderToggleGroup"/>
 								    </children>
 								      
 								</HBox>
@@ -103,8 +103,8 @@
                 <!-- Buttons -->
                 <HBox spacing="10" alignment="CENTER">
                     <children>
-                        <Button fx:id="btnSignUp" text="Sign Up" />
-                        <Button fx:id="btnCancel" text="Cancel" />
+                        <Button fx:id="btnSignUp" text="Sign Up" onAction="#handleSignUp"  />
+                        <Button fx:id="btnCancel" text="Cancel" onAction="#handleCancel"  />
                     </children>
                 </HBox>
 

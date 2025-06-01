@@ -47,16 +47,32 @@ public class PersonDAO {
         }
         return persons;
     }
-    public void insertPerson(Person p) throws SQLException {
+    public int insertPerson(Person p) throws SQLException {
         String query = "INSERT INTO Person(FullName, Gender, Email, DateOfBirth, InsuranceDetails) VALUES (?, ?, ?, ?, ?)";
-        PreparedStatement ps = connectionToDB.prepareStatement(query);
+        PreparedStatement ps = connectionToDB.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         ps.setString(1, p.getFullName());
         ps.setString(2, p.getGender());
         ps.setString(3, p.getEmail());
         ps.setDate(4, new java.sql.Date(p.getDateOfBirth().getTime()));
         ps.setString(5, p.getInsuranceDetails());
-        ps.executeUpdate();
+        
+        
+        int affectedRows = ps.executeUpdate();
+
+        if (affectedRows > 0) {
+            try (ResultSet rs = ps.getGeneratedKeys()) {
+                if (rs.next()) {
+                    return rs.getInt(1); // return the generated ID
+                }
+            }
+        }
+        
+        return -1;
+        
     }
+    
+    
+    
     public Person getPersonById(int id) throws SQLException {
         String query = "SELECT * FROM Person WHERE Id = ?";
         PreparedStatement ps = connectionToDB.prepareStatement(query);

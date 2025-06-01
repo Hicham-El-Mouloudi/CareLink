@@ -20,6 +20,8 @@ public class Doctor {
 	    private String certification;
 	    private String schedule;
 	    private String department;
+	    private String username;
+	    private String password;
 	    private Person personalInfo;
 	    private enMode mode;
 
@@ -69,7 +71,8 @@ public class Doctor {
 	    public void setCertification(String certification) { this.certification = certification; }
 	    public void setSchedule(String schedule) { this.schedule = schedule; }
 	    public void setDepartment(String department) { this.department = department; }
-	    
+	    public void setPersonalInfo(Person pInfo) { this.personalInfo = pInfo; }
+
 	    
 	    
 	   // Static method: Find doctor by ID
@@ -101,10 +104,31 @@ public class Doctor {
 	    
 	    // Save method
 	    public boolean save() {
+	    	
 	        if (this.mode == enMode.addnew) {
 	            return DoctorDAO.addNewDoctor(this);
 	        } else {
 	            return DoctorDAO.updateDoctor(this);
 	        }
 	    }
+
+
+		public String getUsername() {
+			return username;
+		}
+
+
+		public void setUsername(String username) {
+			this.username = username;
+		}
+
+
+		public String getPassword() {
+			return password;
+		}
+
+
+		public void setPassword(String password) {
+			this.password = password;
+		}
 }
