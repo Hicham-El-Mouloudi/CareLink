@@ -38,10 +38,6 @@ import models.AppointmentDAO;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class EditPatientController implements Initializable {
-    private Patient patient;
-    private Person person;
-    private PatientDAO patientDAO = new PatientDAO();
-    private PersonDAO personDAO = new PersonDAO();
     @FXML
     private Button saveButton;
     @FXML
@@ -117,7 +113,11 @@ public class EditPatientController implements Initializable {
     @FXML
     private HBox footerHBox;
 
-
+    private Patient patient;
+    private Person person;
+    private PatientDAO patientDAO = new PatientDAO();
+    private PersonDAO personDAO = new PersonDAO();
+    // 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         traitementTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
@@ -300,6 +300,7 @@ public class EditPatientController implements Initializable {
             stage.setTitle("Modifier Traitement");
             stage.setScene(new Scene(root));
             stage.showAndWait();
+            loadTraitementsForPatient(patient.getId());
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("EditPatientController : Error loading  /views/EditTraitementView.fxml");

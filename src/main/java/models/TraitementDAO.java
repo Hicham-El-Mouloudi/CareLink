@@ -84,6 +84,33 @@ public class TraitementDAO {
         }
     }
 
+    public boolean updateTraitement(Traitement t) {
+        String query = "UPDATE Traitement SET Date=?, Description=?, NotesObservation=?, RaisonForTraitement=?, FollowUpRequired=?, NextAppoinementID=?, Status=?, Type=?, PatientID=?, DoctorID=?, PrescriptionID=? WHERE Id=?";
+        try {
+            PreparedStatement ps = connectionToDB.prepareStatement(query);
+            ps.setDate(1, Date.valueOf(t.getDate()));
+            ps.setString(2, t.getDescription());
+            ps.setString(3, t.getNotesObservation());
+            ps.setString(4, t.getRaisonForTraitement());
+            ps.setBoolean(5, t.isFollowUpRequired());
+            ps.setInt(6, t.getNextAppoinementId());
+            ps.setString(7, t.getStatus());
+            ps.setString(8, t.getType());
+            ps.setInt(9, t.getPatientId());
+            ps.setInt(10, t.getDoctorId());
+            ps.setInt(11, t.getPrescriptionId());
+            ps.setInt(12, t.getId());
+            
+            int rowsAffected = ps.executeUpdate();
+            System.out.println("TraitementDAO : Updating traitement with id: " + t.getId());
+            return rowsAffected > 0;
+        } catch(SQLException e) {
+            System.err.println("TraitementDAO : SQLException occurred while updating traitement with id: " + t.getId());
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     // This function return the number of traitement with status == "En cours"
     public int getNumberOfActiveTraitements(){
         try {

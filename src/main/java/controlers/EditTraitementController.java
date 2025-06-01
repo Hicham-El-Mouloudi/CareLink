@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -121,6 +122,40 @@ public class EditTraitementController implements Initializable {
     @FXML
     private void handleSave(ActionEvent event) {
         System.out.println("EditTraitementController : Saving Traitement");
+        
+        if (selectedTraitement != null) {
+            // Update the Traitement object with values from form fields
+            selectedTraitement.setDate(datePicker.getValue());
+            selectedTraitement.setType(typeChoiceBox.getValue());
+            selectedTraitement.setStatus(statusChoiceBox.getValue());
+            selectedTraitement.setDescription(descriptionField.getText());
+            selectedTraitement.setNotesObservation(notesField.getText());
+            selectedTraitement.setRaisonForTraitement(raisonField.getText());
+            selectedTraitement.setFollowUpRequired(followUpYesRadio.isSelected());
+
+            // Save changes to database
+            TraitementDAO traitementDAO = new TraitementDAO();
+            boolean success = traitementDAO.updateTraitement(selectedTraitement);
+            
+            if (success) {
+                // Show success alert
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                successAlert.setTitle("Succès");
+                successAlert.setHeaderText(null);
+                successAlert.setContentText("Le traitement a été modifié avec succès.");
+                successAlert.showAndWait();
+                
+                // Close the window
+                close();
+            } else {
+                // Show error alert
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setTitle("Erreur");
+                errorAlert.setHeaderText(null);
+                errorAlert.setContentText("Une erreur s'est produite lors de la modification du traitement.");
+                errorAlert.showAndWait();
+            }
+        }
     }
     
     @FXML
