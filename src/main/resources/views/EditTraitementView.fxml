@@ -27,7 +27,7 @@
     <TextField fx:id="descriptionField" maxWidth="Infinity"/>
     
     <Label fx:id="notesLabel" text="Notes"/>
-    <TextField fx:id="notesField" maxWidth="Infinity"/>
+    <TextArea fx:id="notesField" maxWidth="Infinity"/>
     
     <Label fx:id="raisonLabel" text="Raison Pour Le Traitement"/>
     <TextField fx:id="raisonField" maxWidth="Infinity"/>
