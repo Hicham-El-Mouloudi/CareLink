@@ -8,6 +8,7 @@ import java.net.URL;
 
 import java.util.ResourceBundle;
 
+import ensaminiprojet.applicationsuivitraitementsmedicaux.App;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
@@ -54,7 +55,20 @@ public class TheAppMainViewController implements Initializable {
     // non Fxml 
     private Popup userPopup;
 
+    // Doctor Id
+    private int doctorID;
+    // 
+    public void setDoctorID(int doctorID) {
+        this.doctorID = doctorID;
+    }
 
+    // 
+    // Parent Controller
+	App rootApp;
+	// Setter for rootApp called from App when loading 'This View'
+	public void setRootApp(App rootApp) {
+		this.rootApp = rootApp;
+	}
     /**
      * Initializes the controller class.
      */

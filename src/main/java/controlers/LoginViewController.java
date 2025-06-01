@@ -1,5 +1,8 @@
 package controlers;
 
+
+import ensaminiprojet.applicationsuivitraitementsmedicaux.App;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import models.Doctor;
@@ -19,8 +22,13 @@ public class LoginViewController  {
 	@FXML private CheckBox chbRememberMe;
 
 	
-	
-	
+	// Parent Controller
+	App rootApp;
+	// Setter for rootApp called from App when loading 'This View'
+	public void setRootApp(App rootApp) {
+		this.rootApp = rootApp;
+	}
+
 	@FXML void HandleLoginAction() {
 		
 			String username = txtfUserName.getText().trim();
@@ -44,7 +52,9 @@ public class LoginViewController  {
 	            }
 	            
 	            
-	            // TODO: Load dashboard or next scene
+	            // Successful LogIn -> Go to the main app
+				rootApp.continueToTheAppMainView();
+
 	            
 	            
 	            
@@ -67,8 +77,8 @@ public class LoginViewController  {
 	@FXML private void HandleSignUp(ActionEvent event) {
 	     
 		//fo to sign up scene
-		
-        showAlert("", "Go to Sign Up Scene , link not implimented yet");
+		rootApp.continueToTheSignUpView();
+        // showAlert("", "Go to Sign Up Scene , link not implimented yet");
 		
 		
 		

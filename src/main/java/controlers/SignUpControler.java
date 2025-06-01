@@ -6,6 +6,7 @@ import javafx.scene.control.Alert.AlertType;
 import models.Doctor;
 import models.Person;
 import models.PersonDAO;
+import ensaminiprojet.applicationsuivitraitementsmedicaux.App;
 import javafx.event.ActionEvent;
 
 public class SignUpControler {
@@ -50,6 +51,14 @@ public class SignUpControler {
 
     @FXML
     private Button btnCancel;
+
+
+    	// Parent Controller
+	App rootApp;
+	// Setter for rootApp called from App when loading 'This View'
+	public void setRootApp(App rootApp) {
+		this.rootApp = rootApp;
+	}
 
     // Called by FXMLLoader after the fields are injected
     @FXML
@@ -141,6 +150,7 @@ public class SignUpControler {
             boolean success = doctor.save();
             if (success) {
                 showAlert(Alert.AlertType.INFORMATION, "Doctor registered successfully.");
+                rootApp.continueToSignInView();
                 ClearAll(); // Clear fields
               
                 
@@ -181,6 +191,7 @@ public class SignUpControler {
     private void handleCancel(ActionEvent event) {
      
 		//return to LogIn Scene
+        rootApp.continueToSignInView();
 		
 		ClearAll();
 		
