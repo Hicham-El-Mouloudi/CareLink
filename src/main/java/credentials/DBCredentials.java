@@ -41,7 +41,7 @@ public class DBCredentials {
         subProtocol = "mysql";
         host = "localhost";
         port = 3306;
-        dbName = "javafxdb";
+        dbName = "ApplicationDeSuiviDesTraitementsMedicaux";
     }
     // The core Credential Object
     static public DBCredentials getCredentials(){
