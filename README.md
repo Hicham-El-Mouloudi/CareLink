@@ -1,4 +1,4 @@
-# Application de Suivi des Traitements Médicaux (CareLink)
+# Application de Suivi des Traitements Médicaux (CareLinko)
 
 CareLinko est une application JavaFX moderne et professionnelle permettant la gestion complète des patients, rendez-vous, traitements et prescriptions médicales. Elle est conçue pour offrir une expérience utilisateur fluide, intuitive et sécurisée pour les professionnels de santé.
 
