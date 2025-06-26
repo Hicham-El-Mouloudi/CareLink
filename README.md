@@ -50,8 +50,6 @@ src/
     resources/
       views/              # Fichiers FXML & CSS
       ...
-  test/
-    java/                # Tests unitaires
 ```
 
 ## Lancement du projet
